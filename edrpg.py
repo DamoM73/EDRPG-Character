@@ -131,37 +131,89 @@ class Money:
         
 class Ship:
     def __init__(self, ship_model, ship_name, pilot):
+        # cosmetic
         self.model = ship_model
         self.name = ship_name
         self.size = SHIPS[self.model][0]
         self.manufacture = SHIPS[self.model][1]
         self.landing_pad = SHIPS[self.model][2]
+        
+        # general
         self.crew = SHIPS[self.model][3]
         self.passengers = SHIPS[self.model][4]
         self.agility = SHIPS[self.model][5]
         self.spd = SHIPS[self.model][6]
         self.range = SHIPS[self.model][7]
-        self.fuel_tank = SHIPS[self.model][8]
-        self.fuel = SHIPS[self.model][8]
+        self.fuel = 0
         self.hull = SHIPS[self.model][9]
-        self.power_plant = SHIPS[self.model][10]
-        self.thrust = SHIPS[self.model][11]
-        self.fsd = SHIPS[self.model][12]
-        self.life_support = SHIPS[self.model][13]
-        self.power_dist = SHIPS[self.model][14]
-        self.sensors = SHIPS[self.model][15]
-        self.fuel = SHIPS[self.model][16]
-        self.small_hp = SHIPS[self.model][17]
-        self.med_hp = SHIPS[self.model][18]
-        self.lge_hp = SHIPS[self.model][19]
-        self.huge_hp = SHIPS[self.model][20]
-        self.util_mount = SHIPS[self.model][21]
         self.shields = 0
         self.shield_recharge = 5
-        self.initiative = pilot.tact
-        self.defence = self.agility + pilot.ship_plt
+
+        # combat stats
+        self.initiative = pilot.tact.bonus
+        self.defence = self.agility + pilot.ship_plt.bonus
         self.dogfight = self.defence
-        self.pursuit = self.spd + pilot.ship_plt / 2
+        self.pursuit = self.spd + pilot.ship_plt.bonus // 2
+
+        # creating slots
+        self.pp_slot = Slot(SHIPS[self.model][10])
+        self.th_slot = Slot(SHIPS[self.model][11])
+        self.fsd_slot = Slot(SHIPS[self.model][12])
+        self.ls_slot = Slot(SHIPS[self.model][13])
+        self.pd_size = Slot(SHIPS[self.model][14])
+        self.s_size = Slot(SHIPS[self.model][15])
+        self.f_size = Slot(SHIPS[self.model][16])
+        self.weapon_slots = []
+        self.ulity_mounts = []
+        self.internal_slots = []
+        self.military_slots = []
+        self.crew = []
+
+        # allocating weapon slots
+        slots = SHIPS[self.model][20:24]
+        options = [1, 2, 3, 4]
+        for i in range(4):
+            for j in range(slots[i]):
+                self.weapon_slots.append(Slot(options[i]))
+        
+        # allocating utility slots
+        for i in range(SHIPS[self.model][24]):
+            self.ulity_mounts.append(Slot("Util"))
+        
+        # allocating internal slots
+        slots= SHIPS[self.model][25:33]
+        options = [1, 2, 3, 4, 5, 6, 7, 8]
+        for i in range(8):
+            for j in range(slots[i]):
+                self.internal_slots.append(Slot(options[i]))
+
+        # allocating military slots
+        slots= SHIPS[self.model][33:41]
+        options = [1, 2, 3, 4, 5, 6, 7, 8]
+        for i in range(8):
+            for j in range(slots[i]):
+                self.military_slots.append(Slot(options[i]))
+
+        # allocating crew slots
+        for i in range(SHIPS[self.model][3]):
+            self.ulity_mounts.append(Slot("Crew"))
+        
+
+        
+        
+
+
+
+class Slot:
+    def __init__(self, size):
+        self.size = size
+        self.content = Empty()
+
+class Empty:
+    def __init__(self):
+        self.text = "Empty"
+
+
 
 # Constants 
 RANKS = [Rank("Harmless",0,40,10,3,20), Rank("Mostly Harmless", 8, 50, 11, 4, 25),\
