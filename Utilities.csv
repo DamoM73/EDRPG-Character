@@ -1,0 +1,25 @@
+Name,Size,Strength,Power,Model,Description,Ammo,Cost,Bonus,Bonus amt
+Chaff Launcher,U,10,0.2,N/A,You can activate your Chaff Launcher as an Equipment Action. +4 defence against gimballed and automated turret attacks until your next turn starts.,6,"8,500",N/A,0
+ECM,U,10,0.2,N/A,You gain a continual +4 defence bonus against Seeker Missile attacks.,N/A,"12,500",N/A,0
+Heat Sink Launcher,U,10,0.2,N/A,When activated you gain a +2 System bonus when Silent Running.,4,"3,500",N/A,0
+Point Defence,U,10,0.2,N/A,"Automatically activates when a missile, torpedo or mine would hit you. Roll a D10. On an even score the missile or mine is destroyed.",10,"18,546",N/A,0
+Manifest Scanner E grade,U,10,0.2,E,Allows you to scan nearby ships to determine their cargo.,N/A,"13,544",N/A,0
+Manifest Scanner D grade,U,10,0.4,D,Allows you to scan nearby ships with a +1 bonus to your Systems Skill Check to determine their cargo.,N/A,"40,633",N/A,0
+Manifest Scanner C grade,U,10,0.8,C,Allows you to scan nearby ships with a +2 bonus to your Systems Skill Check to determine their cargo.,N/A,"121,899",N/A,0
+Manifest Scanner B grade,U,10,1.6,B,Allows you to scan nearby ships with a +3 bonus to your Systems Skill Check to determine their cargo.,N/A,"365,698",N/A,0
+Manifest Scanner A grade,U,10,3.2,A,Allows you to scan nearby ships with a +4 bonus to your Systems Skill Check to determine their cargo.,N/A,"1,097,095",N/A,0
+Frame Shift Wake Scanner E grade,U,10,0.2,E,Allows you to determine the hyperspace destination of a ship that has just jumped.,N/A,"13,544",N/A,0
+Frame Shift Wake Scanner D grade,U,10,0.4,D,Allows you to determine the hyperspace destination of a ship that has just jumped. You gain a +1 bonus to your Systems check when you do so.,N/A,"40,633",N/A,0
+Frame Shift Wake Scanner C grade,U,10,0.8,C,Allows you to determine the hyperspace destination of a ship that has just jumped. You gain a +2 bonus to your Systems check when you do so.,N/A,"121,899",N/A,0
+Frame Shift Wake Scanner B grade,U,10,1.6,B,Allows you to determine the hyperspace destination of a ship that has just jumped. You gain a +3 bonus to your Systems check when you do so.,N/A,"365,698",N/A,0
+Frame Shift Wake Scanner A grade,U,10,3.2,A,Allows you to determine the hyperspace destination of a ship that has just jumped. You gain a +4 bonus to your Systems check when you do so.,N/A,"1,097,095",N/A,0
+Kill Warrant Scanner E grade,U,10,0.2,E,This scanner and communications computer gives you a 20% bounty reward bonus,N/A,"13,544",N/A,0
+Kill Warrant Scanner D grade,U,10,0.4,D,This scanner and communications computer gives you a 40% bounty reward bonus,N/A,"40,633",N/A,0
+Kill Warrant Scanner C grade,U,10,0.8,C,This scanner and communications computer gives you a 60% bounty reward bonus,N/A,"121,899",N/A,0
+Kill Warrant Scanner B grade,U,10,1.6,B,This scanner and communications computer gives you a 80% bounty reward bonus,N/A,"365,698",N/A,0
+Kill Warrant Scanner A grade,U,10,3.2,A,This scanner and communications computer gives you a 100% bounty reward bonus,N/A,"1,097,095",N/A,0
+Shield Booster E grade,U,10,0.2,E,Gain a 5% boost to your Shield score.,N/A,"10,000",Shields,1.05
+Shield Booster D grade,U,10,0.5,D,Gain a 10% boost to your Shield score.,N/A,"23,000",Shields,1.1
+Shield Booster C grade,U,10,0.7,C,Gain a 15% boost to your Shield score.,N/A,"53,000",Shields,1.15
+Shield Booster B grade,U,10,1,B,Gain a 20% boost to your Shield score.,N/A,"122,000",Shields,1.2
+Shield Booster A grade,U,10,1.2,A,Gain a 25% boost to your Shield score.,N/A,"281,000",Shields,1.25
