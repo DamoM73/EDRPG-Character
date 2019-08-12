@@ -15,10 +15,10 @@ class Character:
         self.karma = RANKS[self.rank_index].karma_pts
         self.backgrounds = []
         self.enhancements = []
-        self.karam_caps = []
+        self.karam_capab = []
         self.carried_weap = []
         self.clothing = []
-        self.pack = []
+        self.pack_inv = []
         self.ship_inv = []
         self.cash = Money(1000,0,0)
         self.ships = []
@@ -67,7 +67,7 @@ class Character:
         self.perc = Skill("Perception", "E")
         self.sec = Skill("Security", "E")
         self.slt_o_hand = Skill("Slight of Hand", "E")
-        self.sealth = Skill("Stealth", "E")
+        self.stealth = Skill("Stealth", "E")
         self.surv = Skill("Survival", "E")
 
 
@@ -116,10 +116,10 @@ class Money:
         if self.u < 0:
             while self.u < 0:
                 self.mcr -= 1
-                self.u += 10000
-        elif self.u >= 10000:
-            self.mcr += self.u // 10000 
-            self.u = self.u % 10000
+                self.u += 100
+        elif self.u >= 100:
+            self.mcr += self.u // 100 
+            self.u = self.u % 100
 
         if self.mcr < 0:
             while self.mcr < 0:
@@ -136,7 +136,7 @@ class Ship:
         self.model = ship_model
         self.name = ship_name
         self.size = SHIPS[self.model][0]
-        self.manufacture = SHIPS[self.model][1]
+        self.manufacturer = SHIPS[self.model][1]
         self.landing_pad = SHIPS[self.model][2]
         
         # general
@@ -162,11 +162,11 @@ class Ship:
         self.th_slot = Slot(SHIPS[self.model][11])
         self.fsd_slot = Slot(SHIPS[self.model][12])
         self.ls_slot = Slot(SHIPS[self.model][13])
-        self.pd_size = Slot(SHIPS[self.model][14])
-        self.s_size = Slot(SHIPS[self.model][15])
-        self.f_size = Slot(SHIPS[self.model][16])
+        self.pd_slot = Slot(SHIPS[self.model][14])
+        self.s_slot = Slot(SHIPS[self.model][15])
+        self.f_slot = Slot(SHIPS[self.model][16])
         self.weapon_slots = []
-        self.ulity_mounts = []
+        self.utility_mounts = []
         self.internal_slots = []
         self.military_slots = []
         self.crew = []
@@ -214,37 +214,50 @@ class Empty:
 
 class Ship_weapon:
     def __init__(self, code):
-        self.name(SHIPS[0])
-        self.size(SHIPS[1])
-        self.str(SHIPS[2])
-        self.pwr(SHIPS[3])
-        self.to_hit(SHIPS[4])
-        self.sld_sml(SHIPS[5])
-        self.sld_med(SHIPS[6])
-        self.sld_lrg(SHIPS[7])
-        self.amr_sml(SHIPS[8])
-        self.arm_med(SHIPS[9])
-        self.arm_lrg(SHIPS[10])
-        self.burst(SHIPS[11])
-        self.ammo(SHIPS[12])
-        self.cost(SHIPS[13])
-        self.effect(SHIPS[14])
-        self.effect_amt(SHIPS[15])
-        self.notes(SHIPS[16])
+        self.name(SHIP_WEAPONS[code][0])
+        self.size(SHIP_WEAPONS[code][1])
+        self.str(SHIP_WEAPONS[code][2])
+        self.pwr(SHIP_WEAPONS[code][3])
+        self.to_hit(SHIP_WEAPONS[code][4])
+        self.sld_sml(SHIP_WEAPONS[code][5])
+        self.sld_med(SHIP_WEAPONS[code][6])
+        self.sld_lrg(SHIP_WEAPONS[code][7])
+        self.amr_sml(SHIP_WEAPONS[code][8])
+        self.arm_med(SHIP_WEAPONS[code][9])
+        self.arm_lrg(SHIP_WEAPONS[code][10])
+        self.burst(SHIP_WEAPONS[code][11])
+        self.ammo(SHIP_WEAPONS[code][12])
+        self.cost(SHIP_WEAPONS[code][13])
+        self.effect(SHIP_WEAPONS[code][14])
+        self.effect_amt(SHIP_WEAPONS[code][15])
+        self.notes(SHIP_WEAPONS[code][16])
 
 
 class Utility:
     def __init__(self, code):
-        self.name(UTILITIES[0])
-        self.size(UTILITIES[1])
-        self.str(UTILITIES[2])
-        self.pwr(UTILITIES[3])
-        self.model(UTILITIES[4])
-        self.desr(UTILITIES[5])
-        self.ammo(UTILITIES[6])
-        self.cost(UTILITIES[7])
-        self.effect(UTILITIES[8])
-        self.effect_amt(UTILITIES[9])
+        self.name(UTILITIES[code][0])
+        self.size(UTILITIES[code][1])
+        self.str(UTILITIES[code][2])
+        self.pwr(UTILITIES[code][3])
+        self.model(UTILITIES[code][4])
+        self.desr(UTILITIES[code][5])
+        self.ammo(UTILITIES[code][6])
+        self.cost(UTILITIES[code][7])
+        self.effect(UTILITIES[code][8])
+        self.effect_amt(UTILITIES[code][9])
+
+class Power_plant:
+    def __init__(self,code):
+        self.name(POWERPLANT[code][0])
+        self.size(POWERPLANT[code][1])
+        self.model(POWERPLANT[code][2])
+        self.power(POWERPLANT[code][3])
+        self.str(POWERPLANT[code][4])
+
+class Effect:
+    def __init__(self,stat, amt):
+        self.stat = stat
+        self.amt = amt
 
 
 # Constants 
@@ -300,92 +313,92 @@ SHIPS = {"Adder": ["Small", "Zorgon Peterson", "Small",2,1,8,6,"Exp",8,76,40000,
     "Vulture": ["Small","Core Dynamics","Small",1,1,9,7,"Std",8,140,4689640,1970250,4433050,4,5,4,3,5,4,3,0,0,2,0,4,4,1,0,1,1,0,0,0,0,0,0,0,1,0,0,0]
     }
 
-SHIP_WEAPONS = {"SFPL": ["Small Fixed Pulse Laser",1,10,0.39,2,15,15,15,10,10,10,0,"N/A",2200,"N/A","N/A","N/A"],\
-    "SGPL": ["Small Gimballed Pulse Laser",1,10,0.39,3,15,15,15,10,10,10,0,"N/A",6600,"N/A","N/A","N/A"],\
-    "STPL": ["Small Turreted Pulse Laser",1,10,0.38,2,15,15,15,10,10,10,0,"N/A",26000,"N/A","N/A","N/A"],\
-    "SFBL": ["Small Fixed Burst Laser",1,10,0.65,2,10,10,10,5,5,5,10,"N/A",4400,"N/A","N/A","N/A"],\
-    "SGBL": ["Small Gimballed Burst Laser",1,10,0.64,3,10,10,10,5,5,5,10,"N/A",8600,"N/A","N/A","N/A"],\
-    "STBL": ["Small Turreted Burst Laser",1,10,0.6,2,10,10,10,5,5,5,10,"N/A",52800,"N/A","N/A","N/A"],\
-    "SFBL": ["Small Fixed Beam Laser",1,10,0.69,2,10,10,10,5,5,5,20,"N/A",37430,"N/A","N/A","N/A"],\
-    "SGBL": ["Small Gimballed Beam Laser",1,10,0.68,3,10,10,10,5,5,5,20,"N/A",74650,"N/A","N/A","N/A"],\
-    "STBL": ["Small Turreted Beam Laser",1,10,0.63,2,10,10,10,5,5,5,20,"N/A",500000,"N/A","N/A","N/A"],\
-    "SFC": ["Small Fixed Cannon",1,10,0.34,2,10,10,10,15,15,15,0,50,21100,"N/A","N/A","N/A"],\
-    "SGC": ["Small Gimballed Cannon",1,10,0.38,3,10,10,10,15,15,15,0,50,42200,"N/A","N/A","N/A"],\
-    "STC": ["Small Turreted Cannon",1,10,0.32,2,10,10,10,15,15,15,0,50,506400,"N/A","N/A","N/A"],\
-    "SFMC": ["Small Fixed Multi-Cannon",1,10,0.28,2,5,5,5,10,10,10,10,30,9500,"N/A","N/A","N/A"],\
-    "SGMC": ["Small Gimballed Multi-Cannon",1,10,0.37,3,5,5,5,10,10,10,10,30,14250,"N/A","N/A","N/A"],\
-    "STMC": ["Small Turreted Multi-Cannon",1,10,0.26,2,5,5,5,10,10,10,10,30,81600,"N/A","N/A","N/A"],\
-    "SFFC": ["Small Fixed Fragment Cannon",1,10,0.45,4,5,10,15,10,15,20,0,20,36000,"N/A","N/A","CQC Only"],\
-    "SGFC": ["Small Gimballed Fragment Cannon",1,10,0.59,5,5,10,15,10,15,20,0,20,54720,"N/A","N/A","CQC Only"],\
-    "STFC": ["Small Turreted Fragment Cannon",1,10,0.42,4,5,10,15,10,15,20,0,20,182400,"N/A","N/A","CQC Only"],\
-    "SML": ["Small Mine Launcher",1,10,0.4,15,10,10,10,10,10,10,0,6,24260,"N/A","N/A","N/A"],\
-    "SFML": ["Small Fixed Mining Laser",1,10,0.5,1,1,1,1,1,1,1,0,"N/A",6800,"Mining",1,],\
-    "SSMR": ["Small Seeker Missile Rack",1,10,0.6,4,10,10,10,20,20,20,0,12,72600,"N/A","N/A","N/A"],\
-    "SDMR": ["Small Dumbfre Missile Rack",1,10,0.4,1,10,10,10,25,25,25,0,16,32175,"N/A","N/A","N/A"],\
-    "STR": ["Small Torpedo Rack",1,10,0.4,-1,15,15,15,35,35,35,0,2,11200,"N/A","N/A","N/A"],\
-    "SFR": ["Small Fixed Railgun",1,10,1.15,0,25,25,25,25,25,25,0,10,51600,"N/A","N/A","N/A"],\
-    "MFPL": ["Medium Fixed Pulse Laser",2,20,0.6,2,25,25,25,20,20,20,0,"N/A",17600,"N/A","N/A","N/A"],\
-    "MGPL": ["Medium Gimballed Pulse Laser",2,20,0.6,3,25,25,25,20,20,20,0,"N/A",35400,"N/A","N/A","N/A"],\
-    "MTPL": ["Medium Turreted Pulse Laser",2,20,0.58,2,25,25,25,20,20,20,0,"N/A",132800,"N/A","N/A","N/A"],\
-    "MFBL": ["Medium Fixed Burst Laser",2,20,1.05,2,20,20,20,15,15,15,10,"N/A",23000,"N/A","N/A","N/A"],\
-    "MGBL": ["Medium Gimballed Burst Laser",2,20,1.04,3,20,20,20,15,15,15,10,"N/A",48500,"N/A","N/A","N/A"],\
-    "MTBL": ["Medium Turreted Burst Laser",2,20,0.98,2,20,20,20,15,15,15,10,"N/A",162800,"N/A","N/A","N/A"],\
-    "MFBL": ["Medium Fixed Beam Laser",2,20,1.12,2,20,20,20,15,15,15,20,"N/A",299520,"N/A","N/A","N/A"],\
-    "MGBL": ["Medium Gimballed Beam Laser",2,20,1.1,3,20,20,20,15,15,15,20,"N/A",500600,"N/A","N/A","N/A"],\
-    "MTBL": ["Medium Turreted Beam Laser",2,20,1.03,2,20,20,20,15,15,15,20,"N/A",2099900,"N/A","N/A","N/A"],\
-    "MFC": ["Medium Fixed Cannon",2,20,0.49,2,20,20,20,25,25,25,0,50,168430,"N/A","N/A","N/A"],\
-    "MGC": ["Medium Gimballed Cannon",2,20,0.54,3,20,20,20,25,25,25,0,50,337600,"N/A","N/A","N/A"],\
-    "MTC": ["Medium Turreted Cannon",2,20,0.45,2,20,20,20,25,25,25,0,50,4051200,"N/A","N/A","N/A"],\
-    "MFMC": ["Medium Fixed Multi-Cannon",2,20,0.46,2,15,15,15,20,20,20,10,30,38000,"N/A","N/A","N/A"],\
-    "MGMC": ["Medium Gimballed Multi-Cannon",2,20,0.64,3,15,15,15,20,20,20,10,30,57000,"N/A","N/A","N/A"],\
-    "MTMC": ["Medium Turreted Multi-Cannon",2,20,0.5,2,15,15,15,20,20,20,10,30,1292800,"N/A","N/A","N/A"],\
-    "MFAMC": ["Medium Fixed AX Multi-Cannon",2,20,0.46,2,15,15,15,20,20,20,10,30,322150,"N/A","N/A","Anti-Thargoid munitions"],\
-    "MTAMC": ["Medium Turrented AX Multi-Cannon",2,20,0.46,2,15,15,15,20,20,20,10,30,1552525,"N/A","N/A","Anti-Thargoid munitions"],\
-    "MFFC": ["Medium Fixed Fragment Cannon",2,20,0.74,4,15,20,25,20,25,30,0,20,291840,"N/A","N/A","CQC Only"],\
-    "MGFC": ["Medium Gimballed Fragment Cannon",2,20,1.03,5,15,20,25,20,25,30,0,20,437760,"N/A","N/A","CQC Only"],\
-    "MTFC": ["Medium Turreted Fragment Cannon",2,20,0.79,4,15,20,25,20,25,30,0,20,1459200,"N/A","N/A","CQC Only"],\
-    "MFPA": ["Medium Fixed Plasma Accelerator",2,20,1.43,-1,50,50,50,50,50,50,0,50,834200,"N/A","N/A","N/A"],\
-    "MML": ["Medium Mine Launcher",2,20,0.4,17,20,20,20,20,20,20,0,6,294080,"N/A","N/A","N/A"],\
-    "MFML": ["Medium Fixed Mining Laser",2,20,0.75,1,1,1,1,1,1,1,0,"N/A",22580,"Mining",1,"N/A"],\
-    "MSMR": ["Medium Seeker Missile Rack",2,20,1.2,4,15,15,15,35,35,35,0,12,512400,"N/A","N/A","N/A"],\
-    "MDMR": ["Medium Dumbfre Missile Rack",2,20,1.2,1,20,20,20,40,40,40,0,16,240400,"N/A","N/A","N/A"],\
-    "MTP": ["Medium Torpedo Pylon",2,20,0.4,-1,25,25,25,50,50,50,0,2,44800,"N/A","N/A","N/A"],\
-    "MAMR": ["Medium AX Missle Rack",2,20,1.2,1,20,20,20,40,40,40,0,32,40900,"N/A","N/A","Anti-Thargoid munitions"],\
-    "MFR": ["Medium Fixed Railgun",2,20,1.63,0,40,40,40,40,40,40,0,10,412800,"N/A","N/A","N/A"],\
-    "MFFL": ["Medium Fixed Flak Launcher",2,20,1.2,4,20,20,20,20,20,20,0,30,261800,"N/A","N/A","Inflicts full damage on Thargon Swarms"],\
-    "MTFL": ["Medium Turreted Flak Launcher",2,20,1.2,4,20,20,20,20,20,20,0,30,1259200,"N/A","N/A","Inflicts full damage on Thargon Swarms"],\
-    "LFPL": ["Large Fixed Pulse Laser",3,30,0.9,2,35,35,35,30,30,30,0,"N/A",70400,"N/A","N/A","N/A"],\
-    "LGPL": ["Large Gimballed Pulse Laser",3,30,0.92,3,35,35,35,30,30,30,0,"N/A",140600,"N/A","N/A","N/A"],\
-    "LTPL": ["Large Turreted Pulse Laser",3,30,0.89,2,35,35,35,30,30,30,0,"N/A",400400,"N/A","N/A","N/A"],\
-    "LFBL": ["Large Fixed Burst Laser",3,30,1.66,2,30,30,30,25,25,25,10,"N/A",140400,"N/A","N/A","N/A"],\
-    "LGBL": ["Large Gimballed Burst Laser",3,30,1.65,3,30,30,30,25,25,25,10,"N/A",281600,"N/A","N/A","N/A"],\
-    "LTBL": ["Large Turreted Burst Laser",3,30,1.57,2,30,30,30,25,25,25,10,"N/A",800400,"N/A","N/A","N/A"],\
-    "LFBL": ["Large Fixed Beam Laser",3,30,1.8,2,30,30,30,25,25,25,20,"N/A",1177600,"N/A","N/A","N/A"],\
-    "LGBL": ["Large Gimballed Beam Laser",3,30,1.78,3,30,30,30,25,25,25,20,"N/A",2396160,"N/A","N/A","N/A"],\
-    "LTBL": ["Large Turreted Beam Laser",3,30,1.68,2,30,30,30,25,25,25,20,"N/A",19399600,"N/A","N/A","N/A"],\
-    "LFC": ["Large Fixed Cannon",3,30,0.67,2,30,30,30,35,35,35,0,50,675200,"N/A","N/A","N/A"],\
-    "LGC": ["Large Gimballed Cannon",3,30,0.75,3,30,30,30,35,35,35,0,50,1350400,"N/A","N/A","N/A"],\
-    "LTCL": ["Large Turreted Cannon",3,30,0.64,2,30,30,30,35,35,35,0,50,16204800,"N/A","N/A","N/A"],\
-    "LFFC": ["Large Fixed Fragment Cannon",3,30,1.02,4,25,30,35,30,35,40,0,20,1167360,"N/A","N/A","CQC Only"],\
-    "LGFC": ["Large Gimballed Fragment Cannon",3,30,1.55,5,25,30,35,30,35,40,0,20,1751040,"N/A","N/A","CQC Only"],\
-    "LTFC": ["Large Turreted Fragment Cannon",3,30,1.29,4,25,30,35,30,35,40,0,20,5836800,"N/A","N/A","CQC Only"],\
-    "LFMC": ["Large Fixed Multi-Cannon",3,30,0.64,2,25,25,25,30,30,30,10,30,140400,"N/A","N/A","N/A"],\
-    "LFAMC": ["Large Fixed AX Multi-Cannon",3,30,0.64,2,25,25,25,30,30,30,10,30,1151963,"N/A","N/A","Anti-Thargoid munitions"],\
-    "LGMC": ["Large Gimballed Multi-Cannon",3,30,0.97,3,25,25,25,30,30,30,10,30,578450,"N/A","N/A","N/A"],\
-    "LTAMC": ["Large Turreted AX Multi-Cannon",3,30,0.64,2,25,25,25,30,30,30,10,30,3726060,"N/A","N/A","Anti-Thargoid munitions"],\
-    "LFPA": ["Large Fixed Plasma Accelerator",3,30,1.97,-1,60,60,60,60,60,60,0,50,3051200,"N/A","N/A","N/A"],\
-    "LAMR": ["Large AX Missile Rack",3,30,1.62,1,30,30,30,60,60,60,0,64,1318444,"N/A","N/A","Anti-Thargoid munitions"],\
-    "HFPL": ["Huge Fixed Pulse Laser",4,40,1.33,2,45,45,45,40,40,40,0,"N/A",177600,"N/A","N/A","N/A"],\
-    "HGPL": ["Huge Gimballed Pulse Laser",4,40,1.37,3,45,45,45,40,40,40,0,"N/A",877600,"N/A","N/A","N/A"],\
-    "HFBL": ["Huge Fixed Burst Laser",4,40,2.58,2,40,40,40,35,35,35,10,"N/A",281600,"N/A","N/A","N/A"],\
-    "HGBL": ["Huge Gimballed Burst Laser",4,40,2.59,3,40,40,40,35,35,35,10,"N/A",1245600,"N/A","N/A","N/A"],\
-    "HFBL": ["Huge Fixed Beam Laser",4,40,2.9,2,40,40,40,35,35,35,20,"N/A",2396160,"N/A","N/A","N/A"],\
-    "HGBL": ["Huge Gimballed Beam Laser",4,40,2.86,3,40,40,40,35,35,35,20,"N/A",8746160,"N/A","N/A","N/A"],\
-    "HFC": ["Huge Fixed Cannon",4,40,0.92,2,40,40,40,45,45,45,0,50,2700800,"N/A","N/A","N/A"],\
-    "HGC": ["Huge Gimballed Cannon",4,40,1.03,3,40,40,40,45,45,45,0,50,5401600,"N/A","N/A","N/A"],\
-    "HFMC": ["Huge Fixed Multi-Cannon",4,40,0.73,2,35,35,35,40,40,40,10,30,1177600,"N/A","N/A","N/A"],\
-    "HGMC": ["Huge Gimballed Multi-Cannon",4,40,1.22,3,35,35,35,40,40,40,10,30,6377600,"N/A","N/A","N/A"],\
-    "HFPL": ["Huge Fixed Plasma Accelerator",4,40,2.63,-1,70,70,70,70,70,70,0,50,13793600,"N/A","N/A","N/A"]
+SHIP_WEAPONS = {"SFPL": ["Small Fixed Pulse Laser",1,10,0.39,2,15,15,15,10,10,10,0,"N/A",2200,"N/A","N/A"],\
+    "SGPL": ["Small Gimballed Pulse Laser",1,10,0.39,3,15,15,15,10,10,10,0,"N/A",6600,"N/A","N/A"],\
+    "STPL": ["Small Turreted Pulse Laser",1,10,0.38,2,15,15,15,10,10,10,0,"N/A",26000,"N/A","N/A"],\
+    "SFBL": ["Small Fixed Burst Laser",1,10,0.65,2,10,10,10,5,5,5,10,"N/A",4400,"N/A","N/A"],\
+    "SGBL": ["Small Gimballed Burst Laser",1,10,0.64,3,10,10,10,5,5,5,10,"N/A",8600,"N/A","N/A"],\
+    "STBL": ["Small Turreted Burst Laser",1,10,0.6,2,10,10,10,5,5,5,10,"N/A",52800,"N/A","N/A"],\
+    "SFBL": ["Small Fixed Beam Laser",1,10,0.69,2,10,10,10,5,5,5,20,"N/A",37430,"N/A","N/A"],\
+    "SGBL": ["Small Gimballed Beam Laser",1,10,0.68,3,10,10,10,5,5,5,20,"N/A",74650,"N/A","N/A"],\
+    "STBL": ["Small Turreted Beam Laser",1,10,0.63,2,10,10,10,5,5,5,20,"N/A",500000,"N/A","N/A"],\
+    "SFC": ["Small Fixed Cannon",1,10,0.34,2,10,10,10,15,15,15,0,50,21100,"N/A","N/A"],\
+    "SGC": ["Small Gimballed Cannon",1,10,0.38,3,10,10,10,15,15,15,0,50,42200,"N/A","N/A"],\
+    "STC": ["Small Turreted Cannon",1,10,0.32,2,10,10,10,15,15,15,0,50,506400,"N/A","N/A"],\
+    "SFMC": ["Small Fixed Multi-Cannon",1,10,0.28,2,5,5,5,10,10,10,10,30,9500,"N/A","N/A"],\
+    "SGMC": ["Small Gimballed Multi-Cannon",1,10,0.37,3,5,5,5,10,10,10,10,30,14250,"N/A","N/A"],\
+    "STMC": ["Small Turreted Multi-Cannon",1,10,0.26,2,5,5,5,10,10,10,10,30,81600,"N/A","N/A"],\
+    "SFFC": ["Small Fixed Fragment Cannon",1,10,0.45,4,5,10,15,10,15,20,0,20,36000,"N/A","CQC Only"],\
+    "SGFC": ["Small Gimballed Fragment Cannon",1,10,0.59,5,5,10,15,10,15,20,0,20,54720,"N/A","CQC Only"],\
+    "STFC": ["Small Turreted Fragment Cannon",1,10,0.42,4,5,10,15,10,15,20,0,20,182400,"N/A","CQC Only"],\
+    "SML": ["Small Mine Launcher",1,10,0.4,15,10,10,10,10,10,10,0,6,24260,"N/A","N/A"],\
+    "SFML": ["Small Fixed Mining Laser",1,10,0.5,1,1,1,1,1,1,1,0,"N/A",6800,Effect("Mining",1),"N/A"],\
+    "SSMR": ["Small Seeker Missile Rack",1,10,0.6,4,10,10,10,20,20,20,0,12,72600,"N/A","N/A"],\
+    "SDMR": ["Small Dumbfre Missile Rack",1,10,0.4,1,10,10,10,25,25,25,0,16,32175,"N/A","N/A"],\
+    "STR": ["Small Torpedo Rack",1,10,0.4,-1,15,15,15,35,35,35,0,2,11200,"N/A","N/A"],\
+    "SFR": ["Small Fixed Railgun",1,10,1.15,0,25,25,25,25,25,25,0,10,51600,"N/A","N/A"],\
+    "MFPL": ["Medium Fixed Pulse Laser",2,20,0.6,2,25,25,25,20,20,20,0,"N/A",17600,"N/A","N/A"],\
+    "MGPL": ["Medium Gimballed Pulse Laser",2,20,0.6,3,25,25,25,20,20,20,0,"N/A",35400,"N/A","N/A"],\
+    "MTPL": ["Medium Turreted Pulse Laser",2,20,0.58,2,25,25,25,20,20,20,0,"N/A",132800,"N/A","N/A"],\
+    "MFBL": ["Medium Fixed Burst Laser",2,20,1.05,2,20,20,20,15,15,15,10,"N/A",23000,"N/A","N/A"],\
+    "MGBL": ["Medium Gimballed Burst Laser",2,20,1.04,3,20,20,20,15,15,15,10,"N/A",48500,"N/A","N/A"],\
+    "MTBL": ["Medium Turreted Burst Laser",2,20,0.98,2,20,20,20,15,15,15,10,"N/A",162800,"N/A","N/A"],\
+    "MFBL": ["Medium Fixed Beam Laser",2,20,1.12,2,20,20,20,15,15,15,20,"N/A",299520,"N/A","N/A"],\
+    "MGBL": ["Medium Gimballed Beam Laser",2,20,1.1,3,20,20,20,15,15,15,20,"N/A",500600,"N/A","N/A"],\
+    "MTBL": ["Medium Turreted Beam Laser",2,20,1.03,2,20,20,20,15,15,15,20,"N/A",2099900,"N/A","N/A"],\
+    "MFC": ["Medium Fixed Cannon",2,20,0.49,2,20,20,20,25,25,25,0,50,168430,"N/A","N/A"],\
+    "MGC": ["Medium Gimballed Cannon",2,20,0.54,3,20,20,20,25,25,25,0,50,337600,"N/A","N/A"],\
+    "MTC": ["Medium Turreted Cannon",2,20,0.45,2,20,20,20,25,25,25,0,50,4051200,"N/A","N/A"],\
+    "MFMC": ["Medium Fixed Multi-Cannon",2,20,0.46,2,15,15,15,20,20,20,10,30,38000,"N/A","N/A"],\
+    "MGMC": ["Medium Gimballed Multi-Cannon",2,20,0.64,3,15,15,15,20,20,20,10,30,57000,"N/A","N/A"],\
+    "MTMC": ["Medium Turreted Multi-Cannon",2,20,0.5,2,15,15,15,20,20,20,10,30,1292800,"N/A","N/A"],\
+    "MFAMC": ["Medium Fixed AX Multi-Cannon",2,20,0.46,2,15,15,15,20,20,20,10,30,322150,"N/A","Anti-Thargoid munitions"],\
+    "MTAMC": ["Medium Turrented AX Multi-Cannon",2,20,0.46,2,15,15,15,20,20,20,10,30,1552525,"N/A","Anti-Thargoid munitions"],\
+    "MFFC": ["Medium Fixed Fragment Cannon",2,20,0.74,4,15,20,25,20,25,30,0,20,291840,"N/A","CQC Only"],\
+    "MGFC": ["Medium Gimballed Fragment Cannon",2,20,1.03,5,15,20,25,20,25,30,0,20,437760,"N/A","CQC Only"],\
+    "MTFC": ["Medium Turreted Fragment Cannon",2,20,0.79,4,15,20,25,20,25,30,0,20,1459200,"N/A","CQC Only"],\
+    "MFPA": ["Medium Fixed Plasma Accelerator",2,20,1.43,-1,50,50,50,50,50,50,0,50,834200,"N/A","N/A"],\
+    "MML": ["Medium Mine Launcher",2,20,0.4,17,20,20,20,20,20,20,0,6,294080,"N/A","N/A"],\
+    "MFML": ["Medium Fixed Mining Laser",2,20,0.75,1,1,1,1,1,1,1,0,"N/A",22580,Effect("Mining",1),"N/A"],\
+    "MSMR": ["Medium Seeker Missile Rack",2,20,1.2,4,15,15,15,35,35,35,0,12,512400,"N/A","N/A"],\
+    "MDMR": ["Medium Dumbfre Missile Rack",2,20,1.2,1,20,20,20,40,40,40,0,16,240400,"N/A","N/A"],\
+    "MTP": ["Medium Torpedo Pylon",2,20,0.4,-1,25,25,25,50,50,50,0,2,44800,"N/A","N/A"],\
+    "MAMR": ["Medium AX Missle Rack",2,20,1.2,1,20,20,20,40,40,40,0,32,40900,"N/A","Anti-Thargoid munitions"],\
+    "MFR": ["Medium Fixed Railgun",2,20,1.63,0,40,40,40,40,40,40,0,10,412800,"N/A","N/A"],\
+    "MFFL": ["Medium Fixed Flak Launcher",2,20,1.2,4,20,20,20,20,20,20,0,30,261800,"N/A","Inflicts full damage on Thargon Swarms"],\
+    "MTFL": ["Medium Turreted Flak Launcher",2,20,1.2,4,20,20,20,20,20,20,0,30,1259200,"N/A","Inflicts full damage on Thargon Swarms"],\
+    "LFPL": ["Large Fixed Pulse Laser",3,30,0.9,2,35,35,35,30,30,30,0,"N/A",70400,"N/A","N/A"],\
+    "LGPL": ["Large Gimballed Pulse Laser",3,30,0.92,3,35,35,35,30,30,30,0,"N/A",140600,"N/A","N/A"],\
+    "LTPL": ["Large Turreted Pulse Laser",3,30,0.89,2,35,35,35,30,30,30,0,"N/A",400400,"N/A","N/A"],\
+    "LFBL": ["Large Fixed Burst Laser",3,30,1.66,2,30,30,30,25,25,25,10,"N/A",140400,"N/A","N/A"],\
+    "LGBL": ["Large Gimballed Burst Laser",3,30,1.65,3,30,30,30,25,25,25,10,"N/A",281600,"N/A","N/A"],\
+    "LTBL": ["Large Turreted Burst Laser",3,30,1.57,2,30,30,30,25,25,25,10,"N/A",800400,"N/A","N/A"],\
+    "LFBL": ["Large Fixed Beam Laser",3,30,1.8,2,30,30,30,25,25,25,20,"N/A",1177600,"N/A","N/A"],\
+    "LGBL": ["Large Gimballed Beam Laser",3,30,1.78,3,30,30,30,25,25,25,20,"N/A",2396160,"N/A","N/A"],\
+    "LTBL": ["Large Turreted Beam Laser",3,30,1.68,2,30,30,30,25,25,25,20,"N/A",19399600,"N/A","N/A"],\
+    "LFC": ["Large Fixed Cannon",3,30,0.67,2,30,30,30,35,35,35,0,50,675200,"N/A","N/A"],\
+    "LGC": ["Large Gimballed Cannon",3,30,0.75,3,30,30,30,35,35,35,0,50,1350400,"N/A","N/A"],\
+    "LTCL": ["Large Turreted Cannon",3,30,0.64,2,30,30,30,35,35,35,0,50,16204800,"N/A","N/A"],\
+    "LFFC": ["Large Fixed Fragment Cannon",3,30,1.02,4,25,30,35,30,35,40,0,20,1167360,"N/A","CQC Only"],\
+    "LGFC": ["Large Gimballed Fragment Cannon",3,30,1.55,5,25,30,35,30,35,40,0,20,1751040,"N/A","CQC Only"],\
+    "LTFC": ["Large Turreted Fragment Cannon",3,30,1.29,4,25,30,35,30,35,40,0,20,5836800,"N/A","CQC Only"],\
+    "LFMC": ["Large Fixed Multi-Cannon",3,30,0.64,2,25,25,25,30,30,30,10,30,140400,"N/A","N/A"],\
+    "LFAMC": ["Large Fixed AX Multi-Cannon",3,30,0.64,2,25,25,25,30,30,30,10,30,1151963,"N/A","Anti-Thargoid munitions"],\
+    "LGMC": ["Large Gimballed Multi-Cannon",3,30,0.97,3,25,25,25,30,30,30,10,30,578450,"N/A","N/A"],\
+    "LTAMC": ["Large Turreted AX Multi-Cannon",3,30,0.64,2,25,25,25,30,30,30,10,30,3726060,"N/A","Anti-Thargoid munitions"],\
+    "LFPA": ["Large Fixed Plasma Accelerator",3,30,1.97,-1,60,60,60,60,60,60,0,50,3051200,"N/A","N/A"],\
+    "LAMR": ["Large AX Missile Rack",3,30,1.62,1,30,30,30,60,60,60,0,64,1318444,"N/A","Anti-Thargoid munitions"],\
+    "HFPL": ["Huge Fixed Pulse Laser",4,40,1.33,2,45,45,45,40,40,40,0,"N/A",177600,"N/A","N/A"],\
+    "HGPL": ["Huge Gimballed Pulse Laser",4,40,1.37,3,45,45,45,40,40,40,0,"N/A",877600,"N/A","N/A"],\
+    "HFBL": ["Huge Fixed Burst Laser",4,40,2.58,2,40,40,40,35,35,35,10,"N/A",281600,"N/A","N/A"],\
+    "HGBL": ["Huge Gimballed Burst Laser",4,40,2.59,3,40,40,40,35,35,35,10,"N/A",1245600,"N/A","N/A"],\
+    "HFBL": ["Huge Fixed Beam Laser",4,40,2.9,2,40,40,40,35,35,35,20,"N/A",2396160,"N/A","N/A"],\
+    "HGBL": ["Huge Gimballed Beam Laser",4,40,2.86,3,40,40,40,35,35,35,20,"N/A",8746160,"N/A","N/A"],\
+    "HFC": ["Huge Fixed Cannon",4,40,0.92,2,40,40,40,45,45,45,0,50,2700800,"N/A","N/A"],\
+    "HGC": ["Huge Gimballed Cannon",4,40,1.03,3,40,40,40,45,45,45,0,50,5401600,"N/A","N/A"],\
+    "HFMC": ["Huge Fixed Multi-Cannon",4,40,0.73,2,35,35,35,40,40,40,10,30,1177600,"N/A","N/A"],\
+    "HGMC": ["Huge Gimballed Multi-Cannon",4,40,1.22,3,35,35,35,40,40,40,10,30,6377600,"N/A","N/A"],\
+    "HFPL": ["Huge Fixed Plasma Accelerator",4,40,2.63,-1,70,70,70,70,70,70,0,50,13793600,"N/A","N/A"]
     }
 
 UTILITIES = {"Chaff": ["Chaff Launcher","U",10,0.2,"N/A","You can activate your Chaff Launcher as an Equipment Action. +4 defence against gimballed and automated turret attacks until your next turn starts.",6,8500,"N/A",0],\
@@ -414,39 +427,76 @@ UTILITIES = {"Chaff": ["Chaff Launcher","U",10,0.2,"N/A","You can activate your 
     "Sld Boost A": ["Shield Booster A grade","U",10,1.2,"A","Gain a 25% boost to your Shield score.","N/A",281000,["Shields",1.25]]\
     }
 
-POWERPLANT = {"PP 2E": ("Power Plant 2E","2","E",6.4,20,1980),\
-    "PP 2D": ("Power Plant 2D","2","D",7.2,20,5930),\
-    "PP 2C": ("Power Plant 2C","2","C",8.0,25,17800),\
-    "PP 2B": ("Power Plant 2B","2","B",8.8,25,53410),\
-    "PP 2A": ("Power Plant 2A","2","A",9.6,30,160220),\
-    "PP 3E": ("Power Plant 3E","3","E",8.0,30,6200),\
-    "PP 3D": ("Power Plant 3D","3","D",9.0,30,18810),\
-    "PP 3C": ("Power Plant 3C","3","C",10.0,35,56440),\
-    "PP 3B": ("Power Plant 3B","3","B",11.0,35,169300),\
-    "PP 3A": ("Power Plant 3A","3","A",12.0,40,507910),\
-    "PP 4E": ("Power Plant 4E","4","E",10.4,40,19880),\
-    "PP 4D": ("Power Plant 4D","4","D",11.7,40,59630),\
-    "PP 4C": ("Power Plant 4C","4","C",13.0,45,178900),\
-    "PP 4B": ("Power Plant 4B","4","B",14.3,45,536690),\
-    "PP 4A": ("Power Plant 4A","4","A",15.6,50,1610080),\
-    "PP 5E": ("Power Plant 5E","5","E",13.6,50,63010),\
-    "PP 5D": ("Power Plant 5D","5","D",15.3,50,189040),\
-    "PP 5C": ("Power Plant 5C","5","C",17.0,55,567110),\
-    "PP 5B": ("Power Plant 5B","5","B",18.7,55,1701320),\
-    "PP 5A": ("Power Plant 5A","5","A",20.4,60,5103950),\
-    "PP 6E": ("Power Plant 6E","6","E",16.8,60,199750),\
-    "PP 6D": ("Power Plant 6D","6","D",18.9,60,599240),\
-    "PP 6C": ("Power Plant 6C","6","C",21.0,65,1797730),\
-    "PP 6B": ("Power Plant 6B","6","B",23.1,65,5393180),\
-    "PP 6A": ("Power Plant 6A","6","A",25.2,70,16179530),\
-    "PP 7E": ("Power Plant 7E","7","E",20.0,70,633200),\
-    "PP 7D": ("Power Plant 7D","7","D",22.5,70,1899600),\
-    "PP 7C": ("Power Plant 7C","7","C",25.0,75,5698790),\
-    "PP 7B": ("Power Plant 7B","7","B",27.5,75,17096370),\
-    "PP 7A": ("Power Plant 7A","7","A",30.0,80,51289110),\
-    "PP 8E": ("Power Plant 8E","8","E",24.0,80,2007240),\
-    "PP 8D": ("Power Plant 8D","8","D",27.0,80,6021720),\
-    "PP 8C": ("Power Plant 8C","8","C",30.0,85,18065170),\
-    "PP 8B": ("Power Plant 8B","8","B",33.0,85,54195500),\
-    "PP 8A": ("Power Plant 8A","8","A",36.0,90,162586490)
+POWERPLANT = {"PP 2E": ("Power Plant 2E",2,"E",6.4,20,1980),\
+    "PP 2D": ("Power Plant 2D",2,"D",7.2,20,5930),\
+    "PP 2C": ("Power Plant 2C",2,"C",8.0,25,17800),\
+    "PP 2B": ("Power Plant 2B",2,"B",8.8,25,53410),\
+    "PP 2A": ("Power Plant 2A",2,"A",9.6,30,160220),\
+    "PP 3E": ("Power Plant 3E",3,"E",8.0,30,6200),\
+    "PP 3D": ("Power Plant 3D",3,"D",9.0,30,18810),\
+    "PP 3C": ("Power Plant 3C",3,"C",10.0,35,56440),\
+    "PP 3B": ("Power Plant 3B",3,"B",11.0,35,169300),\
+    "PP 3A": ("Power Plant 3A",3,"A",12.0,40,507910),\
+    "PP 4E": ("Power Plant 4E",4,"E",10.4,40,19880),\
+    "PP 4D": ("Power Plant 4D",4,"D",11.7,40,59630),\
+    "PP 4C": ("Power Plant 4C",4,"C",13.0,45,178900),\
+    "PP 4B": ("Power Plant 4B",4,"B",14.3,45,536690),\
+    "PP 4A": ("Power Plant 4A",4,"A",15.6,50,1610080),\
+    "PP 5E": ("Power Plant 5E",5,"E",13.6,50,63010),\
+    "PP 5D": ("Power Plant 5D",5,"D",15.3,50,189040),\
+    "PP 5C": ("Power Plant 5C",5,"C",17.0,55,567110),\
+    "PP 5B": ("Power Plant 5B",5,"B",18.7,55,1701320),\
+    "PP 5A": ("Power Plant 5A",5,"A",20.4,60,5103950),\
+    "PP 6E": ("Power Plant 6E",6,"E",16.8,60,199750),\
+    "PP 6D": ("Power Plant 6D",6,"D",18.9,60,599240),\
+    "PP 6C": ("Power Plant 6C",6,"C",21.0,65,1797730),\
+    "PP 6B": ("Power Plant 6B",6,"B",23.1,65,5393180),\
+    "PP 6A": ("Power Plant 6A",6,"A",25.2,70,16179530),\
+    "PP 7E": ("Power Plant 7E",7,"E",20.0,70,633200),\
+    "PP 7D": ("Power Plant 7D",7,"D",22.5,70,1899600),\
+    "PP 7C": ("Power Plant 7C",7,"C",25.0,75,5698790),\
+    "PP 7B": ("Power Plant 7B",7,"B",27.5,75,17096370),\
+    "PP 7A": ("Power Plant 7A",7,"A",30.0,80,51289110),\
+    "PP 8E": ("Power Plant 8E",8,"E",24.0,80,2007240),\
+    "PP 8D": ("Power Plant 8D",8,"D",27.0,80,6021720),\
+    "PP 8C": ("Power Plant 8C",8,"C",30.0,85,18065170),\
+    "PP 8B": ("Power Plant 8B",8,"B",33.0,85,54195500),\
+    "PP 8A": ("Power Plant 8A",8,"A",36.0,90,162586490)
     }
+
+THUSTER = {"TH 2E": ("Thruster 2E","2","E",2,20,[],1980),\
+    "TH 2D": ("Thruster 2D",2,"D",2.25,20,[Effect("Speed",1)],5930),\
+    "TH 2C": ("Thruster 2C",2,"C",2.5,25,[Effect("Speed",1),Effect("Agility",1),17800),\
+    "TH 2B": ("Thruster 2B",2,"B",2.75,25,[Effect("Speed",2),Effect("Agility",1),53410),\
+    "TH 2A": ("Thruster 2A",2,"A",3.0,30,[Effect(Speed,2),Effect(Agility,2)],160220),\
+    "TH 3E": ("Thruster 3E",3,"E",2.48,30,[],6270),\
+    "TH 3D": ("Thruster 3D",3,"D",2.79,30,[Effect("Speed",1)],18810),\
+    "TH 3C": ("Thruster 3C",3,"C",3.1,35,[Effect("Speed",1),Effect("Agility",1)],56440),\
+    "TH 3B": ("Thruster 3B",3,"B",3.41,35,[Effect("Speed",2),Effect("Agility",1)],169300),\
+    "TH 3A": ("Thruster 3A",3,"A",3.72,40,[Effect("Speed",2),Effect("Agility",2)],507910),\
+TH 4E	Thruster 4E	4E	3.82	40	No bonuses	19,880
+TH 4D	Thruster 4D	4D	3.69	40	+1 Speed	56,630
+TH 4C	Thruster 4C	4C	4.1	45	+1 Speed, +1 Agility	178,900
+TH 4B	Thruster 4B	4B	4.51	45	+2 Speed, +1 Agility	536,690
+TH 4A	Thruster 4A	4A	4.92	50	+2 Speed, +2 Agility	1,610,080
+TH 5E	Thruster 5E	5E	4.08	50	No bonuses	63,010
+TH 5D	Thruster 5D	5D	4.59	50	+1 Speed	189,040
+TH 5C	Thruster 5C	5C	5.1	55	+1 Speed, +1 Agility	567,110
+TH 5B	Thruster 5B	5B	5.61	55	+2 Speed, +1 Agility	1,701,320
+TH 5A	Thruster 5A	5A	6.12	60	+2 Speed, +2 Agility	5,103,950
+TH 6E	Thruster 6E	6E	5.04	60	No bonuses	199,750
+TH 6D	Thruster 6D	6D	5.67	60	+1 Speed	599,240
+TH 6C	Thruster 6C	6C	6.3	65	+1 Speed, +1 Agility	1,797,730
+TH 6B	Thruster 6B	6B	6.93	65	+2 Speed, +1 Agility	5,393,180
+TH 6A	Thruster 6A	6A	7.56	70	+2 Speed, +2 Agility	16,179,530
+TH 7E	Thruster 7E	7E	6.08	70	No bonuses	633,200
+TH 7D	Thruster 7D	7D	6.84	70	+1 Speed	1,899,600
+TH 7C	Thruster 7C	7C	7.6	75	+1 Speed, +1 Agility	5,698,790
+TH 7B	Thruster 7B	7B	8.36	75	+2 Speed, +1 Agility	17,096,370
+TH 7A	Thruster 7A	7A	9.12	80	+2 Speed, +2 Agility	51,289,110
+TH 8E	Thruster 8E	8E	7.2	80	No bonuses	2,007,240
+TH 8D	Thruster 8D	8D	8.1	80	+1 Speed	6,021,720
+TH 8C	Thruster 8C	8C	9	85	+1 Speed, +1 Agility	18,065,170
+TH 8B	Thruster 8B	8B	9.9	85	+2 Speed, +1 Agility	54,195,500
+TH 8A	Thruster 8A	8A	10.8	90	+2 Speed, +2 Agility	162,586,500
+}
