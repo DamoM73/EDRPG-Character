@@ -143,12 +143,13 @@ class Ship:
         self.crew = SHIPS[self.model][3]
         self.passengers = SHIPS[self.model][4]
         self.agility = SHIPS[self.model][5]
-        self.spd = SHIPS[self.model][6]
+        self.speed = SHIPS[self.model][6]
         self.range = SHIPS[self.model][7]
         self.fuel = 0
         self.hull = SHIPS[self.model][9]
         self.shields = 0
         self.shield_recharge = 5
+        self.float_pts = 0
 
         # combat stats
         self.initiative = pilot.tact.bonus
@@ -214,45 +215,86 @@ class Empty:
 
 class Ship_weapon:
     def __init__(self, code):
-        self.name(SHIP_WEAPONS[code][0])
-        self.size(SHIP_WEAPONS[code][1])
-        self.str(SHIP_WEAPONS[code][2])
-        self.pwr(SHIP_WEAPONS[code][3])
-        self.to_hit(SHIP_WEAPONS[code][4])
-        self.sld_sml(SHIP_WEAPONS[code][5])
-        self.sld_med(SHIP_WEAPONS[code][6])
-        self.sld_lrg(SHIP_WEAPONS[code][7])
-        self.amr_sml(SHIP_WEAPONS[code][8])
-        self.arm_med(SHIP_WEAPONS[code][9])
-        self.arm_lrg(SHIP_WEAPONS[code][10])
-        self.burst(SHIP_WEAPONS[code][11])
-        self.ammo(SHIP_WEAPONS[code][12])
-        self.cost(SHIP_WEAPONS[code][13])
-        self.effect(SHIP_WEAPONS[code][14])
-        self.effect_amt(SHIP_WEAPONS[code][15])
+        self.name = SHIP_WEAPONS[code][0]
+        self.size = SHIP_WEAPONS[code][1]
+        self.strength = SHIP_WEAPONS[code][2]
+        self.pwr = SHIP_WEAPONS[code][3]
+        self.to_hit = SHIP_WEAPONS[code][4]
+        self.sld_sml = SHIP_WEAPONS[code][5]
+        self.sld_med = SHIP_WEAPONS[code][6]
+        self.sld_lrg = SHIP_WEAPONS[code][7]
+        self.amr_sml = SHIP_WEAPONS[code][8]
+        self.arm_med = SHIP_WEAPONS[code][9]
+        self.arm_lrg = SHIP_WEAPONS[code][10]
+        self.burst = SHIP_WEAPONS[code][11]
+        self.ammo = SHIP_WEAPONS[code][12]
+        self.cost = SHIP_WEAPONS[code][13]
+        self.effect = SHIP_WEAPONS[code][14]
+        self.effect_amt = SHIP_WEAPONS[code][15]
         self.notes(SHIP_WEAPONS[code][16])
 
 
 class Utility:
     def __init__(self, code):
-        self.name(UTILITIES[code][0])
-        self.size(UTILITIES[code][1])
-        self.str(UTILITIES[code][2])
-        self.pwr(UTILITIES[code][3])
-        self.model(UTILITIES[code][4])
-        self.desr(UTILITIES[code][5])
-        self.ammo(UTILITIES[code][6])
-        self.cost(UTILITIES[code][7])
-        self.effect(UTILITIES[code][8])
-        self.effect_amt(UTILITIES[code][9])
+        self.name = UTILITIES[code][0]
+        self.size = UTILITIES[code][1]
+        self.strength = UTILITIES[code][2]
+        self.pwr = UTILITIES[code][3]
+        self.model = UTILITIES[code][4]
+        self.desr = UTILITIES[code][5]
+        self.ammo = UTILITIES[code][6]
+        self.cost = UTILITIES[code][7]
+        self.effect = UTILITIES[code][8]
+        self.effect_amt = UTILITIES[code][9]
 
 class Power_plant:
     def __init__(self,code):
-        self.name(POWERPLANT[code][0])
-        self.size(POWERPLANT[code][1])
-        self.model(POWERPLANT[code][2])
-        self.power(POWERPLANT[code][3])
-        self.str(POWERPLANT[code][4])
+        self.name = POWERPLANT[code][0]
+        self.size = POWERPLANT[code][1]
+        self.model = POWERPLANT[code][2]
+        self.power = POWERPLANT[code][3]
+        self.strength = POWERPLANT[code][4]
+        self.cost = POWERPLANT[code][5]
+
+class Thusters:
+    def __init__(self,code):
+        self.name = THUSTERS[code][0]
+        self.size = THUSTERS[code][1]
+        self.model = THUSTERS[code][2]
+        self.power = THUSTERS[code][3]
+        self.strength = THUSTERS[code][4]
+        self.effects = THUSTERS[code][5]
+        self.cost = THUSTERS[code][6]
+
+class Fsd:
+    def __init__(self,code):
+        self.name = FSD[code][0]
+        self.size = FSD[code][1]
+        self.model = FSD[code][2]
+        self.power = FSD[code][3]
+        self.strength = FSD[code][4]
+        self.range = FSD[code][5]
+        self.cost = FSD[code][6]
+
+class Life_Support:
+    def __init__(self,code):
+        self.name = LIFE_SUPPORT[code][0]
+        self.size = LIFE_SUPPORT[code][1]
+        self.model = LIFE_SUPPORT[code][2]
+        self.power = LIFE_SUPPORT[code][3]
+        self.strength = LIFE_SUPPORT[code][4]
+        self.duration = LIFE_SUPPORT[code][5]
+        self.cost = LIFE_SUPPORT[code][6]
+
+class Power_Dist:
+    def __init__(self,code):
+        self.name = POWER_DIST[code][0]
+        self.size = POWER_DIST[code][1]
+        self.model = POWER_DIST[code][2]
+        self.power = POWER_DIST[code][3]
+        self.strength = POWER_DIST[code][4]
+        self.effects = POWER_DIST[code][5]
+        self.cost = POWER_DIST[code][6]
 
 class Effect:
     def __init__(self,stat, amt):
@@ -464,39 +506,160 @@ POWERPLANT = {"PP 2E": ("Power Plant 2E",2,"E",6.4,20,1980),\
     "PP 8A": ("Power Plant 8A",8,"A",36.0,90,162586490)
     }
 
-THUSTER = {"TH 2E": ("Thruster 2E","2","E",2,20,[],1980),\
-    "TH 2D": ("Thruster 2D",2,"D",2.25,20,[Effect("Speed",1)],5930),\
-    "TH 2C": ("Thruster 2C",2,"C",2.5,25,[Effect("Speed",1),Effect("Agility",1),17800),\
-    "TH 2B": ("Thruster 2B",2,"B",2.75,25,[Effect("Speed",2),Effect("Agility",1),53410),\
-    "TH 2A": ("Thruster 2A",2,"A",3.0,30,[Effect(Speed,2),Effect(Agility,2)],160220),\
+THUSTERS = {"TH 2E": ("Thruster 2E","2","E",2,20,[],1980),\
+    "TH 2D": ("Thruster 2D",2,"D",2.25,20,[Effect("speed",1)],5930),\
+    "TH 2C": ("Thruster 2C",2,"C",2.5,25,[Effect("speed",1),Effect("agility",1)],17800),\
+    "TH 2B": ("Thruster 2B",2,"B",2.75,25,[Effect("speed",2),Effect("agility",1)],53410),\
+    "TH 2A": ("Thruster 2A",2,"A",3.0,30,[Effect("speed",2),Effect("agility",2)],160220),\
     "TH 3E": ("Thruster 3E",3,"E",2.48,30,[],6270),\
-    "TH 3D": ("Thruster 3D",3,"D",2.79,30,[Effect("Speed",1)],18810),\
-    "TH 3C": ("Thruster 3C",3,"C",3.1,35,[Effect("Speed",1),Effect("Agility",1)],56440),\
-    "TH 3B": ("Thruster 3B",3,"B",3.41,35,[Effect("Speed",2),Effect("Agility",1)],169300),\
-    "TH 3A": ("Thruster 3A",3,"A",3.72,40,[Effect("Speed",2),Effect("Agility",2)],507910),\
-TH 4E	Thruster 4E	4E	3.82	40	No bonuses	19,880
-TH 4D	Thruster 4D	4D	3.69	40	+1 Speed	56,630
-TH 4C	Thruster 4C	4C	4.1	45	+1 Speed, +1 Agility	178,900
-TH 4B	Thruster 4B	4B	4.51	45	+2 Speed, +1 Agility	536,690
-TH 4A	Thruster 4A	4A	4.92	50	+2 Speed, +2 Agility	1,610,080
-TH 5E	Thruster 5E	5E	4.08	50	No bonuses	63,010
-TH 5D	Thruster 5D	5D	4.59	50	+1 Speed	189,040
-TH 5C	Thruster 5C	5C	5.1	55	+1 Speed, +1 Agility	567,110
-TH 5B	Thruster 5B	5B	5.61	55	+2 Speed, +1 Agility	1,701,320
-TH 5A	Thruster 5A	5A	6.12	60	+2 Speed, +2 Agility	5,103,950
-TH 6E	Thruster 6E	6E	5.04	60	No bonuses	199,750
-TH 6D	Thruster 6D	6D	5.67	60	+1 Speed	599,240
-TH 6C	Thruster 6C	6C	6.3	65	+1 Speed, +1 Agility	1,797,730
-TH 6B	Thruster 6B	6B	6.93	65	+2 Speed, +1 Agility	5,393,180
-TH 6A	Thruster 6A	6A	7.56	70	+2 Speed, +2 Agility	16,179,530
-TH 7E	Thruster 7E	7E	6.08	70	No bonuses	633,200
-TH 7D	Thruster 7D	7D	6.84	70	+1 Speed	1,899,600
-TH 7C	Thruster 7C	7C	7.6	75	+1 Speed, +1 Agility	5,698,790
-TH 7B	Thruster 7B	7B	8.36	75	+2 Speed, +1 Agility	17,096,370
-TH 7A	Thruster 7A	7A	9.12	80	+2 Speed, +2 Agility	51,289,110
-TH 8E	Thruster 8E	8E	7.2	80	No bonuses	2,007,240
-TH 8D	Thruster 8D	8D	8.1	80	+1 Speed	6,021,720
-TH 8C	Thruster 8C	8C	9	85	+1 Speed, +1 Agility	18,065,170
-TH 8B	Thruster 8B	8B	9.9	85	+2 Speed, +1 Agility	54,195,500
-TH 8A	Thruster 8A	8A	10.8	90	+2 Speed, +2 Agility	162,586,500
-}
+    "TH 3D": ("Thruster 3D",3,"D",2.79,30,[Effect("speed",1)],18810),\
+    "TH 3C": ("Thruster 3C",3,"C",3.1,35,[Effect("speed",1),Effect("agility",1)],56440),\
+    "TH 3B": ("Thruster 3B",3,"B",3.41,35,[Effect("speed",2),Effect("agility",1)],169300),\
+    "TH 3A": ("Thruster 3A",3,"A",3.72,40,[Effect("speed",2),Effect("agility",2)],507910),\
+    "TH 4E": ("Thruster 4E",4,"E",3.82,40,[],19880),\
+    "TH 4D": ("Thruster 4D",4,"D",3.69,40,[Effect("speed",1)],56630),\
+    "TH 4C": ("Thruster 4C",4,"C",4.1,45,[Effect("speed",1), Effect("agility",1)],178900),\
+    "TH 4B": ("Thruster 4B",4,"B",4.51,45,[Effect("speed",2),Effect("agility",1)],536690),\
+    "TH 4A": ("Thruster 4A",4,"A",4.92,50,[Effect("speed",2),Effect("agility",2)],1610080),\
+    "TH 5E": ("Thruster 5E",5,"E",4.08,50,[],63010),\
+    "TH 5D": ("Thruster 5D",5,"D",4.59,50,[Effect("speed",1)],189040),\
+    "TH 5C": ("Thruster 5C",5,"C",5.1,55,[Effect("speed",1), Effect("agility",1)],567110),\
+    "TH 5B": ("Thruster 5B",5,"B",5.61,55,[Effect("speed",2),Effect("agility",1)],1701320),\
+    "TH 5A": ("Thruster 5A",5,"A",6.12,60,[Effect("speed",2),Effect("agility",2)],5103950),\
+    "TH 6E": ("Thruster 6E",6,"E",5.04,60,[],199750),\
+    "TH 6D": ("Thruster 6D",6,"D",5.67,60,[Effect("speed",1)],599240),\
+    "TH 6C": ("Thruster 6C",6,"C",6.3,65,[Effect("speed",1), Effect("agility",1)],1797730),\
+    "TH 6B": ("Thruster 6B",6,"B",6.93,65,[Effect("speed",2),Effect("agility",1)],5393180),\
+    "TH 6A": ("Thruster 6A",6,"A",7.56,70,[Effect("speed",2),Effect("agility",2)],16179530),\
+    "TH 7E": ("Thruster 7E",7,"E",6.08,70,[],633200),\
+    "TH 7D": ("Thruster 7D",7,"D",6.84,70,[Effect("speed",1)],1899600),\
+    "TH 7C": ("Thruster 7C",7,"C",7.6,75,[Effect("speed",1), Effect("agility",1)],5698790),\
+    "TH 7B": ("Thruster 7B",7,"B",8.36,75,[Effect("speed",2),Effect("agility",1)],17096370),\
+    "TH 7A": ("Thruster 7A",7,"A",9.12,80,[Effect("speed",2),Effect("agility",2)],51289110),\
+    "TH 8E": ("Thruster 8E",8,"E",7.2,80,[],2007240),\
+    "TH 8D": ("Thruster 8D",8,"D",8.1,80,[Effect("speed",1)],6021720),\
+    "TH 8C": ("Thruster 8C",8,"C",9.0,85,[Effect("speed",1), Effect("agility",1)],18065170),\
+    "TH 8B": ("Thruster 8B",8,"B",9.9,85,[Effect("speed",2),Effect("agility",1)],54195500),\
+    "TH 8A": ("Thruster 8A",8,"A",10.8,90,[Effect("speed",2),Effect("agility",2)],162586500),\
+    }
+
+FSD = {"fsd 2E": ("Frame Shift Drive 2E",2,"E",0.16,15,7,1980),\
+    "fsd 2D": ("Frame Shift Drive 2D",2,"D",0.18,15,8,5930),\
+    "fsd 2C": ("Frame Shift Drive 2C",2,"C",0.2,20,10,17800),\
+    "fsd 2B": ("Frame Shift Drive 2B",2,"B",0.25,20,11,53410),\
+    "fsd 2A": ("Frame Shift Drive 2A",2,"A",0.3,25,13,160220),\
+    "fsd 3E": ("Frame Shift Drive 3E",3,"E",0.24,25,9,6270),\
+    "fsd 3D": ("Frame Shift Drive 3D",3,"D",0.27,25,10,18810),\
+    "fsd 3C": ("Frame Shift Drive 3C",3,"C",0.3,30,12,56440),\
+    "fsd 3B": ("Frame Shift Drive 3B",3,"B",0.38,30,13,169300),\
+    "fsd 3A": ("Frame Shift Drive 3A",3,"A",0.45,35,15,507910),\
+    "fsd 4E": ("Frame Shift Drive 4E",4,"E",0.24,35,11,19880),\
+    "fsd 4D": ("Frame Shift Drive 4D",4,"D",0.27,35,12,59630),\
+    "fsd 4C": ("Frame Shift Drive 4C",4,"C",0.3,40,14,178900),\
+    "fsd 4B": ("Frame Shift Drive 4B",4,"B",0.38,40,15,536690),\
+    "fsd 4A": ("Frame Shift Drive 4A",4,"A",0.45,45,17,1610080),\
+    "fsd 5E": ("Frame Shift Drive 5E",5,"E",0.32,45,13,63010),\
+    "fsd 5D": ("Frame Shift Drive 5D",5,"D",0.36,45,14,189040),\
+    "fsd 5C": ("Frame Shift Drive 5C",5,"C",0.4,50,16,567110),\
+    "fsd 5B": ("Frame Shift Drive 5B",5,"B",0.5,50,17,1701320),\
+    "fsd 5A": ("Frame Shift Drive 5A",5,"A",0.6,55,19,5103950),\
+    "fsd 6E": ("Frame Shift Drive 6E",6,"E",0.4,55,15,199750),\
+    "fsd 6D": ("Frame Shift Drive 6D",6,"D",0.45,55,16,599240),\
+    "fsd 6C": ("Frame Shift Drive 6C",6,"C",0.5,60,18,1797730),\
+    "fsd 6B": ("Frame Shift Drive 6B",6,"B",0.63,60,19,5393180),\
+    "fsd 6A": ("Frame Shift Drive 6A",6,"A",0.75,65,21,16179530),\
+    "fsd 7E": ("Frame Shift Drive 7E",7,"E",0.48,65,17,633200),\
+    "fsd 7D": ("Frame Shift Drive 7D",7,"D",0.54,65,18,1899600),\
+    "fsd 7C": ("Frame Shift Drive 7C",7,"C",0.6,70,20,5698800),\
+    "fsd 7B": ("Frame Shift Drive 7B",7,"B",0.75,70,21,17096380),\
+    "fsd 7A": ("Frame Shift Drive 7A",7,"A",0.9,75,23,51289120),\
+    "fsd 8E": ("Frame Shift Drive 8E",8,"E",0.6,75,19,2007240),\
+    "fsd 8D": ("Frame Shift Drive 8D",8,"D",0.73,75,20,6021720),\
+    "fsd 8C": ("Frame Shift Drive 8C",8,"C",0.88,80,22,18065170),\
+    "fsd 8B": ("Frame Shift Drive 8B",8,"B",0.95,80,23,54195500),\
+    "fsd 8A": ("Frame Shift Drive 8A",8,"A",1.05,85,25,162586500)
+    }
+
+LIFE_SUPPORT = {"ls 1E":("Life support 1E",1,"E",0.32,15,"5m",520),\
+    "ls 1D":("Life support 1D",1,"D",0.36,15,"7m 30s",1290),\
+    "ls 1C":("Life support 1C",1,"C",0.4,20,"10m",3230),\
+    "ls 1B":("Life support 1B",1,"B",0.44,20,"15m",8080),\
+    "ls 1A":("Life support 1A",1,"A",0.48,25,"25m",20200),\
+    "ls 2E":("Life support 2E",2,"E",0.37,25,"5m",1450),\
+    "ls 2D":("Life support 2D",2,"D",0.41,25,"7m 30s",3620),\
+    "ls 2C":("Life support 2C",2,"C",0.46,30,"10m",9050),\
+    "ls 2B":("Life support 2B",2,"B",0.51,30,"15m",22620),\
+    "ls 2A":("Life support 2A",2,"A",0.55,35,"25m",56550),\
+    "ls 3E":("Life support 3E",3,"E",0.42,35,"5m",4050),\
+    "ls 3D":("Life support 3D",3,"D",0.48,35,"7m 30s",10130),\
+    "ls 3C":("Life support 3C",3,"C",0.53,40,"10m",25330),\
+    "ls 3B":("Life support 3B",3,"B",0.58,40,"15m",63330),\
+    "ls 3A":("Life support 3A",3,"A",0.64,45,"25m",158330),\
+    "ls 4E":("Life support 4E",4,"E",0.5,45,"5m",11350),\
+    "ls 4D":("Life support 4D",4,"D",0.56,45,"7m 30s",28370),\
+    "ls 4C":("Life support 4C",4,"C",0.62,50,"10m",70930),\
+    "ls 4B":("Life support 4B",4,"B",0.68,50,"15m",177330),\
+    "ls 4A":("Life support 4A",4,"A",0.74,55,"25m",443330),\
+    "ls 5E":("Life support 5E",5,"E",0.57,55,"5m",31780),\
+    "ls 5D":("Life support 5D",5,"D",0.64,55,"7m 30s",79440),\
+    "ls 5C":("Life support 5C",5,"C",0.71,60,"10m",198610),\
+    "ls 5B":("Life support 5B",5,"B",0.78,60,"15m",496530),\
+    "ls 5A":("Life support 5A",5,"A",0.85,65,"25m",1241320),\
+    "ls 6E":("Life support 6E",6,"E",0.64,65,"5m",88980),\
+    "ls 6D":("Life support 6D",6,"D",0.72,65,"7m 30s",222440),\
+    "ls 6C":("Life support 6C",6,"C",0.8,70,"10m",556110),\
+    "ls 6B":("Life support 6B",6,"B",0.88,70,"15m",1390280),\
+    "ls 6A":("Life support 6A",6,"A",0.96,75,"25m",3475690),\
+    "ls 7E":("Life support 7E",7,"E",0.72,75,"5m",249140),\
+    "ls 7D":("Life support 7D",7,"D",0.81,75,"7m 30s",622840),\
+    "ls 7C":("Life support 7C",7,"C",0.9,80,"10m",1557110),\
+    "ls 7B":("Life support 7B",7,"B",0.99,80,"15m",3892770),\
+    "ls 7A":("Life support 7A",7,"A",1.08,85,"25m",9731930),\
+    "ls 8E":("Life support 8E",8,"E",0.8,85,"5m",697590),\
+    "ls 8D":("Life support 8D",8,"D",0.9,85,"7m 30s",1743970),\
+    "ls 8C":("Life support 8C",8,"C",1,90,"10m",4359900),\
+    "ls 8B":("Life support 8B",8,"B",1.1,90,"15m",10899770),\
+    "ls 8A":("Life support 8A",8,"A",1.2,95,"25m",27249400),\
+    }
+
+POWER_DIST = {'pd 1E':('Power Distribution 1E',1,'E',0.32,10,[],520),\
+    'pd 1D':('Power Distribution 1D',1,'D',0.36,10,[Effect("float_pts",1)],1290),\
+    'pd 1C':('Power Distribution 1C',1,'C',0.4,15,[Effect("float_pts",2)],3230),\
+    'pd 1B':('Power Distribution 1B',1,'B',0.44,15,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],8080),\
+    'pd 1A':('Power Distribution 1A',1,'A',0.48,20,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],20200),\
+    'pd 2E':('Power Distribution 2E',2,'E',0.36,20,[],1450),\
+    'pd 2D':('Power Distribution 2D',2,'D',0.41,20,[Effect("float_pts",1)],3620),\
+    'pd 2C':('Power Distribution 2C',2,'C',0.45,25,[Effect("float_pts",2)],9050),\
+    'pd 2B':('Power Distribution 2B',2,'B',0.5,25,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],22620),\
+    'pd 2A':('Power Distribution 2A',2,'A',0.54,30,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],56550),\
+    'pd 3E':('Power Distribution 3E',3,'E',0.4,30,[],4050),\
+    'pd 3D':('Power Distribution 3D',3,'D',0.45,30,[Effect("float_pts",1)],10130),\
+    'pd 3C':('Power Distribution 3C',3,'C',0.5,35,[Effect("float_pts",2)],25330),\
+    'pd 3B':('Power Distribution 3B',3,'B',0.55,35,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],63330),\
+    'pd 3A':('Power Distribution 3A',3,'A',0.6,40,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],158330),\
+    'pd 4E':('Power Distribution 4E',4,'E',0.45,40,[],11350),\
+    'pd 4D':('Power Distribution 4D',4,'D',0.5,40,[Effect("float_pts",1)],28370),\
+    'pd 4C':('Power Distribution 4C',4,'C',0.56,45,[Effect("float_pts",2)],70930),\
+    'pd 4B':('Power Distribution 4B',4,'B',0.62,45,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],177330),\
+    'pd 4A':('Power Distribution 4A',4,'A',0.67,50,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],443330),\
+    'pd 5E':('Power Distribution 5E',5,'E',0.5,50,[],31780),\
+    'pd 5D':('Power Distribution 5D',5,'D',0.56,50,[Effect("float_pts",1)],79440),\
+    'pd 5C':('Power Distribution 5C',5,'C',0.62,55,[Effect("float_pts",2)],198610),\
+    'pd 5B':('Power Distribution 5B',5,'B',0.68,55,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],496530),\
+    'pd 5A':('Power Distribution 5A',5,'A',0.74,60,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],1241320),\
+    'pd 6E':('Power Distribution 6E',6,'E',0.54,60,[],88980),\
+    'pd 6D':('Power Distribution 6D',6,'D',0.61,60,[Effect("float_pts",1)],222440),\
+    'pd 6C':('Power Distribution 6C',6,'C',0.68,65,[Effect("float_pts",2)],556110),\
+    'pd 6B':('Power Distribution 6B',6,'B',0.75,65,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],1390280),\
+    'pd 6A':('Power Distribution 6A',6,'A',0.82,70,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],3475690),\
+    'pd 7E':('Power Distribution 7E',7,'E',0.59,70,[],249140),\
+    'pd 7D':('Power Distribution 7D',7,'D',0.67,70,[Effect("float_pts",1)],622840),\
+    'pd 7C':('Power Distribution 7C',7,'C',0.74,75,[Effect("float_pts",2)],1557110),\
+    'pd 7B':('Power Distribution 7B',7,'B',0.81,75,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],3892770),\
+    'pd 7A':('Power Distribution 7A',7,'A',0.89,80,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],9731930),\
+    'pd 8E':('Power Distribution 8E',8,'E',0.64,80,[],697580),\
+    'pd 8D':('Power Distribution 8D',8,'D',0.72,80,[Effect("float_pts",1)],1743960),\
+    'pd 8C':('Power Distribution 8C',8,'C',0.8,85,[Effect("float_pts",2)],4359900),\
+    'pd 8B':('Power Distribution 8B',8,'B',0.88,85,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],10899760),\
+    'pd 8A':('Power Distribution 8A',8,'A',0.96,90,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],27249390),\
+    }

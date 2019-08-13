@@ -1,0 +1,40 @@
+'pd 1E':('Power Distribution 1E',1,'E',0.32,10,[],520),\
+'pd 1D':('Power Distribution 1D',1,'D',0.36,10,1 Floating bonus,1290),\
+'pd 1C':('Power Distribution 1C',1,'C',0.4,15,2 Floating bonuses,3230),\
+'pd 1B':('Power Distribution 1B',1,'B',0.44,15,+1 Agility, +1 To Hit, +5 shields,8080),\
+'pd 1A':('Power Distribution 1A',1,'A',0.48,20,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,20200),\
+'pd 2E':('Power Distribution 2E',2,'E',0.36,20,[],1450),\
+'pd 2D':('Power Distribution 2D',2,'D',0.41,20,1 Floating bonus,3620),\
+'pd 2C':('Power Distribution 2C',2,'C',0.45,25,2 Floating bonuses,9050),\
+'pd 2B':('Power Distribution 2B',2,'B',0.5,25,+1 Agility, +1 To Hit, +5 shields,22620),\
+'pd 2A':('Power Distribution 2A',2,'A',0.54,30,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,56550),\
+'pd 3E':('Power Distribution 3E',3,'E',0.4,30,[],4050),\
+'pd 3D':('Power Distribution 3D',3,'D',0.45,30,1 Floating bonus,10130),\
+'pd 3C':('Power Distribution 3C',3,'C',0.5,35,2 Floating bonuses,25330),\
+'pd 3B':('Power Distribution 3B',3,'B',0.55,35,+1 Agility, +1 To Hit, +5 shields,63330),\
+'pd 3A':('Power Distribution 3A',3,'A',0.6,40,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,158330),\
+'pd 4E':('Power Distribution 4E',4,'E',0.45,40,[],11350),\
+'pd 4D':('Power Distribution 4D',4,'D',0.5,40,1 Floating bonus,28370),\
+'pd 4C':('Power Distribution 4C',4,'C',0.56,45,2 Floating bonuses,70930),\
+'pd 4B':('Power Distribution 4B',4,'B',0.62,45,+1 Agility, +1 To Hit, +5 shields,177330),\
+'pd 4A':('Power Distribution 4A',4,'A',0.67,50,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,443330),\
+'pd 5E':('Power Distribution 5E',5,'E',0.5,50,[],31780),\
+'pd 5D':('Power Distribution 5D',5,'D',0.56,50,1 Floating bonus,79440),\
+'pd 5C':('Power Distribution 5C',5,'C',0.62,55,2 Floating bonuses,198610),\
+'pd 5B':('Power Distribution 5B',5,'B',0.68,55,+1 Agility, +1 To Hit, +5 shields,496530),\
+'pd 5A':('Power Distribution 5A',5,'A',0.74,60,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,1241320),\
+'pd 6E':('Power Distribution 6E',6,'E',0.54,60,[],88980),\
+'pd 6D':('Power Distribution 6D',6,'D',0.61,60,1 Floating bonus,222440),\
+'pd 6C':('Power Distribution 6C',6,'C',0.68,65,2 Floating bonuses,556110),\
+'pd 6B':('Power Distribution 6B',6,'B',0.75,65,+1 Agility, +1 To Hit, +5 shields,1390280),\
+'pd 6A':('Power Distribution 6A',6,'A',0.82,70,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,3475690),\
+'pd 7E':('Power Distribution 7E',7,'E',0.59,70,[],249140),\
+'pd 7D':('Power Distribution 7D',7,'D',0.67,70,1 Floating bonus,622840),\
+'pd 7C':('Power Distribution 7C',7,'C',0.74,75,2 Floating bonuses,1557110),\
+'pd 7B':('Power Distribution 7B',7,'B',0.81,75,+1 Agility, +1 To Hit, +5 shields,3892770),\
+'pd 7A':('Power Distribution 7A',7,'A',0.89,80,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,9731930),\
+'pd 8E':('Power Distribution 8E',8,'E',0.64,80,[],697580),\
+'pd 8D':('Power Distribution 8D',8,'D',0.72,80,1 Floating bonus,1743960),\
+'pd 8C':('Power Distribution 8C',8,'C',0.8,85,2 Floating bonuses,4359900),\
+'pd 8B':('Power Distribution 8B',8,'B',0.88,85,+1 Agility, +1 To Hit, +5 shields,10899760),\
+'pd 8A':('Power Distribution 8A',8,'A',0.96,90,+1 Agility, +1 To Hit, +5 shields and 1 Floating bonus,27249390),\

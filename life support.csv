@@ -1,0 +1,40 @@
+"ls 1E","Life support 1E",1,"E",0.32,15,"5m",520
+"ls 1D","Life support 1D",1,"D",0.36,15,"7m 30s",1290
+"ls 1C","Life support 1C",1,"C",0.4,20,"10m",3230
+"ls 1B","Life support 1B",1,"B",0.44,20,"15m",8080
+"ls 1A","Life support 1A",1,"A",0.48,25,"25m",20200
+"ls 2E","Life support 2E",2,"E",0.37,25,"5m",1450
+"ls 2D","Life support 2D",2,"D",0.41,25,"7m 30s",3620
+"ls 2C","Life support 2C",2,"C",0.46,30,"10m",9050
+"ls 2B","Life support 2B",2,"B",0.51,30,"15m",22620
+"ls 2A","Life support 2A",2,"A",0.55,35,"25m",56550
+"ls 3E","Life support 3E",3,"E",0.42,35,"5m",4050
+"ls 3D","Life support 3D",3,"D",0.48,35,"7m 30s",10130
+"ls 3C","Life support 3C",3,"C",0.53,40,"10m",25330
+"ls 3B","Life support 3B",3,"B",0.58,40,"15m",63330
+"ls 3A","Life support 3A",3,"A",0.64,45,"25m",158330
+"ls 4E","Life support 4E",4,"E",0.5,45,"5m",11350
+"ls 4D","Life support 4D",4,"D",0.56,45,"7m 30s",28370
+"ls 4C","Life support 4C",4,"C",0.62,50,"10m",70930
+"ls 4B","Life support 4B",4,"B",0.68,50,"15m",177330
+"ls 4A","Life support 4A",4,"A",0.74,55,"25m",443330
+"ls 5E","Life support 5E",5,"E",0.57,55,"5m",31780
+"ls 5D","Life support 5D",5,"D",0.64,55,"7m 30s",79440
+"ls 5C","Life support 5C",5,"C",0.71,60,"10m",198610
+"ls 5B","Life support 5B",5,"B",0.78,60,"15m",496530
+"ls 5A","Life support 5A",5,"A",0.85,65,"25m",1241320
+"ls 6E","Life support 6E",6,"E",0.64,65,"5m",88980
+"ls 6D","Life support 6D",6,"D",0.72,65,"7m 30s",222440
+"ls 6C","Life support 6C",6,"C",0.8,70,"10m",556110
+"ls 6B","Life support 6B",6,"B",0.88,70,"15m",1390280
+"ls 6A","Life support 6A",6,"A",0.96,75,"25m",3475690
+"ls 7E","Life support 7E",7,"E",0.72,75,"5m",249140
+"ls 7D","Life support 7D",7,"D",0.81,75,"7m 30s",622840
+"ls 7C","Life support 7C",7,"C",0.9,80,"10m",1557110
+"ls 7B","Life support 7B",7,"B",0.99,80,"15m",3892770
+"ls 7A","Life support 7A",7,"A",1.08,85,"25m",9731930
+"ls 8E","Life support 8E",8,"E",0.8,85,"5m",697590
+"ls 8D","Life support 8D",8,"D",0.9,85,"7m 30s",1743970
+"ls 8C","Life support 8C",8,"C",1,90,"10m",4359900
+"ls 8B","Life support 8B",8,"B",1.1,90,"15m",10899770
+"ls 8A","Life support 8A",8,"A",1.2,95,"25m",27249400
