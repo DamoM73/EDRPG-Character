@@ -70,6 +70,13 @@ class Character:
         self.stealth = Skill("Stealth", "E")
         self.surv = Skill("Survival", "E")
 
+'''
+class Background:
+    def __init__(self,code):
+        self.name
+        self.
+'''
+
 
 class Skill:
     def __init__(self, name, cat):
