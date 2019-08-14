@@ -164,8 +164,8 @@ class Ship:
         self.fsd_slot = Slot(SHIPS[self.model][12])
         self.ls_slot = Slot(SHIPS[self.model][13])
         self.pd_slot = Slot(SHIPS[self.model][14])
-        self.s_slot = Slot(SHIPS[self.model][15])
-        self.f_slot = Slot(SHIPS[self.model][16])
+        self.ss_slot = Slot(SHIPS[self.model][15])
+        self.ft_slot = Slot(SHIPS[self.model][16])
         self.weapon_slots = []
         self.utility_mounts = []
         self.internal_slots = []
@@ -247,6 +247,7 @@ class Utility:
         self.effect = UTILITIES[code][8]
         self.effect_amt = UTILITIES[code][9]
 
+
 class Power_plant:
     def __init__(self,code):
         self.name = POWERPLANT[code][0]
@@ -255,6 +256,7 @@ class Power_plant:
         self.power = POWERPLANT[code][3]
         self.strength = POWERPLANT[code][4]
         self.cost = POWERPLANT[code][5]
+
 
 class Thusters:
     def __init__(self,code):
@@ -266,6 +268,7 @@ class Thusters:
         self.effects = THUSTERS[code][5]
         self.cost = THUSTERS[code][6]
 
+
 class Fsd:
     def __init__(self,code):
         self.name = FSD[code][0]
@@ -275,6 +278,7 @@ class Fsd:
         self.strength = FSD[code][4]
         self.range = FSD[code][5]
         self.cost = FSD[code][6]
+
 
 class Life_Support:
     def __init__(self,code):
@@ -286,6 +290,7 @@ class Life_Support:
         self.duration = LIFE_SUPPORT[code][5]
         self.cost = LIFE_SUPPORT[code][6]
 
+
 class Power_Dist:
     def __init__(self,code):
         self.name = POWER_DIST[code][0]
@@ -295,6 +300,25 @@ class Power_Dist:
         self.strength = POWER_DIST[code][4]
         self.effects = POWER_DIST[code][5]
         self.cost = POWER_DIST[code][6]
+
+
+class Sensors:
+    def __init__(self,code):
+        self.name = SENSORS[code][0]
+        self.size = SENSORS[code][1]
+        self.model = SENSORS[code][2]
+        self.power = SENSORS[code][3]
+        self.strength = SENSORS[code][4]
+        self.effects = SENSORS[code][5]
+        self.cost = SENSORS[code][6]
+
+
+class Fuel_tank:
+    def __init__(self,code):
+        self.name = FUEL_TANK[code][0]
+        self.size = FUEL_TANK[code][1]
+        self.tonnage = FUEL_TANK[2]
+        self.cost = FUEL_TANK[3]
 
 class Effect:
     def __init__(self,stat, amt):
@@ -663,3 +687,62 @@ POWER_DIST = {'pd 1E':('Power Distribution 1E',1,'E',0.32,10,[],520),\
     'pd 8B':('Power Distribution 8B',8,'B',0.88,85,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5)],10899760),\
     'pd 8A':('Power Distribution 8A',8,'A',0.96,90,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],27249390),\
     }
+
+SENSORS = {'ss1E':('Sensors 1E',1,'E',0.16,5,[],520),\
+    'ss1D':('Sensors 1D',1,'D',0.18,5,[Effect('initiative',1)],1290),\
+    'ss1C':('Sensors 1C',1,'C',0.2,10,[Effect('initiative',1),Effect('dogfghting',1)],3230),\
+    'ss1B':('Sensors 1B',1,'B',0.33,10,[Effect('initiative',2),Effect('dogfghting',1)],8080),\
+    'ss1A':('Sensors 1A',1,'A',0.6,15,[Effect('initiative',2),Effect('dogfghting',2)],20200),\
+    
+    'ss2E':('Sensors 2E',2,'E',0.18,15,[Effect('sensors',1)],1450),\
+    'ss2D':('Sensors 2D',2,'D',0.21,15,[Effect('initiative',1),Effect('sensors',1)],3620),\
+    'ss2C':('Sensors 2C',2,'C',0.23,20,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',1)],9050),\
+    'ss2B':('Sensors 2B',2,'B',0.38,20,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',1)],22620),\
+    'ss2A':('Sensors 2A',2,'A',0.69,25,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',1)],56550),\
+    
+    'ss3E':('Sensors 3E',3,'E',0.22,25,[Effect('sensors',1)],4050),\
+    'ss3D':('Sensors 3D',3,'D',0.25,25,[Effect('initiative',1),Effect('sensors',1)],10130),\
+    'ss3C':('Sensors 3C',3,'C',0.28,30,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',1)],25330),\
+    'ss3B':('Sensors 3B',3,'B',0.46,30,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',1)],63330),\
+    'ss3A':('Sensors 3A',3,'A',0.84,35,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',1)],158330),\
+    
+    'ss4E':('Sensors 4E',4,'E',0.27,35,[Effect('sensors',2)],11350),\
+    'ss4D':('Sensors 4D',4,'D',0.31,35,[Effect('initiative',1),Effect('sensors',2)],28370),\
+    'ss4C':('Sensors 4C',4,'C',0.34,40,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',2)],70930),\
+    'ss4B':('Sensors 4B',4,'B',0.56,40,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',2)],177330),\
+    'ss4A':('Sensors 4A',4,'A',1.02,45,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',2)],443330),\
+    
+    'ss5E':('Sensors 5E',5,'E',0.33,45,[Effect('sensors',3)],31780),\
+    'ss5D':('Sensors 5D',5,'D',0.37,45,[Effect('initiative',1),Effect('sensors',3)],79440),\
+    'ss5C':('Sensors 5C',5,'C',0.41,50,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',3)],198610),\
+    'ss5B':('Sensors 5B',5,'B',0.68,50,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',3)],496530),\
+    'ss5A':('Sensors 5A',5,'A',1.23,55,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',3)],1241320),\
+    
+    'ss6E':('Sensors 6E',6,'E',0.4,55,[Effect('sensors',3)],88980),\
+    'ss6D':('Sensors 6D',6,'D',0.45,55,[Effect('initiative',1),Effect('sensors',3)],222440),\
+    'ss6C':('Sensors 6C',6,'C',0.5,60,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',3)],556110),\
+    'ss6B':('Sensors 6B',6,'B',0.83,60,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',3)],1390280),\
+    'ss6A':('Sensors 6A',6,'A',1.5,65,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',3)],3475690),\
+    
+    'ss7E':('Sensors 7E',7,'E',0.47,65,[Effect('sensors',4)],249140),\
+    'ss7D':('Sensors 7D',7,'D',0.53,65,[Effect('initiative',1),Effect('sensors',4)],622840),\
+    'ss7C':('Sensors 7C',7,'C',0.59,70,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',4)],1557110),\
+    'ss7B':('Sensors 7B',7,'B',0.97,70,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',4)],3892770),\
+    'ss7A':('Sensors 7A',7,'A',1.77,75,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',4)],9731930),\
+    
+    'ss8E':('Sensors 8E',8,'E',0.55,75,[Effect('sensors',5)],697580),\
+    'ss8D':('Sensors 8D',8,'D',0.62,75,[Effect('initiative',1),Effect('sensors',5)],1743960),\
+    'ss8C':('Sensors 8C',8,'C',0.69,80,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',5)],4359900),\
+    'ss8B':('Sensors 8B',8,'B',1.14,80,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',5)],10899760),\
+    'ss8A':('Sensors 8A',8,'A',2.07,85,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',5)],27249390),\
+    }
+
+FUEL_TANK = {"ft 1C":("Fuel Tank 1C",1,2,1000),\
+    "ft 2C":("Fuel Tank 2C",2,4,3750),\
+    "ft 3C":("Fuel Tank 3C",3,8,7060),\
+    "ft 4C":("Fuel Tank 4C",4,16,24730),\
+    "ft 5C":("Fuel Tank 5C",5,32,97750),\
+    "ft 6C":("Fuel Tank 6C",6,64,341580),\
+    "ft 7C":("Fuel Tank 7C",7,128,1780910),\
+    "ft 8C":("Fuel Tank 8C",8,256,5428400)
+}
