@@ -1,0 +1,92 @@
+Name,Category,Type,SR,MR,LR,Sdif,Mdif,Ldif,Sdam,Mdam,Ldam,Burst Max,Ammo,Fat_range,Fat_dam,Inj_range,Inj_dam,One_Handed,Underslung,,Dstry Cvr,Div,Notes,Cost,Rarity
+Autopistol,Autopistols,Kinetic,6,50,100,5,8,14,1D10 ,1D10 ,1D10 ,2D10,3,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,4,Common
+NG75 Autopistol,Autopistols,Kinetic,6,50,100,5,8,14,1D10 ,1D10 ,1D10 ,3D10,2,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,42000,Rare
+Micronite Doubleclip Sentinel,Autopistols,Kinetic,6,50,100,5,8,14,1D10 ,1D10 ,1D10 ,2D10,6,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',5)",False,False,N/A,50000,Rare
+Gold & Perry ‘Watcher’ Autopistol,Autopistols,Kinetic,10,60,120,5,8,14,1D10 ,1D10 ,1D10 ,2D10,3,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,65000,Rare
+GTN 195 Autopistol,Autopistols,Kinetic,8,56,110,5,8,14,2D10 ,2D11,2D12,2D10,3,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,225000,Rare
+Imperial ‘Stimmer’ Autopistol,Autopistols,Kinetic,6,50,100,5,8,14,1D10 ,1D10 ,1D10 ,2D10,3,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',5)",False,False,Injects Combat Stims (80%) on 0 Endurance.,400500,Rare
+Asellus Deflector Pistol,Autopistols,Kinetic,6,50,100,5,8,14,1D10 ,1D10 ,1D10 ,2D10,3,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',10)",False,False,Absorb 3 Kinetic and Energy damage.,1005000,Rare
+LX10 Energised Autopistol,Autopistols,Kinetic,10,60,120,5,8,14,2D10 ,2D11,2D12,2D10,4,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',5)",False,False,Damage counts as Energy Weapon,1400000,Rare
+Corvus Inc Devastation Pistol,Autopistols,Kinetic,8,56,110,5,8,14,1D10 ,1D11,1D12,4D10,4,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',15)",False,False,N/A,2900000,Rare
+Delman Autopistol,Autopistols,Kinetic,10,60,120,5,8,14,3D10 ,3D11,3D12,2D10,2,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',20)",False,False,N/A,5000000,Rare
+Laser Pistol,Laserpistols,Energy,10,80,120,4,7,11,8,8,8,N/A,N/A,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,3,Common
+Hyperion Laser Pistol,Laserpistols,Energy,10,80,120,4,7,11,8,8,8,N/A,N/A,N/A,N/A,N/A,N/A,True,False,"Effect('eng_weap',5)",False,False,N/A,47000,Rare
+Evex Long-barrel Laser Pistol,Laserpistols,Energy,16,100,150,4,7,11,8,8,8,N/A,N/A,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,98000,Rare
+Cauldus Nerve-blocker Laser Pistol,Laserpistols,Energy,10,80,120,4,7,11,8,8,8,N/A,N/A,N/A,N/A,N/A,N/A,True,False,N/A,False,False,"Knocks over target on a natural 9 or 10 To Hit, target disarmed if knocked over.",196000,Rare
+CS1 Burst Pistol,Laserpistols,Energy,8,60,90,4,7,11,5,5,5,15,N/A,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,244000,Rare
+Nadion Twin Barrel Laser Pistol,Laserpistols,Energy,10,80,120,4,7,11,12,12,12,N/A,N/A,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,863000,Rare
+Paris Eleganté Laser Pistol,Laserpistols,Energy,10,80,120,4,7,11,10,10,10,N/A,N/A,N/A,N/A,N/A,N/A,True,False,"Effect('eng_weap',15)",False,False,N/A,1809000,Rare
+Magnetising Hotshot LaserPistol,Laserpistols,Energy,12,90,130,4,7,11,12,12,12,N/A,N/A,N/A,N/A,N/A,N/A,True,False,"Effect('eng_weap',10)",False,False, +1 bonus To Hit if you have previously hit the target with this weapon.,3550000,Rare
+GL779 Intellipistol,Laserpistols,Energy,12,90,130,4,7,11,12,12,12,N/A,N/A,N/A,N/A,N/A,N/A,True,False,N/A,False,False,"Fires with Energy Weapons Skill Bonus of 9, ignores firearms skill.",8200000,Rare
+Sub Machinegun,Submachine Gun,Kinetic,10,60,120,5,8,14,1D10 ,1D10 ,1D10 ,3D10,4,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,9,Common
+Ergon Tommygun,Submachine Gun,Kinetic,12,64,128,5,8,14,1D10 ,1D10 ,1D10 ,3D10,8,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,74000,Rare
+K33 Multifire SMG,Submachine Gun,Kinetic,10,60,120,5,8,14,1D10 ,1D10 ,1D10 ,4D10,3,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,175500,Rare
+Longarm Deadfire SMG,Submachine Gun,Kinetic,12,64,128,5,8,14,1D10 ,1D10 ,1D10 ,3D10,4,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',5)",False,False,Includes underslung grenade launcher.,310000,Rare
+Skollanga 'Slammer' SMG,Submachine Gun,Kinetic,10,60,120,5,8,14,2D10 ,2D10 ,2D10 ,3D10,4,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Target knocked over on a natural 9 or 10 To Hit.,985000,Rare
+Intsys JR4 SMG,Submachine Gun,Kinetic,10,60,120,5,8,14,2D10 ,2D10 ,2D10 ,4D10,4,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',10)",False,False,N/A,1345000,Rare
+Krakoff Demolisher Rifle,Submachine Gun,Kinetic,10,60,120,5,8,14,2D10 ,2D10 ,2D10 ,4D10,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Includes underslung grenade launcher.,3050000,Rare
+Assaut Beamer,Beamer,Energy,12,70,200,4,7,10,5,5,5,20,N/A,N/A,N/A,N/A,N/A,False,False,N/A,True,True,N/A,50,Common
+Ingram Wide-Beam Carbine,Beamer,Energy,10,60,150,4,7,10,5,5,5,20,N/A,N/A,N/A,N/A,N/A,False,False,"Effect('eng_weap',5)",True,True,N/A,62000,Rare
+Laifan ABS Serrator,Beamer,Energy,12,70,200,4,7,10,5,5,5,30,N/A,N/A,N/A,N/A,N/A,False,False,N/A,True,True,On a natural 1 To Hit the weapon inflicts 10 Energy damage on user. ,2134000,Rare
+Magnotan Searching Beamer,Beamer,Energy,12,70,200,4,7,10,10,10,10,20,N/A,N/A,N/A,N/A,N/A,False,False,"Effect('eng_weap',20)",True,True,N/A,13599000,Rare
+Shotgun,Shotgun,Kinetic,6,12,50,3,7,12,3D10,2D10 ,1D10 ,N/A,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,5,Common
+Exalt WideScatter Shotgun,Shotgun,Kinetic,8,12,30,3,7,12,3D10,2D10 ,1D10 ,N/A,6,N/A,N/A,N/A,N/A,False,False,N/A,False,True,Full damage with divide fire,78000,Rare
+Micro-Shotgun,Shotgun,Kinetic,6,10,30,3,7,12,3D10,2D10 ,1D10 ,N/A,3,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,190000,Rare
+BD90 Warhammer,Shotgun,Kinetic,6,12,50,3,7,12,5D10,3D10,1D10 ,N/A,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,"At short range knock over a target on a natural 8, 9 or 10 To Hit. Malfunctions on a natural 1.",209000,Rare
+Jupiter 'Lockon' Short Barrelled Rifle,Shotgun,Kinetic,8,16,70,3,7,12,4D10,2D10 ,1D10 ,N/A,6,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',10)",False,False,N/A,867000,Rare
+ZX9000 Auto-Shotgun,Shotgun,Kinetic,16,12,50,3,7,12,3D10,2D10 ,1D10 ,4D10,3,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,19400000,Rare
+Assault Rifle,Rifle,Kinetic,16,100,400,6,7,10,1D10 ,1D11,1D12,3D10,4,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,15,Common
+C&G 45 AutoRifle,Rifle,Kinetic,16,100,400,6,7,10,1D10 ,1D11,1D12,3D10,4,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',5)",False,False,N/A,30000,Rare
+GalSpec 109 Sniper Rifle,Rifle,Kinetic,16,100,800,6,7,8,15 or 1D10 ,15 or 1D10 ,15 or 1D10 ,3D10,5*,N/A,N/A,N/A,N/A,False,False,N/A,False,False,In Sniper Mode +15 to Kinetic Weapons score,101000,Rare
+Arkana ‘Nighthawk’,Rifle,Kinetic,16,100,400,6,7,10,2D10,2D11,2D12,3D10,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Includes underslung grenade launcher.,495000,Rare
+Perun Light Machinegun,Rifle,Kinetic,18,140,600,6,7,10,1D10 ,1D11,1D12,5D10,4,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,178000,Rare
+BN799 Carbine,Rifle,Kinetic,20,160,650,6,7,10,3D10 ,3D10 ,3D10 ,3D10,4,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',10)",False,False,Includes underslung grenade launcher.,3600000,Rare
+Laser Rifle,Rifle,Energy,20,150,500,5,6,9,15,15,15,N/A,N/A,N/A,N/A,N/A,N/A,False,False,"Effect('eng_weap',5)",False,False,N/A,40,Common
+MLR40 Infantry Rifle,Rifle,Energy,20,150,500,5,6,9,15,15,15,N/A,N/A,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,49000,Rare
+Kopernicus Incinerator,Rifle,Energy,20,150,500,5,6,9,20,20,20,N/A,N/A,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,264000,Rare
+LR17 Long Barrel,Rifle,Energy,24,200,700,5,6,9,15,15,15,N/A,N/A,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,327500,Rare
+Vortigen Multi-Scope Energy Rifle,Rifle,Energy,20,150,500,5,6,9,20,20,20,N/A,N/A,N/A,N/A,N/A,N/A,False,False,"Effect('eng_weap',10)",False,False,N/A,1450000,Rare
+Ergon Burst Rifle,Rifle,Energy,20,150,500,5,6,9,10,10,10,20,N/A,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,2100000,Rare
+Kosha Inc LasRifle,Rifle,Energy,22,170,600,5,6,9,24,24,24,N/A,N/A,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,4225000,Rare
+lance & Ferman 'Deadeye' Rifle,Rifle,Energy,24,200,700,5,6,9,15,15,15,N/A,N/A,N/A,N/A,N/A,N/A,False,False,"Effect('eng_weap',20)",False,False,N/A,5000000,Rare
+Fairlight Excelsior,Rifle,Energy,20,150,500,5,6,9,30,30,30,N/A,N/A,N/A,N/A,N/A,N/A,False,False,"Effect('eng_weap',15)",False,False,N/A,28799000,Rare
+Chain Gun,Chain Gun,"Heavy, Kinetic",30,60,180,5,8,14,2D10 ,2D10 ,2D10 ,6D10,10,N/A,N/A,N/A,N/A,False,False,N/A,True,True,N/A,1000,Common
+G910 Heavy Repeater,Chain Gun,"Heavy, Kinetic",30,60,180,5,8,14,2D10 ,2D10 ,2D10 ,8D10,6,N/A,N/A,N/A,N/A,False,False,N/A,True,True,N/A,7600000,Rare
+Lance & Ferman Gimballed Minigun,Chain Gun,"Heavy, Kinetic",30,60,180,5,8,14,2D10 ,2D10 ,2D10 ,6D10,10,N/A,N/A,N/A,N/A,False,False,"Effect('hvy_weap',15)",True,True,N/A,9000000,Rare
+Maitz PP9 Support Cannon,Chain Gun,"Heavy, Kinetic",40,80,200,5,8,14,3D10 ,3D10 ,3D10 ,10D10,10,N/A,N/A,N/A,N/A,False,False,"Effect('hvy_weap',5)",True,True,N/A,42000000,Rare
+Laser Carbine,Laser Carbine,"Energy, Kinetic",16,100,300,5,8,9,10,10,10,3D10,4,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,10,Common
+Mannex Nighteye Carbin,Laser Carbine,Energy/ Kinetic,16,100,300,5,8,9,10,10,10,4D10,4,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',10)",False,False,N/A,270000,Rare
+Voltigen Armour Piercing Carbine,Laser Carbine,Energy/ Kinetic,16,100,300,5,8,9,15,15,15,3D10,4,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Ignores Kinetic armour absorption,362000,Rare
+Krayton KX Heavy Carbine,Laser Carbine,Heavy (Energy/ Kinetic),16,100,300,5,8,9,15,15,15,8D10,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,N/A,2200000,Rare
+Rail Rifle,Rail Rifle,Kinetic,20,140,1000,7,8,9,3D10,3D10,3D10,N/A,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Molten munitions,500,Common
+Centauri Quickfire Rail Rifle,Rail Rifle,Kinetic,20,140,1000,5,8,9,3D10,3D10,3D10,N/A,6,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Molten munitions,225000,Rare
+TX9 SmartScope Rail Rifle ,Rail Rifle,Kinetic,20,140,1000,7,8,9,3D10,3D10,3D10,N/A,6,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',15)",False,False,Molten munitions,352000,Rare
+Sorbago Molybdenum Rifle,Rail Rifle,Kinetic,20,140,1000,7,8,9,4D10,4D10,4D10,N/A,6,N/A,N/A,N/A,N/A,False,False,"Effect('kin_weap',10)",False,False,N/A,705000,Rare
+Heavy Pistol,Heavy Pistol,Kinetic ,8,60,110,5,8,14,2D10,2D10,2D10,N/A,8,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,3,Common
+Ross Y49 Suregrip Pistol,Heavy Pistol,Kinetic ,8,60,110,5,8,14,2D10,2D10,2D10,N/A,10,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',10),Effect('social_imp',1)",False,False,N/A,83000,Rare
+Callaghan Arctic Hawk Heavy Pistol,Heavy Pistol,Kinetic ,8,60,110,5,8,14,3D10,3D10,3D10,N/A,8,N/A,N/A,N/A,N/A,True,False,N/A,False,False,N/A,114000,Rare
+Thordarson Firepoint Scoped Pistol,Heavy Pistol,Kinetic ,10,70,120,5,8,14,2D10,2D10,2D10,N/A,8,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',20)",False,False,N/A,305000,Rare
+Leonis Hacker Pistol,Heavy Pistol,Kinetic,8,60,110,5,8,14,2D10,2D10,2D10,N/A,6,N/A,N/A,N/A,N/A,True,False,"Effect('kin_weap',10),Effect('sec',10),Effect('comp',10)",False,False,N/A,695000,Rare
+AMP Short Stock Bolt Caster,Anti-Material Projector,Energy,10,40,100,5,8,11,15,15,15,N/A,4,N/A,N/A,N/A,N/A,True,False,N/A,False,False,Destroys Armour.,5000000,Rare
+AMP Short Stock Streamer,Anti-Material Projector,Energy,8,30,60,5,8,12,10,10,10,15,3,N/A,N/A,N/A,N/A,True,False,N/A,False,False,Destroys Armour.,9000000,Rare
+AMP Rifle Grip Punch Bolter,Anti-Material Projector,Energy,12,20,30,4,7,10,20,20,20,N/A,3,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Destroys Armour. Opponent knocked over on hit.,7000000,Rare
+AMP Rifle Grip Streamer,Anti-Material Projector,Energy,16,50,120,6,8,11,20,20,20,20,2,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Destroys Armour.,`12000000,Rare
+AMP Rifle Grip Scalpel Beam,Anti-Material Projector,Energy,10,120,1000,6,7,10,25,25,25,N/A,2,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Destroys Armour.,17000000,Rare
+AMP Shoulder Mounted Annihilator,Anti-Material Projector,Energy,30,700,5000,6,8,13,60,60,60,N/A,1,N/A,N/A,N/A,N/A,False,False,N/A,False,False,Destroys Armour. Opponent Inflicts 60 vehicle and spaceship scale damage. Ignores shields.,35000000,Rare
+Nausea Globe,Grenade,Explosive,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,1,N/A,N/A,N/A,N/A,False,False,N/A,False,False,See Description. Pg. 35. Exploration Supplement,8000000,Rare
+Frag Grenade,Grenade,Explosive,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,6,25,16,10,False,False,N/A,False,False,N/A,5,Common
+Flashbang Grenade,Grenade,Explosive,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,4,0,12,0,False,False,N/A,False,False,N/A,4,Common
+Concussion Grenade,Grenade,Explosive,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,2,40,6,5,False,False,N/A,False,False,N/A,100,Rare
+EMP Grenade,Grenade,Explosive,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,6,60,16,20,False,False,N/A,False,False,Damages robotic targets only.,1000,Rare
+Plasma Grenade,Grenade,Explosive,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,8,80,20,30,False,False,N/A,False,False,N/A,10000,Rare
+Missile Launcher (Anti-Personnel),Missile Launcher,"Heavy, Explosive",N/A,200,2000,N/A,9,12,N/A,N/A,N/A,N/A,1,10,50,24,20,False,False,N/A,False,False,Half damage vs shields.,200,Common
+Missile Launcher (Anti-Tank),Missile Launcher,"Heavy, Explosive",N/A,200,2000,N/A,9,12,N/A,N/A,N/A,N/A,1,2,100,20,20,False,False,N/A,False,False,Half damage vs shields.,700,Common
+Missile Launcher (Anti-Aircraft),Missile Launcher,"Heavy, Explosive",N/A,2000,6000,N/A,10,13,N/A,N/A,N/A,N/A,1,2,120,40,20,False,False,N/A,False,False,Ignore Range hit number when attacking spacecraft.,2000,Common
+Acane Model 5 Bazooka,Missile Launcher,"Heavy, Explosive",N/A,200,2000,N/A,9,12,N/A,N/A,N/A,N/A,1,10,60,24,20,False,False,"Effect('hvy_weap',5)",False,False,Half damage vs shields.,97000,Rare
+ODO 15 Light Anti-Tank Weapon,Missile Launcher,"Heavy, Explosive",N/A,200,2000,N/A,9,12,N/A,N/A,N/A,N/A,1,2,130,20,30,False,False,N/A,False,False,Half damage vs shields.,816000,Rare
+XLS Omega Recoilless Rifle,Missile Launcher,"Heavy, Explosive",N/A,200,2000,N/A,9,12,N/A,N/A,N/A,N/A,4,10,60,24,30,False,False,"Effect('hvy_weap',15)",False,False,Half damage vs shields. ,23300000,Rare
+Plasma Cannon,Plasma Cannon,"Heavy, Energy",N/A,500,3000,N/A,9,12,N/A,N/A,N/A,N/A,4,12,100,34,40,False,False,N/A,False,False,Firer knocked over unless weapon is tripod mounted.,4000,Common
+Altair JP60 Accelerator,Plasma Cannon,"Heavy, Energy",N/A,500,3000,N/A,9,12,N/A,N/A,N/A,N/A,2,12,140,34,50,False,False,N/A,False,False,Firer knocked over unless weapon is tripod mounted.,13500000,Rare
+Underslung Grenade Launcher,Laser Carbine,Explosive,N/A,60,150,N/A,9,14,N/A,N/A,N/A,N/A,2,6,25,16,10,False,True,N/A,False,False,N/A,40,Common
+Underslung Grenade Launcher,Submachine Gun,Explosive,N/A,60,150,N/A,9,14,N/A,N/A,N/A,N/A,2,6,25,16,10,False,True,N/A,False,False,N/A,40,Common
+Underslung Grenade Launcher,Rifle,Explosive,N/A,60,150,N/A,9,14,N/A,N/A,N/A,N/A,2,6,25,16,10,False,True,N/A,False,False,N/A,90,Common
