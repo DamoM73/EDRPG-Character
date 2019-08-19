@@ -20,7 +20,7 @@ class Character:
         self.enhancements_max = 0
         self.enhancements = []
         self.karam_capab_max = 4
-        self.karam_capab = []
+        self.karam_capabs = []
         self.carried_weap_max = 2
         self.carried_weap = []
         self.clip_grenade_max = 2
@@ -360,6 +360,34 @@ class Fuel_tank:
         self.tonnage = FUEL_TANK[2]
         self.cost = FUEL_TANK[3]
 
+
+class ranged_weapon:
+    def __init__(self,code):
+        self.name = RANGED_WEAPONS[code][0]
+        self.cate = RANGED_WEAPONS[code][1]
+        self.type = RANGED_WEAPONS[code][2]
+        self.sr_dist = RANGED_WEAPONS[code][3]
+        self.mr_dist = RANGED_WEAPONS[code][4]
+        self.lr_dist = RANGED_WEAPONS[code][5]
+        self.sr_diff = RANGED_WEAPONS[code][6]
+        self.mr_diff = RANGED_WEAPONS[code][7]
+        self.lr_diff = RANGED_WEAPONS[code][8]
+        self.sr_dam = RANGED_WEAPONS[code][9]
+        self.mr_dam = RANGED_WEAPONS[code][10]
+        self.lr_dam = RANGED_WEAPONS[code][11]
+        self.burst_max = RANGED_WEAPONS[code][12]
+        self.ammo = RANGED_WEAPONS[code][13]
+        self.fatal_rgn = RANGED_WEAPONS[code][14]
+        self.fatal_dam = RANGED_WEAPONS[code][15]
+        self.injur_rgn = RANGED_WEAPONS[code][16]
+        self.injur_dam = RANGED_WEAPONS[code][17]
+        self.one_handed = RANGED_WEAPONS[code][18]
+        self.underslung = RANGED_WEAPONS[code][19]
+        self.effects = RANGED_WEAPONS[code][20]
+        self.dst_cover = RANGED_WEAPONS[code][21]
+        self.divide = RANGED_WEAPONS[code][22]
+        self.notes = RANGED_WEAPONS[code][23]
+        self.rarity = RANGED_WEAPONS[code][24]
 
 class Effect:
     def __init__(self,stat, amt):
@@ -927,3 +955,96 @@ ENHANCEMENTS = {'ambi':('Ambidextrous',2,'You have no ‘main hand’ and can us
     'toug':('Tough',4,'You can take more damage before falling unconscious.',[Effect('endurance',5),Effect('endurance',5),Effect('endurance',5),Effect('endurance',5)]),\
     'veng':('Vengeful',1,'Your adrenaline kicks in when you are close to death.',['If an enemy attack has reduced your Endurance to a single digit, you can immediately make an attack against that enemy.'])
     }
+
+RANGED_WEAPONS = {'argpb':('AMP Rifle Grip Punch Bolter','Anti-Material Projector','Energy','12m','20m','30m',4,7,10,'20','20','20','N/A',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent knocked over on hit.',7000000,'Rare'),\
+    'argsb':('AMP Rifle Grip Scalpel Beam','Anti-Material Projector','Energy','10m','120m','1000m',6,7,10,'25','25','25','N/A',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',17000000,'Rare'),\
+    'args':('AMP Rifle Grip Streamer','Anti-Material Projector','Energy','16m','50m','120m',6,8,11,'20','20','20','20',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',12000000,'Rare'),\
+    'assbc':('AMP Short Stock Bolt Caster','Anti-Material Projector','Energy','10m','40m','100m',5,8,11,'15','15','15','N/A',4,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Destroys Armour.',5000000,'Rare'),\
+    'asss':('AMP Short Stock Streamer','Anti-Material Projector','Energy','8m','30m','60m',5,8,12,'10','10','10','15',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Destroys Armour.',9000000,'Rare'),\
+    'asma':('AMP Shoulder Mounted Annihilator','Anti-Material Projector','Energy','30m','700m','5000m',6,8,13,'60','60','60','N/A',1,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent Inflicts 60 vehicle and spaceship scale damage. Ignores shields.',35000000,'Rare'),\
+    'asel':('Asellus Deflector Pistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10)],False,False,'Absorb 3 Kinetic and Energy damage.',1005000,'Rare'),\
+    'auto':('Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',4,'Common'),\
+    'corv':('Corvus Inc Devastation Pistol','Autopistols','Kinetic','8m','56m','110m',5,8,14,'1D10','1D10','1D10','4D10',4,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',15)],False,False,'N/A',2900000,'Rare'),\
+    'delm':('Delman Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'3D10','3D10','3D10','2D10',2,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',20)],False,False,'N/A',5000000,'Rare'),\
+    'gold':('Gold & Perry â€˜Watcherâ€™ Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',65000,'Rare'),\
+    'gtn':('GTN 195 Autopistol','Autopistols','Kinetic','8m','56m','110m',5,8,14,'2D10','2D10','2D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',225000,'Rare'),\
+    'impe':('Imperial Stimmer Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'Injects Combat Stims (80%) on 0 Endurance.',400500,'Rare'),\
+    'lx10':('LX10 Energised Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','2D10',4,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'Damage counts as Energy Weapon',1400000,'Rare'),\
+    'micr':('Micronite Doubleclip Sentinel','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',6,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'N/A',50000,'Rare'),\
+    'ng75':('NG75 Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','3D10',2,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',42000,'Rare'),\
+    'assa':('Assaut Beamer','Beamer','Energy','12m','70m','200m',4,7,10,'5','5','5','20','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',50,'Common'),\
+    'ingr':('Ingram Wide-Beam Carbine','Beamer','Energy','10m','60m','150m',4,7,10,'5','5','5','20','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',5)],True,True,'N/A',62000,'Rare'),\
+    'laif':('Laifan ABS Serrator','Beamer','Energy','12m','70m','200m',4,7,10,'5','5','5','30','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'On a natural 1 To Hit the weapon inflicts 10 Energy damage on user. ',2134000,'Rare'),\
+    'magn':('Magnotan Searching Beamer','Beamer','Energy','12m','70m','200m',4,7,10,'10','10','10','20','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',20)],True,True,'N/A',13599000,'Rare'),\
+    'chai':('Chain Gun','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','6D10',10,'N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',1000,'Common'),\
+    'g910':('G910 Heavy Repeater','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','8D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',7600000,'Rare'),\
+    'lanc':('Lance & Ferman Gimballed Minigun','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','6D10',10,'N/A','N/A','N/A','N/A',False,False,[Effect('hvy_weap',15)],True,True,'N/A',9000000,'Rare'),\
+    'mait':('Maitz PP9 Support Cannon','Chain Gun','Heavy, Kinetic','40m','80m','200m',5,8,14,'3D10','3D10','3D10','10D10',10,'N/A','N/A','N/A','N/A',False,False,[Effect('hvy_weap',5)],True,True,'N/A',42000000,'Rare'),\
+    'conc':('Concussion Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','2','40','6','5',False,False,'N/A',False,False,'N/A',100,'Rare'),\
+    'emp':('EMP Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','6','60','16','20',False,False,'N/A',False,False,'Damages robotic targets only.',1000,'Rare'),\
+    'flas':('Flashbang Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','4','0','12','0',False,False,'N/A',False,False,'N/A',4,'Common'),\
+    'frag':('Frag Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','6','25','16','10',False,False,'N/A',False,False,'N/A',5,'Common'),\
+    'naus':('Nausea Globe','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A',1,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'See Description. Pg. 35. Exploration Supplement',8000000,'Rare'),\
+    'plas':('Plasma Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','8','80','20','30',False,False,'N/A',False,False,'N/A',10000,'Rare'),\
+    'call':('Callaghan Arctic Hawk Heavy Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'3D10','3D10','3D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',114000,'Rare'),\
+    'heav':('Heavy Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',3,'Common'),\
+    'leon':('Leonis Hacker Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',6,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10),Effect('sec',10),Effect('comp',10)],False,False,'N/A',695000,'Rare'),\
+    'ross':('Ross Y49 Suregrip Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',10,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10),Effect('social_imp',1)],False,False,'N/A',83000,'Rare'),\
+    'thor':('Thordarson Firepoint Scoped Pistol','Heavy Pistol','Kinetic','10m','70m','120m',5,8,14,'2D10','2D10','2D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,Effect('kin_weap',20),False,False,'N/A',305000,'Rare'),\
+    'kray':('Krayton KX Heavy Carbine','Laser Carbine','Heavy (Energy/ Kinetic)','16m','100m','300m',5,8,9,'15','15','15','8D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',2200000,'Rare'),\
+    'lasc':('Laser Carbine','Laser Carbine','Energy, Kinetic','16m','100m','300m',5,8,9,'10','10','10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',10,'Common'),\
+    'mann':('Mannex Nighteye Carbin','Laser Carbine','Energy/Kinetic','16m','100m','300m',5,8,9,'10','10','10','4D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'N/A',270000,'Rare'),\
+    'volt':('Voltigen Armour Piercing Carbine','Laser Carbine','Energy/Kinetic','16m','100m','300m',5,8,9,'15','15','15','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Ignores Kinetic armour absorption',362000,'Rare'),\
+    'caul':('Cauldus Nerve-blocker Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Knocks over target on a natural 9 or 10 To Hit, target disarmed if knocked over.',196000,'Rare'),\
+    'cs1':('CS1 Burst Pistol','Laserpistols','Energy','8m','60m','90m',4,7,11,'5','5','5','15','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',244000,'Rare'),\
+    'evex':('Evex Long-barrel Laser Pistol','Laserpistols','Energy','16m','100m','150m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',98000,'Rare'),\
+    'gl77':('GL779 Intellipistol','Laserpistols','Energy','12m','90m','130m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Fires with Energy Weapons Skill Bonus of 9, ignores firearms skill.',8200000,'Rare'),\
+    'hype':('Hyperion Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',5)],False,False,'N/A',47000,'Rare'),\
+    'lasp':('Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',3,'Common'),\
+    'magn':('Magnetising Hotshot LaserPistol','Laserpistols','Energy','12m','90m','130m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',10)],False,False,'+1 bonus To Hit if you have previously hit the target with this weapon.',3550000,'Rare'),\
+    'nadi':('Nadion Twin Barrel Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',863000,'Rare'),\
+    'pari':('Paris ElegantÃ© Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'10','10','10','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',15)],False,False,'N/A',1809000,'Rare'),\
+    'acan':('Acane Model 5 Bazooka','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'10','60','24','20',False,False,[Effect('hvy_weap',5)],False,False,'Half damage vs shields.',97000,'Rare'),\
+    'misa':('Missile Launcher (Anti-Aircraft)','Missile Launcher','Heavy, Explosive','N/Am','2000m','6000m','N/A',10,13,'N/A','N/A','N/A','N/A',1,'2','120','40','20',False,False,'N/A',False,False,'Ignore Range hit number when attacking spacecraft.',2000,'Common'),\
+    'misp':('Missile Launcher (Anti-Personnel)','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'10','50','24','20',False,False,'N/A',False,False,'Half damage vs shields.',200,'Common'),\
+    'mist':('Missile Launcher (Anti-Tank)','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'2','100','20','20',False,False,'N/A',False,False,'Half damage vs shields.',700,'Common'),\
+    'odo':('ODO 15 Light Anti-Tank Weapon','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'2','130','20','30',False,False,'N/A',False,False,'Half damage vs shields.',816000,'Rare'),\
+    'xls':('XLS Omega Recoilless Rifle','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',4,'10','60','24','30',False,False,[Effect('hvy_weap',15)],False,False,'Half damage vs shields. ',23300000,'Rare'),\
+    'alta':('Altair JP60 Accelerator','Plasma Cannon','Heavy, Energy','N/Am','500m','3000m','N/A',9,12,'N/A','N/A','N/A','N/A',2,'12','140','34','50',False,False,'N/A',False,False,'Firer knocked over unless weapon is tripod mounted.',13500000,'Rare'),\
+    'plas':('Plasma Cannon','Plasma Cannon','Heavy, Energy','N/Am','500m','3000m','N/A',9,12,'N/A','N/A','N/A','N/A',4,'12','100','34','40',False,False,'N/A',False,False,'Firer knocked over unless weapon is tripod mounted.',4000,'Common'),\
+    'cent':('Centauri Quickfire Rail Rifle','Rail Rifle','Kinetic','20m','140m','1000m',5,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Molten munitions',225000,'Rare'),\
+    'rail':('Rail Rifle','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Molten munitions',500,'Common'),\
+    'sorb':('Sorbago Molybdenum Rifle','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'4D10','4D10','4D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,False,'N/A',705000,'Rare'),\
+    'tx9 ':('TX9 SmartScope Rail Rifle ','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',15)],False,False,'Molten munitions',352000,'Rare'),\
+    'arka':('Arkana Nighthawk','Rifle','Kinetic','16m','100m','400m',6,7,10,'2D10','2D10','2D10','3D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Includes underslung grenade launcher.',495000,'Rare'),\
+    'assa':('Assault Rifle','Rifle','Kinetic','16m','100m','400m',6,7,10,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',15,'Common'),\
+    'bn79':('BN799 Carbine','Rifle','Kinetic','20m','160m','650m',6,7,10,'3D10','3D10','3D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'Includes underslung grenade launcher.',3600000,'Rare'),\
+    'candg':('C&G 45 AutoRifle','Rifle','Kinetic','16m','100m','400m',6,7,10,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',5)],False,True,'N/A',30000,'Rare'),\
+    'ergo':('Ergon Burst Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'10','10','10','20','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',2100000,'Rare'),\
+    'fair':('Fairlight Excelsior','Rifle','Energy','20m','150m','500m',5,6,9,'30','30','30','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',15)],False,True,'N/A',28799000,'Rare'),\
+    'gals':('GalSpec 109 Sniper Rifle','Rifle','Kinetic','16m','100m','800m',6,7,8,'15 or 1D10','15 or 1D10','15 or 1D10','3D10',5,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'In Sniper Mode +15 to Kinetic Weapons score',101000,'Rare'),\
+    'kope':('Kopernicus Incinerator','Rifle','Energy','20m','150m','500m',5,6,9,'20','20','20','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',264000,'Rare'),\
+    'kosh':('Kosha Inc LasRifle','Rifle','Energy','22m','170m','600m',5,6,9,'24','24','24','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',4225000,'Rare'),\
+    'lanc':('lance & Ferman Deadeye Rifle','Rifle','Energy','24m','200m','700m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',20)],False,True,'N/A',5000000,'Rare'),\
+    'lasr':('Laser Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',5)],False,True,'N/A',40,'Common'),\
+    'lr17':('LR17 Long Barrel','Rifle','Energy','24m','200m','700m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',327500,'Rare'),\
+    'mlr4':('MLR40 Infantry Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',49000,'Rare'),\
+    'peru':('Perun Light Machinegun','Rifle','Kinetic','18m','140m','600m',6,7,10,'1D10','1D10','1D10','5D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',178000,'Rare'),\
+    'vort':('Vortigen Multi-Scope Energy Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'20','20','20','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',10)],False,True,'N/A',1450000,'Rare'),\
+    'bd90':('BD90 Warhammer','Shotgun','Kinetic','6m','12m','50m',3,7,12,'5D10','3D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'At short range knock over a target on a natural 8, 9 or 10 To Hit. Malfunctions on a natural 1.',209000,'Rare'),\
+    'exal':('Exalt WideScatter Shotgun','Shotgun','Kinetic','8m','12m','30m',3,7,12,'3D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Full damage with divide fire',78000,'Rare'),\
+    'jupi':('Jupiter Lockon Short Barrelled Rifle','Shotgun','Kinetic','8m','16m','70m',3,7,12,'4D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,False,'N/A',867000,'Rare'),\
+    'micr':('Micro-Shotgun','Shotgun','Kinetic','6m','10m','30m',3,7,12,'3D10','2D10','1D10','N/A',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',190000,'Rare'),\
+    'shot':('Shotgun','Shotgun','Kinetic','6m','12m','50m',3,7,12,'3D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'N/A',5,'Common'),\
+    'zx90':('ZX9000 Auto-Shotgun','Shotgun','Kinetic','16m','12m','50m',3,7,12,'3D10','2D10','1D10','4D10',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'N/A',19400000,'Rare'),\
+    'ergo':('Ergon Tommygun','Submachine Gun','Kinetic','12m','64m','128m',5,8,14,'1D10','1D10','1D10','3D10',8,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',74000,'Rare'),\
+    'ints':('Intsys JR4 SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','4D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'N/A',1345000,'Rare'),\
+    'k33 ':('K33 Multifire SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','4D10',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',175500,'Rare'),\
+    'krak':('Krakoff Demolisher Rifle','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','4D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Includes underslung grenade launcher.',3050000,'Rare'),\
+    'long':('Longarm Deadfire SMG','Submachine Gun','Kinetic','12m','64m','128m',5,8,14,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',5)],False,True,'Includes underslung grenade launcher.',310000,'Rare'),\
+    'skol':('Skollanga Slammer SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Target knocked over on a natural 9 or 10 To Hit.',985000,'Rare'),\
+    'sub ':('Sub Machinegun','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',9,'Common'),\
+    'unds':('Underslung Grenade Launcher','Underslung','Explosive','N/Am','60m','150m','N/A',9,14,'N/A','N/A','N/A','N/A',2,'6','25','16','10',False,True,'N/A',False,False,'Direct fire, can be added to rifles, SMGs and carbines',40,'Common'),\
+
+    
+}
