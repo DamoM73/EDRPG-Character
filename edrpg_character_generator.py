@@ -58,16 +58,19 @@ class Root(tk.Tk):
         tk.Label(self.create_cont, text='Character name', font=self.font_level_3, bg=self.bg_colour_1,padx=5, pady=5).grid(row=1, column=0)
         self.char_name_ent = tk.Entry(self.create_cont, width=30, font=self.font_level_3)
         self.char_name_ent.grid(row=1, column=1)
-        self.char_name_btn = tk.Button(self.create_cont,text='Proceed')
+        self.char_name_btn = tk.Button(self.create_cont,text='Proceed',width=10)
         self.char_name_btn.grid(row=1,column=2)
         # Backgrounds
+        tk.Label(self.create_cont,text='Step 2: Select Backgrounds', font=self.font_level_2, bg=self.bg_colour_1).\
+            grid(row=2, column=0, columnspan=3)
         self.bg_options = []
         for bg in edrpg.BACKGROUNDS:
             self.bg_options.append(bg.name)
-        self.option_control = tk.StringVar()
-        self.option_control.set = (self.bg_options[0])
-        self.bg_choice_1 = tk.OptionMenu(self.create_cont, self.option_control, *self.bg_options)
-        self.bg_choice_1.grid(row=2,column=0,columnspan=3)
+        tk.Label(self.create_cont,text="Background 1", font=self.font_level_3, bg=self.bg_colour_1).\
+            grid(row=3,column=0)
+        self.bg_1_combo = ttk.Combobox(self.create_cont, width=37,font=self.font_level_3)
+        self.bg_1_combo['values'] = self.bg_options
+        self.bg_1_combo.grid(row=3,column=1,columnspan=2)
         
 
         
