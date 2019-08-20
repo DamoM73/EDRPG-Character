@@ -127,16 +127,18 @@ class Enhancement:
 
 
 class Karma_capab:
-    def __init__(self,code):
-        self.name = KARMA_CAPABS[code][0]
-        self.cost = KARMA_CAPABS[code][1]
-        self.ship_comb = KARMA_CAPABS[code][2]
-        self.veh_comb = KARMA_CAPABS[code][3]
-        self.pers_comb = KARMA_CAPABS[code][4]
-        self.effect = KARMA_CAPABS[code][5]
-        self.prereq = KARMA_CAPABS[code][6]
-        self.special = KARMA_CAPABS[code][7]
-        self.descript = KARMA_CAPABS[code][8]
+    def __init__(self,code,name,cost,ship_comb,veh_comb,pers_comb,general,effects,prereq,special,descript):
+        self.code = code
+        self.name = name
+        self.cost = cost
+        self.ship_comb = ship_comb
+        self.veh_comb = veh_comb
+        self.pers_comb = pers_comb
+        self.general = general
+        self.effects = effects
+        self.prereq = prereq
+        self.special = special
+        self.descript = descript
 
 
 class Money:
@@ -344,52 +346,56 @@ class Power_Dist:
         self.cost = POWER_DIST[code][6]
 
 
-class Sensors:
-    def __init__(self,code):
-        self.name = SENSORS[code][0]
-        self.size = SENSORS[code][1]
-        self.model = SENSORS[code][2]
-        self.power = SENSORS[code][3]
-        self.strength = SENSORS[code][4]
-        self.effects = SENSORS[code][5]
-        self.cost = SENSORS[code][6]
+class Sensor:
+    def __init__(self,code,name,size,model,power,strength,effects,cost):
+        self.code = code
+        self.name = name
+        self.size = size
+        self.model = model
+        self.power = power
+        self.strength = strength
+        self.effects = effects
+        self.cost = cost
 
 
 class Fuel_tank:
-    def __init__(self,code):
-        self.name = FUEL_TANK[code][0]
-        self.size = FUEL_TANK[code][1]
-        self.tonnage = FUEL_TANK[2]
-        self.cost = FUEL_TANK[3]
+    def __init__(self,code,name,size,tonnage,cost):
+        self.code = code
+        self.name = name
+        self.size = size
+        self.tonnage = tonnage
+        self.cost = cost
 
 
-class ranged_weapon:
-    def __init__(self,code):
-        self.name = RANGED_WEAPONS[code][0]
-        self.cate = RANGED_WEAPONS[code][1]
-        self.type = RANGED_WEAPONS[code][2]
-        self.sr_dist = RANGED_WEAPONS[code][3]
-        self.mr_dist = RANGED_WEAPONS[code][4]
-        self.lr_dist = RANGED_WEAPONS[code][5]
-        self.sr_diff = RANGED_WEAPONS[code][6]
-        self.mr_diff = RANGED_WEAPONS[code][7]
-        self.lr_diff = RANGED_WEAPONS[code][8]
-        self.sr_dam = RANGED_WEAPONS[code][9]
-        self.mr_dam = RANGED_WEAPONS[code][10]
-        self.lr_dam = RANGED_WEAPONS[code][11]
-        self.burst_max = RANGED_WEAPONS[code][12]
-        self.ammo = RANGED_WEAPONS[code][13]
-        self.fatal_rgn = RANGED_WEAPONS[code][14]
-        self.fatal_dam = RANGED_WEAPONS[code][15]
-        self.injur_rgn = RANGED_WEAPONS[code][16]
-        self.injur_dam = RANGED_WEAPONS[code][17]
-        self.one_handed = RANGED_WEAPONS[code][18]
-        self.underslung = RANGED_WEAPONS[code][19]
-        self.effects = RANGED_WEAPONS[code][20]
-        self.dst_cover = RANGED_WEAPONS[code][21]
-        self.divide = RANGED_WEAPONS[code][22]
-        self.notes = RANGED_WEAPONS[code][23]
-        self.rarity = RANGED_WEAPONS[code][24]
+class Ranged_weapon:
+    def __init__(self,code,name,cate,dam_type,sr_dist,mr_dist,lr_dist,sr_diff,mr_diff,lr_diff,sr_dam,mr_dam,lr_dam,burst_max,ammo,fatal_rng,fatal_dam,injur_rng,injur_dam,one_handed,underslung,effects,dst_cover,divide,notes,cost,rarity):
+        self.code = code
+        self.name = name
+        self.cate = cate
+        self.type = dam_type
+        self.sr_dist = sr_dist
+        self.mr_dist = mr_dist
+        self.lr_dist = lr_dist
+        self.sr_diff = sr_diff
+        self.mr_diff = mr_diff
+        self.lr_diff = lr_diff
+        self.sr_dam = sr_dam
+        self.mr_dam = mr_dam
+        self.lr_dam = lr_dam
+        self.burst_max = burst_max
+        self.ammo = ammo
+        self.fatal_rng = fatal_rng
+        self.fatal_dam = fatal_dam
+        self.injur_rng = injur_rng
+        self.injur_dam = injur_dam
+        self.one_handed = one_handed
+        self.underslung = underslung
+        self.effects = effects
+        self.dst_cover = dst_cover
+        self.divide = divide
+        self.notes = notes
+        self.cost = cost
+        self.rarity = rarity
 
 class Effect:
     def __init__(self,stat, amt):
@@ -759,64 +765,57 @@ POWER_DIST = {'pd 1E':('Power Distribution 1E',1,'E',0.32,10,[],520),\
     'pd 8A':('Power Distribution 8A',8,'A',0.96,90,[Effect("agility", 1), Effect("to_hit",1), Effect("shield_recharge",5),Effect("float_pts",1)],27249390),\
     }
 
-SENSORS = {'ss1E':('Sensors 1E',1,'E',0.16,5,[],520),\
-    'ss1D':('Sensors 1D',1,'D',0.18,5,[Effect('initiative',1)],1290),\
-    'ss1C':('Sensors 1C',1,'C',0.2,10,[Effect('initiative',1),Effect('dogfghting',1)],3230),\
-    'ss1B':('Sensors 1B',1,'B',0.33,10,[Effect('initiative',2),Effect('dogfghting',1)],8080),\
-    'ss1A':('Sensors 1A',1,'A',0.6,15,[Effect('initiative',2),Effect('dogfghting',2)],20200),\
-    
-    'ss2E':('Sensors 2E',2,'E',0.18,15,[Effect('sensors',1)],1450),\
-    'ss2D':('Sensors 2D',2,'D',0.21,15,[Effect('initiative',1),Effect('sensors',1)],3620),\
-    'ss2C':('Sensors 2C',2,'C',0.23,20,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',1)],9050),\
-    'ss2B':('Sensors 2B',2,'B',0.38,20,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',1)],22620),\
-    'ss2A':('Sensors 2A',2,'A',0.69,25,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',1)],56550),\
-    
-    'ss3E':('Sensors 3E',3,'E',0.22,25,[Effect('sensors',1)],4050),\
-    'ss3D':('Sensors 3D',3,'D',0.25,25,[Effect('initiative',1),Effect('sensors',1)],10130),\
-    'ss3C':('Sensors 3C',3,'C',0.28,30,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',1)],25330),\
-    'ss3B':('Sensors 3B',3,'B',0.46,30,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',1)],63330),\
-    'ss3A':('Sensors 3A',3,'A',0.84,35,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',1)],158330),\
-    
-    'ss4E':('Sensors 4E',4,'E',0.27,35,[Effect('sensors',2)],11350),\
-    'ss4D':('Sensors 4D',4,'D',0.31,35,[Effect('initiative',1),Effect('sensors',2)],28370),\
-    'ss4C':('Sensors 4C',4,'C',0.34,40,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',2)],70930),\
-    'ss4B':('Sensors 4B',4,'B',0.56,40,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',2)],177330),\
-    'ss4A':('Sensors 4A',4,'A',1.02,45,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',2)],443330),\
-    
-    'ss5E':('Sensors 5E',5,'E',0.33,45,[Effect('sensors',3)],31780),\
-    'ss5D':('Sensors 5D',5,'D',0.37,45,[Effect('initiative',1),Effect('sensors',3)],79440),\
-    'ss5C':('Sensors 5C',5,'C',0.41,50,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',3)],198610),\
-    'ss5B':('Sensors 5B',5,'B',0.68,50,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',3)],496530),\
-    'ss5A':('Sensors 5A',5,'A',1.23,55,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',3)],1241320),\
-    
-    'ss6E':('Sensors 6E',6,'E',0.4,55,[Effect('sensors',3)],88980),\
-    'ss6D':('Sensors 6D',6,'D',0.45,55,[Effect('initiative',1),Effect('sensors',3)],222440),\
-    'ss6C':('Sensors 6C',6,'C',0.5,60,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',3)],556110),\
-    'ss6B':('Sensors 6B',6,'B',0.83,60,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',3)],1390280),\
-    'ss6A':('Sensors 6A',6,'A',1.5,65,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',3)],3475690),\
-    
-    'ss7E':('Sensors 7E',7,'E',0.47,65,[Effect('sensors',4)],249140),\
-    'ss7D':('Sensors 7D',7,'D',0.53,65,[Effect('initiative',1),Effect('sensors',4)],622840),\
-    'ss7C':('Sensors 7C',7,'C',0.59,70,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',4)],1557110),\
-    'ss7B':('Sensors 7B',7,'B',0.97,70,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',4)],3892770),\
-    'ss7A':('Sensors 7A',7,'A',1.77,75,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',4)],9731930),\
-    
-    'ss8E':('Sensors 8E',8,'E',0.55,75,[Effect('sensors',5)],697580),\
-    'ss8D':('Sensors 8D',8,'D',0.62,75,[Effect('initiative',1),Effect('sensors',5)],1743960),\
-    'ss8C':('Sensors 8C',8,'C',0.69,80,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',5)],4359900),\
-    'ss8B':('Sensors 8B',8,'B',1.14,80,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',5)],10899760),\
-    'ss8A':('Sensors 8A',8,'A',2.07,85,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',5)],27249390),\
-    }
+SENSORS = (Sensor('ss1E','Sensors 1E',1,'E',0.16,5,[],520),\
+    Sensor('ss1D','Sensors 1D',1,'D',0.18,5,[Effect('initiative',1)],1290),\
+    Sensor('ss1C','Sensors 1C',1,'C',0.2,10,[Effect('initiative',1),Effect('dogfghting',1)],3230),\
+    Sensor('ss1B','Sensors 1B',1,'B',0.33,10,[Effect('initiative',2),Effect('dogfghting',1)],8080),\
+    Sensor('ss1A','Sensors 1A',1,'A',0.6,15,[Effect('initiative',2),Effect('dogfghting',2)],20200),\
+    Sensor('ss2E','Sensors 2E',2,'E',0.18,15,[Effect('sensors',1)],1450),\
+    Sensor('ss2D','Sensors 2D',2,'D',0.21,15,[Effect('initiative',1),Effect('sensors',1)],3620),\
+    Sensor('ss2C','Sensors 2C',2,'C',0.23,20,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',1)],9050),\
+    Sensor('ss2B','Sensors 2B',2,'B',0.38,20,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',1)],22620),\
+    Sensor('ss2A','Sensors 2A',2,'A',0.69,25,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',1)],56550),\
+    Sensor('ss3E','Sensors 3E',3,'E',0.22,25,[Effect('sensors',1)],4050),\
+    Sensor('ss3D','Sensors 3D',3,'D',0.25,25,[Effect('initiative',1),Effect('sensors',1)],10130),\
+    Sensor('ss3C','Sensors 3C',3,'C',0.28,30,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',1)],25330),\
+    Sensor('ss3B','Sensors 3B',3,'B',0.46,30,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',1)],63330),\
+    Sensor('ss3A','Sensors 3A',3,'A',0.84,35,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',1)],158330),\
+    Sensor('ss4E','Sensors 4E',4,'E',0.27,35,[Effect('sensors',2)],11350),\
+    Sensor('ss4D','Sensors 4D',4,'D',0.31,35,[Effect('initiative',1),Effect('sensors',2)],28370),\
+    Sensor('ss4C','Sensors 4C',4,'C',0.34,40,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',2)],70930),\
+    Sensor('ss4B','Sensors 4B',4,'B',0.56,40,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',2)],177330),\
+    Sensor('ss4A','Sensors 4A',4,'A',1.02,45,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',2)],443330),\
+    Sensor('ss5E','Sensors 5E',5,'E',0.33,45,[Effect('sensors',3)],31780),\
+    Sensor('ss5D','Sensors 5D',5,'D',0.37,45,[Effect('initiative',1),Effect('sensors',3)],79440),\
+    Sensor('ss5C','Sensors 5C',5,'C',0.41,50,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',3)],198610),\
+    Sensor('ss5B','Sensors 5B',5,'B',0.68,50,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',3)],496530),\
+    Sensor('ss5A','Sensors 5A',5,'A',1.23,55,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',3)],1241320),\
+    Sensor('ss6E','Sensors 6E',6,'E',0.4,55,[Effect('sensors',3)],88980),\
+    Sensor('ss6D','Sensors 6D',6,'D',0.45,55,[Effect('initiative',1),Effect('sensors',3)],222440),\
+    Sensor('ss6C','Sensors 6C',6,'C',0.5,60,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',3)],556110),\
+    Sensor('ss6B','Sensors 6B',6,'B',0.83,60,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',3)],1390280),\
+    Sensor('ss6A','Sensors 6A',6,'A',1.5,65,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',3)],3475690),\
+    Sensor('ss7E','Sensors 7E',7,'E',0.47,65,[Effect('sensors',4)],249140),\
+    Sensor('ss7D','Sensors 7D',7,'D',0.53,65,[Effect('initiative',1),Effect('sensors',4)],622840),\
+    Sensor('ss7C','Sensors 7C',7,'C',0.59,70,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',4)],1557110),\
+    Sensor('ss7B','Sensors 7B',7,'B',0.97,70,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',4)],3892770),\
+    Sensor('ss7A','Sensors 7A',7,'A',1.77,75,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',4)],9731930),\
+    Sensor('ss8E','Sensors 8E',8,'E',0.55,75,[Effect('sensors',5)],697580),\
+    Sensor('ss8D','Sensors 8D',8,'D',0.62,75,[Effect('initiative',1),Effect('sensors',5)],1743960),\
+    Sensor('ss8C','Sensors 8C',8,'C',0.69,80,[Effect('initiative',1),Effect('dogfghting',1),Effect('sensors',5)],4359900),\
+    Sensor('ss8B','Sensors 8B',8,'B',1.14,80,[Effect('initiative',2),Effect('dogfghting',1),Effect('sensors',5)],10899760),\
+    Sensor('ss8A','Sensors 8A',8,'A',2.07,85,[Effect('initiative',2),Effect('dogfghting',2),Effect('sensors',5)],27249390),\
+    )
 
-FUEL_TANK = {"ft 1C":("Fuel Tank 1C",1,2,1000),\
-    "ft 2C":("Fuel Tank 2C",2,4,3750),\
-    "ft 3C":("Fuel Tank 3C",3,8,7060),\
-    "ft 4C":("Fuel Tank 4C",4,16,24730),\
-    "ft 5C":("Fuel Tank 5C",5,32,97750),\
-    "ft 6C":("Fuel Tank 6C",6,64,341580),\
-    "ft 7C":("Fuel Tank 7C",7,128,1780910),\
-    "ft 8C":("Fuel Tank 8C",8,256,5428400)
-    }
+FUEL_TANK = (Fuel_tank("ft 1C","Fuel Tank 1C",1,2,1000),\
+    Fuel_tank("ft 2C","Fuel Tank 2C",2,4,3750),\
+    Fuel_tank("ft 3C","Fuel Tank 3C",3,8,7060),\
+    Fuel_tank("ft 4C","Fuel Tank 4C",4,16,24730),\
+    Fuel_tank("ft 5C","Fuel Tank 5C",5,32,97750),\
+    Fuel_tank("ft 6C","Fuel Tank 6C",6,64,341580),\
+    Fuel_tank("ft 7C","Fuel Tank 7C",7,128,1780910),\
+    Fuel_tank("ft 8C","Fuel Tank 8C",8,256,5428400)
+    )  
 
 BACKGROUNDS = (Background('acco','Accountant',1,[Effect('bluff',10),Effect('comp',10),Effect('cult_law',20),Effect('dodge',10)],'N/A','N/A','You were brought up in a shadowy world of balance sheets, credit notes, purchase ledgers and taxdeductible lunches. Since computers are used for honest tax statements, human accountants exist only to tease, stretch and reimagine tax law to provide exemptions for their clients. After years of dodging the tax authorities you were glad to pack it all in and become something safer - like a pirate or bounty hunter.'),\
     Background('anar','Anarchist',1,[Effect('dodge',10),Effect('fight',10),Effect('grenade',20),Effect('intim',10)],'N/A','N/A','The super-rich, corporate leaders and their stooge politicians, have the whole of society stitched up and the very concept of freedom is a joke. As a young person you threw rocks through police-station windows, belched at local dignitaries, assaulted corporate management and spent years in a variety of prisons.'),\
@@ -886,62 +885,62 @@ BACKGROUNDS = (Background('acco','Accountant',1,[Effect('bluff',10),Effect('comp
     Background('xeno','Xenobiologist',1,[Effect('med',20),Effect('plant_know',10),Effect('sci',20)],'N/A','N/A','Humans have always needed other life-forms for survival, whether for medicine, or labour. That hasn’t stopped now humanity has exploded into the galaxy. Microbes need to be examined, alien animals studied and dissected.  New compounds can be found in infinite variety across the myriad of Earth-like worlds in the universe. As a trained Xenobiologist, you hunger for new specimens and deadly new bacteria to examine.  It’s an exciting time, and your research is just beginning!'),\
     )
 
-KARMA_CAPABS = {'itf':('In There First ',3,True,True,True,False,'Gain a +5 bonus to your Initiative check.','N/A','N/A','Your weapon is out even as the pirate is reaching for his holster'),\
-    'conc':('Concentration',3,False,False,False,True,'You can re-roll the failed Skill check.',' You have just failed a Skill check.','N/A','“Ten seconds until detonation,” intones the computer as you attempt to disarm the bomb. Focus! One wrong move and you’re done for!'),\
-    'esca':('Escape Death',100,True,True,True,True,'You escape or avoid an attack that just killed you or reduced your Endurance to less than 1.','N/A','N/A','You emerge from the ashes of the burning tank, brushing the dust casually from your jacket as you do so.'),\
-    'skil':('Skill Boost',2,False,False,False,True,'Gain a +2 bonus to your chosen Skill for this Skill check.','N/A','Non-Personal Combat or Vehicle Skill when you choose this Karmic Capability','The pressure is on. If you can’t get this airlock open in the next ten seconds the team will suffocate.'),\
-    'pene':('Penetrating Shot',5,False,False,True,False,'When your opponent takes damage their armour absorption is ignored for this attack.','N/A','N/A','You peer through the sights of your rifle, lining up the weak chink of armour between the shoulder and joint…'),\
-    'poin':('Point Blank Shot',3,False,False,True,False,' When making an attack at point blank range you don’t provoke a free attack.','N/A','N/A','Sighing wearily, you shoot the swordsman right in the face.'),\
-    'blur':('Blur Of Steel',3,False,False,True,False,'You add a +2 bonus to the Melee attack you just made.','N/A','N/A','Your blade flashes and swipes before the enemy, before slicing in from an unexpected direction.'),\
-    'crac':('Crack Shot',4,False,False,True,False,'In the midst of the firefight you find an inner moment of calm. Time seems to slow as you carefully aim your weapon at the enemy.','N/A','N/A','In the midst of the firefight you find an inner moment of calm. Time seems to slow as you carefully aim your weapon at the enemy.'),\
-    'dive':('Dive Aside',5,False,False,True,False,'Gain a +5 bonus to your Defence (Dodge) against an attack that would hit you.','N/A','N/A','The house detonates behind you, and you hurl yourself through the air to escape the explosion.'),\
-    'duck':('Duck!',2,False,False,True,False,'Gain a +2 bonus to your Defence (Dodge) against an attack that would hit you.','N/A','N/A','Your adrenaline pumping, you lurch aside as the energy beam sizzles across your flight suit.'),\
-    'lead':('Eat Lead Sucker!',5,False,False,True,False,'If you hit your target with a Burst Weapon, inflict maximum Burst damage on them.','N/A','N/A','Your enemy’s body jerks and writhes, as every bullet from your autopistol impacts into their body.'),\
-    'fire':('Fire In The Hold',3,False,False,True,False,'You can re-roll a scatter when missing with a grenade.','N/A','N/A','The smuggler looks down casually to see what just landed square at his feet. It’s the last thing  he ever sees.'),\
-    'foll':('Follow Up',6,False,False,True,False,'Make another attack with the same weapon against the opponent immediately.','You have just scored a hit with a ranged weapon against an opponent.','N/A','The gangster’s body jolts as the rounds from your autopistol slam into him.  You don’t let up, keeping the trigger pulled until he sprawls to the floor…'),\
-    'down':('Get Down!',3,False,False,True,False,'Choose an ally that you can see and who can hear you. They gain a +2 bonus to their Defence (Dodge or Parry) against an attack that just hit them.','N/A','N/A','“Baxter, behind you!” snaps Jenya, and you instinctively duck as the axe sails over your head.'),\
-    'hard':('Hard Boiled',8,False,False,True,False,' Make two ranged weapon attacks, one with each gun in your hands, with no penalties for using two guns at the same time. Additionally your Defence (Dodge) is 10 until your next turn, regardless of your dodge Skill','You must be holding a one-handed energy or Kinetic weapon in each hand and are not knocked over.','N/A','It’s time to take these fools down. Pulling a spare gun from your coat you leap through the doorway, guns blazing, enemy fire whizzing past your head as you fly through the air…'),\
-    'hunt':('Hunter',1,False,False,True,False,'When making an attack roll against an Alien Animal or Biomod, you can add your Survival Skill bonus to the roll as well as the relevant weapon Skill bonus.','N/A','N/A','The Narseer rears up before you … its last mistake.  Aiming straight for its jugular, you tear a bloody hole in the alien lizard’s skin.'),\
-    'inco':('Incoming!',3,False,False,True,False,'If you are in the fatal radius of the explosive you move until you are in the injury radius. If you are in the injury radius you move until you are outside the radius. Those adjacent to you can do the same.','N/A','N/A','You have an allergy to high explosives and no one can run as fast as you when the shoulder-mounted missile launchers come out'),\
-    'iron':('Iron Willed',3,False,False,True,False,'You are unaffected by any attack or condition that causes you to hallucinate, or lose control of your actions.','N/A','N/A','They’ve tried for days to make you crack. Drugs, water-boarding, bright lights … they’ll never break you!'),\
-    'kiss':('Kiss, Kiss, Bang, Bang',4,False,False,True,False,'You automatically hit your target with a weapon you are carrying with the One-Handed trait. If the weapon inflicts Burst damage, you roll the maximum number of dice. If not, your weapon inflicts double damage.','You must be alone with your target, and have just completed a successful Charm Skill check.','N/A','“So,” you say, flashing a smile at the corrupt security guard. “What time do you get off?” The guard grins, gazing shamelessly at your body. “For you, honey, I can…” but he never finishes. There is a loud bang, and he jolts, a growing red stain spreading across his stomach. You tuck away your laser pistol as he slumps to the ground.'),\
-    'last':('Last Minute Deflection',3,False,False,True,False,'Gain a +3 bonus to your Parry against an attack that would hit you.','N/A','N/A','You knock aside the cyborg’s wrist just as its terrible cyberclaws slash towards your face.'),\
-    'quic':('Quick Loader',2,False,False,True,False,'You immediately reload the weapon. This does not use up your next turn’s action.','You have just used the last ammo point on a weapon you were firing and you have a spare clip.','N/A','As the last bullet spits from your assault rifle, you rip the clip out and replace it with fluidity and speed.'),\
-    'ripo':('Riposte ',1,False,False,True,False,'You can counter attack your enemy’s counter attack.','N/A','N/A','Sword blades clash in a whirl of steel. You lunge, but miss, the cultist swinging round to exploit your mistake. With lighting reflexes you parry again, deflecting the Death Cultist’s own sword right into his throat.'),\
-    'slam':('Slam',2,False,False,True,False,'The enemy is knocked over, regardless of the damage result.','You have just hit an opponent with a Melee or Fighting attack.','N/A','You ram your fist under the pirate’s jaw. He drops like a sack of potatoes.'),\
-    'spin':('Spinning Kick',3,False,False,True,False,'Make a Fighting attack against the enemy who just attacked you. They do not get to add their Parry or Dodge bonus against this attack. You can then make a counterattack.','You have just parried and the enemy missed you.','N/A','You smoothly parry the attack, spinning round as you do so to plant your foot into your opponent’s neck!'),\
-    'stay':('Stay Standing',1,False,False,True,False,'An attack that just hit you does not knock you down.','N/A','N/A','You stagger, but do not fall as the shotgun pellets crack into your breastplate.'),\
-    'suck':('Sucker Punch',2,False,False,True,False,'Make another Fighting attack immediately, ignoring the enemy’s Dodge or Parry bonus.','You just made a Fighting attack, whether that attack hits or misses.','N/A','You craftily sneak another punch in when the enemy least expects it.'),\
-    'weak':('Weak Point',3,False,False,True,False,'Have your opponent make a Hardened armour check (opponents wearing armour without the Hardened quality fail automatically). If they fail, their armour does not protect them against the damage from this attack.',' You have just hit your opponent with a ranged attack but have not yet rolled the Damage.','N/A','Your eye flicks to the gap between the walker drone’s plated armour.  With pinpoint precision, your shots blast straight into the hole.'),\
-    'with':('Without Even Looking…',4,False,False,True,False,'Make a ranged attack against a different enemy who is behind you or to the side of you with your one-handed Energy or Kinetic weapon. You suffer no penalty To Hit.','You must have a one-handed energy or Kinetic weapon in your hand.  You have just attacked and hit an opponent in front of you.','N/A','Your laser pistol sizzles through the anarchist as his friend tries to sneak up behind you. Without turning you point your pistol behind you and fry the sneaky punk.'),\
-    'dili':('Diligent Medic',3,False,False,False,True,'You can use a Medpack on someone again, even if they’re already been treated within the last six hours.','N/A','N/A','You have to get your friend back on their feet. You redress their bandages and give them an extra shot of stimulants.'),\
-    'dril':('Drill Sergeant',1,False,False,False,True,'You can double your Skill bonus when making a Social skill check to influence military personnel.','N/A','N/A','Soldiers respect you. Or are frightened by your loud voice. Either is fine.'),\
-    'ever':('Everybody Pipe Down',4,False,False,False,True,'You and allies gain +2 bonus to Stealth Checks.','N/A','N/A','You peek around the corner to see a platoon of heavily armed corporate soldiers. You raise your hand to your crouching comrades to silence them.'),\
-    'ghos':('Ghost',4,False,False,False,True,'You gain a +4 bonus to Stealth Checks when following someone.','N/A','N/A','You vanish into the crowd, keeping a close eye on the enemy spy as she anxiously looks around herself. '),\
-    'hone':('Honey Trap',4,False,False,False,True,'Rather than charm someone you can attempt to seduce them. Provided you are sexually compatible make a Charm Skill Check against the target’s Insight Skill Check. If you are successful the target becomes much more gullible and foolish in your presence, and cannot add their Insight Bonus when you make any further Charm, Bargain or Diplomacy checks against them.','You must be in a non-hostile situation to use this Skill.','N/A','You saunter by your mark, just close enough so your perfume can waft by his nose. He turns, looks and is smitten in a second.'),\
-    'liar':('Liar, Liar!',2,False,False,False,True,'If you are making an Insight check to determine if someone is lying to you, gain a +4 bonus','N/A','N/A','“Don’t tell me you weren’t there, Henning!” you snap at the sweating prisoner. “The truth is plastered all over your face!”'),\
-    'resu':('Resuscitate',8,False,False,False,True,'If a party member has been killed within the last minute, make a Difficulty 13 Medicine check. On a success they do not die, but remain unconscious for twenty four hours with 0 Endurance points. You can attempt this multiple times provided you have enough Karma.','N/A','N/A','“Don’t give up on me, Foster!” you cry, pressing on his bleeding chest to try and restart his heart.'),\
-    'secr':('Secret Markets',2,False,False,False,True,'You can re-roll a result you or the GM just made on the Advanced Trading tables, and then choose which result applies.','N/A','N/A','You barely glance at the commodity market board. That’s not where the real deals are made…'),\
-    '3dth':('3D Thinking',2,True,False,False,False,'Use when you have just completed the Flight Assist Off action. You can keep your spaceship’s Agility score when calculating your defence.','N/A','N/A','Newtonian physics don’t faze you. You can spin and jink your ship just as well with Flight Assist Off.'),\
-    'burn':('Burnout',3,True,False,False,False,'This attack becomes a critical hit, provided it has damaged the hull of the enemy spaceship.','N/A','N/A','You grit your teeth as your multi-cannons rip across the enemy hull, tearing into its thrusters.'),\
-    'dont':('Don’t Give Out On Me Yet!',5,True,False,False,False,'The component is instead reduced to 5 Strength points and still functions.','A component has just been reduced to 0 Strength by a critical hit.','N/A','Your thrusters are hanging by a thread … but they’re okay!'),\
-    'ihav':('I Have You Now…',3,True,False,False,False,'Gain +2 bonus to your current Dogfighting check.','N/A','N/A','The enemy Eagle twists and turns but cannot escape your sights. You stick close to the enemy’s tail and open fire.'),\
-    'jink':('Jink',2,True,False,False,False,'Gain a +2 bonus to your Spaceship Defence against an attack that would hit you.','N/A','N/A','You never keep your ship flying in a straight line, your lateral thrusters flaming as you bob and weave through space.'),\
-    'miss':('Karmic Missile',3,True,False,False,False,'ECM (Electronic Counter Measures) and Point Defence Counter Measures have no effect against this missile attack.','N/A','N/A','Perhaps the enemy’s countermeasures didn’t engage. Perhaps the missile’s targeting systems are faulty. Either way this missile seems to blithely ignore the countermeasures used against it.'),\
-    'line':('Line Em Up!',3,True,False,False,False,'When firing broadsides in spaceship combat you can keep firing at the same target even if you miss with a turret.','N/A','N/A','You roll your Anaconda on its axis, allowing your turrets to blast the harassing Vulture one by one.'),\
-    'rapi':('Rapid Deployment',3,True,False,False,False,'You can use this Karma Capability yourself, if you are flying the fighter, or grant it to a ship that has just launched from your hangar. The ship-launched fighter immediately takes its turn. Once this free turn is performed, roll Initiative as normal for the fighter, and then resume the mothership’s turn.','N/A','N/A','Your ship-launched fighter soars out of the mothership, guns blazing even as it swoops from the hangar'),\
-    'spin':('Spin Wildly',5,True,False,False,False,'Gain a +5 bonus to your Spaceship Defence against an attack that would hit you.','N/A','N/A','Laser bolts scream past you harmlessly as you spin your ship through the firestorm.'),\
-    'wors':('Worse Than It Looks',3,True,False,False,False,'When targeting a ship’s components, do not suffer any penalties To Hit.','N/A','N/A','Don’t worry, kid, they’ll never hit the power plant from here … oh…'),\
-    'gmoh':('Get Me Outta Here!',3,True,True,False,False,'Gain a +4 bonus to your Pursuit check when disengaging.','N/A','N/A','You activate thrusters, dive and then pull up sharply, desperately hoping this will shake the Eagle off your tail.'),\
-    'inst':('Instinctive Aim',4,True,True,False,False,'You add a +2 bonus to the Spaceship or Vehicle attack you just made.','N/A','N/A','You pull the trigger even before the enemy obligingly flies into your sights.'),\
-    'avoi':('Avoid Lock',3,False,True,False,False,'Missiles can’t target your vehicle til your next turn.','N/A','N/A','Hearing the tell-tale bleep of a missile lock you swerve your SRV violently left and right to confuse the enemy’s targeting systems.'),\
-    'brea':('Break Right!',2,False,True,False,False,'Gain a +2 bonus to your Vehicle Defence against an attack that would hit you.','N/A','N/A','Your eyes flash as you spot the enemy turret hone in on your SRV. At the last moment you turn sharply to the right to throw off their aim.'),\
-    'gsgr':('Get Some Grip',2,False,True,False,False,'Gain a +5 bonus to your Vehicle Piloting check to avoid Obstacles','N/A','N/A','Wrestling with the steering wheel you manage to keep the cargo truck under control as you slam on the breaks.'),\
-    'hand':('Handbrake Turn',5,False,True,False,False,'Gain a +5 bonus to your Vehicle Defence against an attack that would hit you.','N/A','N/A','It might invalidate the warranty on your SRV, but you wrench the handbrake and skid sharply aside as the cannon shot thuds into the ground ahead of you.'),\
-    'powe':('Power Bounce',5,False,True,False,False,'If you start up-close in vehicle combat and are moving at Speed 3 or more, you can use your action to activate your thrusters to bound away from combat. Fire your turret, if you have one, at any target up-close and then move yourself to atdistance. (Enemies cannot pursue you.)','N/A','N/A','You just can’t shake that enemy track-biker. Activating your thrusters just as you crest a hill you soar into the air, spinning your light-tank around to blast at the enemy.'),\
-    'swip':('Swipe',4,False,True,False,False,'Instead of firing your weapons you Ram an opponent in such a way as to minimise your own damage and maximise theirs. Make a Ram attack, with a +2 bonus To Hit. If you hit you take half normal damage and do not go out of control. Your enemy takes full damage and must make two obstacle checks in their next turn.','N/A','N/A','You smash your SRV across the side of the truck, grinning as the truck careers off the road into a ditch.'),\
-    'terr':('Terrain Breaking',1,False,True,False,False,' Unless the terrain you are driving on is perfectly flat (a road, an ice sheet, etc.) you can accelerate or decelerate 1 point extra.','N/A','N/A','You like to use the terrain to alter the speed of your vehicle, riding up hills to slow down, or down slopes to accelerate.'),\
-    }
+KARMA_CAPABS = (Karma_capab('itf','In There First ',3,True,True,True,False,'Gain a +5 bonus to your Initiative check.','N/A','N/A','Your weapon is out even as the pirate is reaching for his holster'),\
+    Karma_capab('conc','Concentration',3,False,False,False,True,'You can re-roll the failed Skill check.',' You have just failed a Skill check.','N/A','“Ten seconds until detonation,” intones the computer as you attempt to disarm the bomb. Focus! One wrong move and you’re done for!'),\
+    Karma_capab('esca','Escape Death',100,True,True,True,True,'You escape or avoid an attack that just killed you or reduced your Endurance to less than 1.','N/A','N/A','You emerge from the ashes of the burning tank, brushing the dust casually from your jacket as you do so.'),\
+    Karma_capab('skil','Skill Boost',2,False,False,False,True,'Gain a +2 bonus to your chosen Skill for this Skill check.','N/A','Non-Personal Combat or Vehicle Skill when you choose this Karmic Capability','The pressure is on. If you can’t get this airlock open in the next ten seconds the team will suffocate.'),\
+    Karma_capab('pene','Penetrating Shot',5,False,False,True,False,'When your opponent takes damage their armour absorption is ignored for this attack.','N/A','N/A','You peer through the sights of your rifle, lining up the weak chink of armour between the shoulder and joint…'),\
+    Karma_capab('poin','Point Blank Shot',3,False,False,True,False,' When making an attack at point blank range you don’t provoke a free attack.','N/A','N/A','Sighing wearily, you shoot the swordsman right in the face.'),\
+    Karma_capab('blur','Blur Of Steel',3,False,False,True,False,'You add a +2 bonus to the Melee attack you just made.','N/A','N/A','Your blade flashes and swipes before the enemy, before slicing in from an unexpected direction.'),\
+    Karma_capab('crac','Crack Shot',4,False,False,True,False,'In the midst of the firefight you find an inner moment of calm. Time seems to slow as you carefully aim your weapon at the enemy.','N/A','N/A','In the midst of the firefight you find an inner moment of calm. Time seems to slow as you carefully aim your weapon at the enemy.'),\
+    Karma_capab('dive','Dive Aside',5,False,False,True,False,'Gain a +5 bonus to your Defence (Dodge) against an attack that would hit you.','N/A','N/A','The house detonates behind you, and you hurl yourself through the air to escape the explosion.'),\
+    Karma_capab('duck','Duck!',2,False,False,True,False,'Gain a +2 bonus to your Defence (Dodge) against an attack that would hit you.','N/A','N/A','Your adrenaline pumping, you lurch aside as the energy beam sizzles across your flight suit.'),\
+    Karma_capab('lead','Eat Lead Sucker!',5,False,False,True,False,'If you hit your target with a Burst Weapon, inflict maximum Burst damage on them.','N/A','N/A','Your enemy’s body jerks and writhes, as every bullet from your autopistol impacts into their body.'),\
+    Karma_capab('fire','Fire In The Hold',3,False,False,True,False,'You can re-roll a scatter when missing with a grenade.','N/A','N/A','The smuggler looks down casually to see what just landed square at his feet. It’s the last thing  he ever sees.'),\
+    Karma_capab('foll','Follow Up',6,False,False,True,False,'Make another attack with the same weapon against the opponent immediately.','You have just scored a hit with a ranged weapon against an opponent.','N/A','The gangster’s body jolts as the rounds from your autopistol slam into him.  You don’t let up, keeping the trigger pulled until he sprawls to the floor…'),\
+    Karma_capab('down','Get Down!',3,False,False,True,False,'Choose an ally that you can see and who can hear you. They gain a +2 bonus to their Defence (Dodge or Parry) against an attack that just hit them.','N/A','N/A','“Baxter, behind you!” snaps Jenya, and you instinctively duck as the axe sails over your head.'),\
+    Karma_capab('hard','Hard Boiled',8,False,False,True,False,' Make two ranged weapon attacks, one with each gun in your hands, with no penalties for using two guns at the same time. Additionally your Defence (Dodge) is 10 until your next turn, regardless of your dodge Skill','You must be holding a one-handed energy or Kinetic weapon in each hand and are not knocked over.','N/A','It’s time to take these fools down. Pulling a spare gun from your coat you leap through the doorway, guns blazing, enemy fire whizzing past your head as you fly through the air…'),\
+    Karma_capab('hunt','Hunter',1,False,False,True,False,'When making an attack roll against an Alien Animal or Biomod, you can add your Survival Skill bonus to the roll as well as the relevant weapon Skill bonus.','N/A','N/A','The Narseer rears up before you … its last mistake.  Aiming straight for its jugular, you tear a bloody hole in the alien lizard’s skin.'),\
+    Karma_capab('inco','Incoming!',3,False,False,True,False,'If you are in the fatal radius of the explosive you move until you are in the injury radius. If you are in the injury radius you move until you are outside the radius. Those adjacent to you can do the same.','N/A','N/A','You have an allergy to high explosives and no one can run as fast as you when the shoulder-mounted missile launchers come out'),\
+    Karma_capab('iron','Iron Willed',3,False,False,True,False,'You are unaffected by any attack or condition that causes you to hallucinate, or lose control of your actions.','N/A','N/A','They’ve tried for days to make you crack. Drugs, water-boarding, bright lights … they’ll never break you!'),\
+    Karma_capab('kiss','Kiss, Kiss, Bang, Bang',4,False,False,True,False,'You automatically hit your target with a weapon you are carrying with the One-Handed trait. If the weapon inflicts Burst damage, you roll the maximum number of dice. If not, your weapon inflicts double damage.','You must be alone with your target, and have just completed a successful Charm Skill check.','N/A','“So,” you say, flashing a smile at the corrupt security guard. “What time do you get off?” The guard grins, gazing shamelessly at your body. “For you, honey, I can…” but he never finishes. There is a loud bang, and he jolts, a growing red stain spreading across his stomach. You tuck away your laser pistol as he slumps to the ground.'),\
+    Karma_capab('last','Last Minute Deflection',3,False,False,True,False,'Gain a +3 bonus to your Parry against an attack that would hit you.','N/A','N/A','You knock aside the cyborg’s wrist just as its terrible cyberclaws slash towards your face.'),\
+    Karma_capab('quic','Quick Loader',2,False,False,True,False,'You immediately reload the weapon. This does not use up your next turn’s action.','You have just used the last ammo point on a weapon you were firing and you have a spare clip.','N/A','As the last bullet spits from your assault rifle, you rip the clip out and replace it with fluidity and speed.'),\
+    Karma_capab('ripo','Riposte ',1,False,False,True,False,'You can counter attack your enemy’s counter attack.','N/A','N/A','Sword blades clash in a whirl of steel. You lunge, but miss, the cultist swinging round to exploit your mistake. With lighting reflexes you parry again, deflecting the Death Cultist’s own sword right into his throat.'),\
+    Karma_capab('slam','Slam',2,False,False,True,False,'The enemy is knocked over, regardless of the damage result.','You have just hit an opponent with a Melee or Fighting attack.','N/A','You ram your fist under the pirate’s jaw. He drops like a sack of potatoes.'),\
+    Karma_capab('spin','Spinning Kick',3,False,False,True,False,'Make a Fighting attack against the enemy who just attacked you. They do not get to add their Parry or Dodge bonus against this attack. You can then make a counterattack.','You have just parried and the enemy missed you.','N/A','You smoothly parry the attack, spinning round as you do so to plant your foot into your opponent’s neck!'),\
+    Karma_capab('stay','Stay Standing',1,False,False,True,False,'An attack that just hit you does not knock you down.','N/A','N/A','You stagger, but do not fall as the shotgun pellets crack into your breastplate.'),\
+    Karma_capab('suck','Sucker Punch',2,False,False,True,False,'Make another Fighting attack immediately, ignoring the enemy’s Dodge or Parry bonus.','You just made a Fighting attack, whether that attack hits or misses.','N/A','You craftily sneak another punch in when the enemy least expects it.'),\
+    Karma_capab('weak','Weak Point',3,False,False,True,False,'Have your opponent make a Hardened armour check (opponents wearing armour without the Hardened quality fail automatically). If they fail, their armour does not protect them against the damage from this attack.',' You have just hit your opponent with a ranged attack but have not yet rolled the Damage.','N/A','Your eye flicks to the gap between the walker drone’s plated armour.  With pinpoint precision, your shots blast straight into the hole.'),\
+    Karma_capab('with','Without Even Looking…',4,False,False,True,False,'Make a ranged attack against a different enemy who is behind you or to the side of you with your one-handed Energy or Kinetic weapon. You suffer no penalty To Hit.','You must have a one-handed energy or Kinetic weapon in your hand.  You have just attacked and hit an opponent in front of you.','N/A','Your laser pistol sizzles through the anarchist as his friend tries to sneak up behind you. Without turning you point your pistol behind you and fry the sneaky punk.'),\
+    Karma_capab('dili','Diligent Medic',3,False,False,False,True,'You can use a Medpack on someone again, even if they’re already been treated within the last six hours.','N/A','N/A','You have to get your friend back on their feet. You redress their bandages and give them an extra shot of stimulants.'),\
+    Karma_capab('dril','Drill Sergeant',1,False,False,False,True,'You can double your Skill bonus when making a Social skill check to influence military personnel.','N/A','N/A','Soldiers respect you. Or are frightened by your loud voice. Either is fine.'),\
+    Karma_capab('ever','Everybody Pipe Down',4,False,False,False,True,'You and allies gain +2 bonus to Stealth Checks.','N/A','N/A','You peek around the corner to see a platoon of heavily armed corporate soldiers. You raise your hand to your crouching comrades to silence them.'),\
+    Karma_capab('ghos','Ghost',4,False,False,False,True,'You gain a +4 bonus to Stealth Checks when following someone.','N/A','N/A','You vanish into the crowd, keeping a close eye on the enemy spy as she anxiously looks around herself. '),\
+    Karma_capab('hone','Honey Trap',4,False,False,False,True,'Rather than charm someone you can attempt to seduce them. Provided you are sexually compatible make a Charm Skill Check against the target’s Insight Skill Check. If you are successful the target becomes much more gullible and foolish in your presence, and cannot add their Insight Bonus when you make any further Charm, Bargain or Diplomacy checks against them.','You must be in a non-hostile situation to use this Skill.','N/A','You saunter by your mark, just close enough so your perfume can waft by his nose. He turns, looks and is smitten in a second.'),\
+    Karma_capab('liar','Liar, Liar!',2,False,False,False,True,'If you are making an Insight check to determine if someone is lying to you, gain a +4 bonus','N/A','N/A','“Don’t tell me you weren’t there, Henning!” you snap at the sweating prisoner. “The truth is plastered all over your face!”'),\
+    Karma_capab('resu','Resuscitate',8,False,False,False,True,'If a party member has been killed within the last minute, make a Difficulty 13 Medicine check. On a success they do not die, but remain unconscious for twenty four hours with 0 Endurance points. You can attempt this multiple times provided you have enough Karma.','N/A','N/A','“Don’t give up on me, Foster!” you cry, pressing on his bleeding chest to try and restart his heart.'),\
+    Karma_capab('secr','Secret Markets',2,False,False,False,True,'You can re-roll a result you or the GM just made on the Advanced Trading tables, and then choose which result applies.','N/A','N/A','You barely glance at the commodity market board. That’s not where the real deals are made…'),\
+    Karma_capab('3dth','3D Thinking',2,True,False,False,False,'Use when you have just completed the Flight Assist Off action. You can keep your spaceship’s Agility score when calculating your defence.','N/A','N/A','Newtonian physics don’t faze you. You can spin and jink your ship just as well with Flight Assist Off.'),\
+    Karma_capab('burn','Burnout',3,True,False,False,False,'This attack becomes a critical hit, provided it has damaged the hull of the enemy spaceship.','N/A','N/A','You grit your teeth as your multi-cannons rip across the enemy hull, tearing into its thrusters.'),\
+    Karma_capab('dont','Don’t Give Out On Me Yet!',5,True,False,False,False,'The component is instead reduced to 5 Strength points and still functions.','A component has just been reduced to 0 Strength by a critical hit.','N/A','Your thrusters are hanging by a thread … but they’re okay!'),\
+    Karma_capab('ihav','I Have You Now…',3,True,False,False,False,'Gain +2 bonus to your current Dogfighting check.','N/A','N/A','The enemy Eagle twists and turns but cannot escape your sights. You stick close to the enemy’s tail and open fire.'),\
+    Karma_capab('jink','Jink',2,True,False,False,False,'Gain a +2 bonus to your Spaceship Defence against an attack that would hit you.','N/A','N/A','You never keep your ship flying in a straight line, your lateral thrusters flaming as you bob and weave through space.'),\
+    Karma_capab('miss','Karmic Missile',3,True,False,False,False,'ECM (Electronic Counter Measures) and Point Defence Counter Measures have no effect against this missile attack.','N/A','N/A','Perhaps the enemy’s countermeasures didn’t engage. Perhaps the missile’s targeting systems are faulty. Either way this missile seems to blithely ignore the countermeasures used against it.'),\
+    Karma_capab('line','Line Em Up!',3,True,False,False,False,'When firing broadsides in spaceship combat you can keep firing at the same target even if you miss with a turret.','N/A','N/A','You roll your Anaconda on its axis, allowing your turrets to blast the harassing Vulture one by one.'),\
+    Karma_capab('rapi','Rapid Deployment',3,True,False,False,False,'You can use this Karma Capability yourself, if you are flying the fighter, or grant it to a ship that has just launched from your hangar. The ship-launched fighter immediately takes its turn. Once this free turn is performed, roll Initiative as normal for the fighter, and then resume the mothership’s turn.','N/A','N/A','Your ship-launched fighter soars out of the mothership, guns blazing even as it swoops from the hangar'),\
+    Karma_capab('spin','Spin Wildly',5,True,False,False,False,'Gain a +5 bonus to your Spaceship Defence against an attack that would hit you.','N/A','N/A','Laser bolts scream past you harmlessly as you spin your ship through the firestorm.'),\
+    Karma_capab('wors','Worse Than It Looks',3,True,False,False,False,'When targeting a ship’s components, do not suffer any penalties To Hit.','N/A','N/A','Don’t worry, kid, they’ll never hit the power plant from here … oh…'),\
+    Karma_capab('gmoh','Get Me Outta Here!',3,True,True,False,False,'Gain a +4 bonus to your Pursuit check when disengaging.','N/A','N/A','You activate thrusters, dive and then pull up sharply, desperately hoping this will shake the Eagle off your tail.'),\
+    Karma_capab('inst','Instinctive Aim',4,True,True,False,False,'You add a +2 bonus to the Spaceship or Vehicle attack you just made.','N/A','N/A','You pull the trigger even before the enemy obligingly flies into your sights.'),\
+    Karma_capab('avoi','Avoid Lock',3,False,True,False,False,'Missiles can’t target your vehicle til your next turn.','N/A','N/A','Hearing the tell-tale bleep of a missile lock you swerve your SRV violently left and right to confuse the enemy’s targeting systems.'),\
+    Karma_capab('brea','Break Right!',2,False,True,False,False,'Gain a +2 bonus to your Vehicle Defence against an attack that would hit you.','N/A','N/A','Your eyes flash as you spot the enemy turret hone in on your SRV. At the last moment you turn sharply to the right to throw off their aim.'),\
+    Karma_capab('gsgr','Get Some Grip',2,False,True,False,False,'Gain a +5 bonus to your Vehicle Piloting check to avoid Obstacles','N/A','N/A','Wrestling with the steering wheel you manage to keep the cargo truck under control as you slam on the breaks.'),\
+    Karma_capab('hand','Handbrake Turn',5,False,True,False,False,'Gain a +5 bonus to your Vehicle Defence against an attack that would hit you.','N/A','N/A','It might invalidate the warranty on your SRV, but you wrench the handbrake and skid sharply aside as the cannon shot thuds into the ground ahead of you.'),\
+    Karma_capab('powe','Power Bounce',5,False,True,False,False,'If you start up-close in vehicle combat and are moving at Speed 3 or more, you can use your action to activate your thrusters to bound away from combat. Fire your turret, if you have one, at any target up-close and then move yourself to atdistance. (Enemies cannot pursue you.)','N/A','N/A','You just can’t shake that enemy track-biker. Activating your thrusters just as you crest a hill you soar into the air, spinning your light-tank around to blast at the enemy.'),\
+    Karma_capab('swip','Swipe',4,False,True,False,False,'Instead of firing your weapons you Ram an opponent in such a way as to minimise your own damage and maximise theirs. Make a Ram attack, with a +2 bonus To Hit. If you hit you take half normal damage and do not go out of control. Your enemy takes full damage and must make two obstacle checks in their next turn.','N/A','N/A','You smash your SRV across the side of the truck, grinning as the truck careers off the road into a ditch.'),\
+    Karma_capab('terr','Terrain Breaking',1,False,True,False,False,' Unless the terrain you are driving on is perfectly flat (a road, an ice sheet, etc.) you can accelerate or decelerate 1 point extra.','N/A','N/A','You like to use the terrain to alter the speed of your vehicle, riding up hills to slow down, or down slopes to accelerate.'),\
+    )
 
 ENHANCEMENTS = (Enhancement('ambi','Ambidextrous',2,'You have no ‘main hand’ and can use either equally well.',['When attacking with a weapon in either hand you suffer a -1 penalty To Hit instead of-2.','When attacking with a weapon in either hand you suffer a no penalty To Hit instead of-2.']),\
     Enhancement('awar','Awareness',1,'You rely on pure instinct, and react quickly to danger.',['When rolling your initiative you may use your Perception bonus instead of your Tactics bonus.']),\
@@ -958,94 +957,94 @@ ENHANCEMENTS = (Enhancement('ambi','Ambidextrous',2,'You have no ‘main hand’
     Enhancement('veng','Vengeful',1,'Your adrenaline kicks in when you are close to death.',['If an enemy attack has reduced your Endurance to a single digit, you can immediately make an attack against that enemy.'])
     )
 
-RANGED_WEAPONS = {'argpb':('AMP Rifle Grip Punch Bolter','Anti-Material Projector','Energy','12m','20m','30m',4,7,10,'20','20','20','N/A',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent knocked over on hit.',7000000,'Rare'),\
-    'argsb':('AMP Rifle Grip Scalpel Beam','Anti-Material Projector','Energy','10m','120m','1000m',6,7,10,'25','25','25','N/A',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',17000000,'Rare'),\
-    'args':('AMP Rifle Grip Streamer','Anti-Material Projector','Energy','16m','50m','120m',6,8,11,'20','20','20','20',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',12000000,'Rare'),\
-    'assbc':('AMP Short Stock Bolt Caster','Anti-Material Projector','Energy','10m','40m','100m',5,8,11,'15','15','15','N/A',4,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Destroys Armour.',5000000,'Rare'),\
-    'asss':('AMP Short Stock Streamer','Anti-Material Projector','Energy','8m','30m','60m',5,8,12,'10','10','10','15',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Destroys Armour.',9000000,'Rare'),\
-    'asma':('AMP Shoulder Mounted Annihilator','Anti-Material Projector','Energy','30m','700m','5000m',6,8,13,'60','60','60','N/A',1,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent Inflicts 60 vehicle and spaceship scale damage. Ignores shields.',35000000,'Rare'),\
-    'asel':('Asellus Deflector Pistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10)],False,False,'Absorb 3 Kinetic and Energy damage.',1005000,'Rare'),\
-    'auto':('Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',4,'Common'),\
-    'corv':('Corvus Inc Devastation Pistol','Autopistols','Kinetic','8m','56m','110m',5,8,14,'1D10','1D10','1D10','4D10',4,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',15)],False,False,'N/A',2900000,'Rare'),\
-    'delm':('Delman Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'3D10','3D10','3D10','2D10',2,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',20)],False,False,'N/A',5000000,'Rare'),\
-    'gold':('Gold & Perry â€˜Watcherâ€™ Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',65000,'Rare'),\
-    'gtn':('GTN 195 Autopistol','Autopistols','Kinetic','8m','56m','110m',5,8,14,'2D10','2D10','2D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',225000,'Rare'),\
-    'impe':('Imperial Stimmer Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'Injects Combat Stims (80%) on 0 Endurance.',400500,'Rare'),\
-    'lx10':('LX10 Energised Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','2D10',4,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'Damage counts as Energy Weapon',1400000,'Rare'),\
-    'micr':('Micronite Doubleclip Sentinel','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',6,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'N/A',50000,'Rare'),\
-    'ng75':('NG75 Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','3D10',2,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',42000,'Rare'),\
-    'assa':('Assaut Beamer','Beamer','Energy','12m','70m','200m',4,7,10,'5','5','5','20','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',50,'Common'),\
-    'ingr':('Ingram Wide-Beam Carbine','Beamer','Energy','10m','60m','150m',4,7,10,'5','5','5','20','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',5)],True,True,'N/A',62000,'Rare'),\
-    'laif':('Laifan ABS Serrator','Beamer','Energy','12m','70m','200m',4,7,10,'5','5','5','30','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'On a natural 1 To Hit the weapon inflicts 10 Energy damage on user. ',2134000,'Rare'),\
-    'magn':('Magnotan Searching Beamer','Beamer','Energy','12m','70m','200m',4,7,10,'10','10','10','20','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',20)],True,True,'N/A',13599000,'Rare'),\
-    'chai':('Chain Gun','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','6D10',10,'N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',1000,'Common'),\
-    'g910':('G910 Heavy Repeater','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','8D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',7600000,'Rare'),\
-    'lanc':('Lance & Ferman Gimballed Minigun','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','6D10',10,'N/A','N/A','N/A','N/A',False,False,[Effect('hvy_weap',15)],True,True,'N/A',9000000,'Rare'),\
-    'mait':('Maitz PP9 Support Cannon','Chain Gun','Heavy, Kinetic','40m','80m','200m',5,8,14,'3D10','3D10','3D10','10D10',10,'N/A','N/A','N/A','N/A',False,False,[Effect('hvy_weap',5)],True,True,'N/A',42000000,'Rare'),\
-    'conc':('Concussion Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','2','40','6','5',False,False,'N/A',False,False,'N/A',100,'Rare'),\
-    'emp':('EMP Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','6','60','16','20',False,False,'N/A',False,False,'Damages robotic targets only.',1000,'Rare'),\
-    'flas':('Flashbang Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','4','0','12','0',False,False,'N/A',False,False,'N/A',4,'Common'),\
-    'frag':('Frag Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','6','25','16','10',False,False,'N/A',False,False,'N/A',5,'Common'),\
-    'naus':('Nausea Globe','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A',1,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'See Description. Pg. 35. Exploration Supplement',8000000,'Rare'),\
-    'plas':('Plasma Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','8','80','20','30',False,False,'N/A',False,False,'N/A',10000,'Rare'),\
-    'call':('Callaghan Arctic Hawk Heavy Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'3D10','3D10','3D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',114000,'Rare'),\
-    'heav':('Heavy Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',3,'Common'),\
-    'leon':('Leonis Hacker Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',6,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10),Effect('sec',10),Effect('comp',10)],False,False,'N/A',695000,'Rare'),\
-    'ross':('Ross Y49 Suregrip Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',10,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10),Effect('social_imp',1)],False,False,'N/A',83000,'Rare'),\
-    'thor':('Thordarson Firepoint Scoped Pistol','Heavy Pistol','Kinetic','10m','70m','120m',5,8,14,'2D10','2D10','2D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,Effect('kin_weap',20),False,False,'N/A',305000,'Rare'),\
-    'kray':('Krayton KX Heavy Carbine','Laser Carbine','Heavy (Energy/ Kinetic)','16m','100m','300m',5,8,9,'15','15','15','8D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',2200000,'Rare'),\
-    'lasc':('Laser Carbine','Laser Carbine','Energy, Kinetic','16m','100m','300m',5,8,9,'10','10','10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',10,'Common'),\
-    'mann':('Mannex Nighteye Carbin','Laser Carbine','Energy/Kinetic','16m','100m','300m',5,8,9,'10','10','10','4D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'N/A',270000,'Rare'),\
-    'volt':('Voltigen Armour Piercing Carbine','Laser Carbine','Energy/Kinetic','16m','100m','300m',5,8,9,'15','15','15','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Ignores Kinetic armour absorption',362000,'Rare'),\
-    'caul':('Cauldus Nerve-blocker Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Knocks over target on a natural 9 or 10 To Hit, target disarmed if knocked over.',196000,'Rare'),\
-    'cs1':('CS1 Burst Pistol','Laserpistols','Energy','8m','60m','90m',4,7,11,'5','5','5','15','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',244000,'Rare'),\
-    'evex':('Evex Long-barrel Laser Pistol','Laserpistols','Energy','16m','100m','150m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',98000,'Rare'),\
-    'gl77':('GL779 Intellipistol','Laserpistols','Energy','12m','90m','130m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Fires with Energy Weapons Skill Bonus of 9, ignores firearms skill.',8200000,'Rare'),\
-    'hype':('Hyperion Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',5)],False,False,'N/A',47000,'Rare'),\
-    'lasp':('Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',3,'Common'),\
-    'magn':('Magnetising Hotshot LaserPistol','Laserpistols','Energy','12m','90m','130m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',10)],False,False,'+1 bonus To Hit if you have previously hit the target with this weapon.',3550000,'Rare'),\
-    'nadi':('Nadion Twin Barrel Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',863000,'Rare'),\
-    'pari':('Paris ElegantÃ© Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'10','10','10','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',15)],False,False,'N/A',1809000,'Rare'),\
-    'acan':('Acane Model 5 Bazooka','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'10','60','24','20',False,False,[Effect('hvy_weap',5)],False,False,'Half damage vs shields.',97000,'Rare'),\
-    'misa':('Missile Launcher (Anti-Aircraft)','Missile Launcher','Heavy, Explosive','N/Am','2000m','6000m','N/A',10,13,'N/A','N/A','N/A','N/A',1,'2','120','40','20',False,False,'N/A',False,False,'Ignore Range hit number when attacking spacecraft.',2000,'Common'),\
-    'misp':('Missile Launcher (Anti-Personnel)','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'10','50','24','20',False,False,'N/A',False,False,'Half damage vs shields.',200,'Common'),\
-    'mist':('Missile Launcher (Anti-Tank)','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'2','100','20','20',False,False,'N/A',False,False,'Half damage vs shields.',700,'Common'),\
-    'odo':('ODO 15 Light Anti-Tank Weapon','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'2','130','20','30',False,False,'N/A',False,False,'Half damage vs shields.',816000,'Rare'),\
-    'xls':('XLS Omega Recoilless Rifle','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',4,'10','60','24','30',False,False,[Effect('hvy_weap',15)],False,False,'Half damage vs shields. ',23300000,'Rare'),\
-    'alta':('Altair JP60 Accelerator','Plasma Cannon','Heavy, Energy','N/Am','500m','3000m','N/A',9,12,'N/A','N/A','N/A','N/A',2,'12','140','34','50',False,False,'N/A',False,False,'Firer knocked over unless weapon is tripod mounted.',13500000,'Rare'),\
-    'plas':('Plasma Cannon','Plasma Cannon','Heavy, Energy','N/Am','500m','3000m','N/A',9,12,'N/A','N/A','N/A','N/A',4,'12','100','34','40',False,False,'N/A',False,False,'Firer knocked over unless weapon is tripod mounted.',4000,'Common'),\
-    'cent':('Centauri Quickfire Rail Rifle','Rail Rifle','Kinetic','20m','140m','1000m',5,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Molten munitions',225000,'Rare'),\
-    'rail':('Rail Rifle','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Molten munitions',500,'Common'),\
-    'sorb':('Sorbago Molybdenum Rifle','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'4D10','4D10','4D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,False,'N/A',705000,'Rare'),\
-    'tx9 ':('TX9 SmartScope Rail Rifle ','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',15)],False,False,'Molten munitions',352000,'Rare'),\
-    'arka':('Arkana Nighthawk','Rifle','Kinetic','16m','100m','400m',6,7,10,'2D10','2D10','2D10','3D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Includes underslung grenade launcher.',495000,'Rare'),\
-    'assa':('Assault Rifle','Rifle','Kinetic','16m','100m','400m',6,7,10,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',15,'Common'),\
-    'bn79':('BN799 Carbine','Rifle','Kinetic','20m','160m','650m',6,7,10,'3D10','3D10','3D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'Includes underslung grenade launcher.',3600000,'Rare'),\
-    'candg':('C&G 45 AutoRifle','Rifle','Kinetic','16m','100m','400m',6,7,10,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',5)],False,True,'N/A',30000,'Rare'),\
-    'ergo':('Ergon Burst Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'10','10','10','20','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',2100000,'Rare'),\
-    'fair':('Fairlight Excelsior','Rifle','Energy','20m','150m','500m',5,6,9,'30','30','30','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',15)],False,True,'N/A',28799000,'Rare'),\
-    'gals':('GalSpec 109 Sniper Rifle','Rifle','Kinetic','16m','100m','800m',6,7,8,'15 or 1D10','15 or 1D10','15 or 1D10','3D10',5,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'In Sniper Mode +15 to Kinetic Weapons score',101000,'Rare'),\
-    'kope':('Kopernicus Incinerator','Rifle','Energy','20m','150m','500m',5,6,9,'20','20','20','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',264000,'Rare'),\
-    'kosh':('Kosha Inc LasRifle','Rifle','Energy','22m','170m','600m',5,6,9,'24','24','24','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',4225000,'Rare'),\
-    'lanc':('lance & Ferman Deadeye Rifle','Rifle','Energy','24m','200m','700m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',20)],False,True,'N/A',5000000,'Rare'),\
-    'lasr':('Laser Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',5)],False,True,'N/A',40,'Common'),\
-    'lr17':('LR17 Long Barrel','Rifle','Energy','24m','200m','700m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',327500,'Rare'),\
-    'mlr4':('MLR40 Infantry Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',49000,'Rare'),\
-    'peru':('Perun Light Machinegun','Rifle','Kinetic','18m','140m','600m',6,7,10,'1D10','1D10','1D10','5D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',178000,'Rare'),\
-    'vort':('Vortigen Multi-Scope Energy Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'20','20','20','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',10)],False,True,'N/A',1450000,'Rare'),\
-    'bd90':('BD90 Warhammer','Shotgun','Kinetic','6m','12m','50m',3,7,12,'5D10','3D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'At short range knock over a target on a natural 8, 9 or 10 To Hit. Malfunctions on a natural 1.',209000,'Rare'),\
-    'exal':('Exalt WideScatter Shotgun','Shotgun','Kinetic','8m','12m','30m',3,7,12,'3D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Full damage with divide fire',78000,'Rare'),\
-    'jupi':('Jupiter Lockon Short Barrelled Rifle','Shotgun','Kinetic','8m','16m','70m',3,7,12,'4D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,False,'N/A',867000,'Rare'),\
-    'micr':('Micro-Shotgun','Shotgun','Kinetic','6m','10m','30m',3,7,12,'3D10','2D10','1D10','N/A',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',190000,'Rare'),\
-    'shot':('Shotgun','Shotgun','Kinetic','6m','12m','50m',3,7,12,'3D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'N/A',5,'Common'),\
-    'zx90':('ZX9000 Auto-Shotgun','Shotgun','Kinetic','16m','12m','50m',3,7,12,'3D10','2D10','1D10','4D10',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'N/A',19400000,'Rare'),\
-    'ergo':('Ergon Tommygun','Submachine Gun','Kinetic','12m','64m','128m',5,8,14,'1D10','1D10','1D10','3D10',8,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',74000,'Rare'),\
-    'ints':('Intsys JR4 SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','4D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'N/A',1345000,'Rare'),\
-    'k33 ':('K33 Multifire SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','4D10',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',175500,'Rare'),\
-    'krak':('Krakoff Demolisher Rifle','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','4D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Includes underslung grenade launcher.',3050000,'Rare'),\
-    'long':('Longarm Deadfire SMG','Submachine Gun','Kinetic','12m','64m','128m',5,8,14,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',5)],False,True,'Includes underslung grenade launcher.',310000,'Rare'),\
-    'skol':('Skollanga Slammer SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Target knocked over on a natural 9 or 10 To Hit.',985000,'Rare'),\
-    'sub ':('Sub Machinegun','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',9,'Common'),\
-    'unds':('Underslung Grenade Launcher','Underslung','Explosive','N/Am','60m','150m','N/A',9,14,'N/A','N/A','N/A','N/A',2,'6','25','16','10',False,True,'N/A',False,False,'Direct fire, can be added to rifles, SMGs and carbines',40,'Common'),\
-    }
+RANGED_WEAPONS = (Ranged_weapon('argpb','AMP Rifle Grip Punch Bolter','Anti-Material Projector','Energy','12m','20m','30m',4,7,10,'20','20','20','N/A',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent knocked over on hit.',7000000,'Rare'),\
+    Ranged_weapon('argsb','AMP Rifle Grip Scalpel Beam','Anti-Material Projector','Energy','10m','120m','1000m',6,7,10,'25','25','25','N/A',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',17000000,'Rare'),\
+    Ranged_weapon('args','AMP Rifle Grip Streamer','Anti-Material Projector','Energy','16m','50m','120m',6,8,11,'20','20','20','20',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',12000000,'Rare'),\
+    Ranged_weapon('assbc','AMP Short Stock Bolt Caster','Anti-Material Projector','Energy','10m','40m','100m',5,8,11,'15','15','15','N/A',4,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Destroys Armour.',5000000,'Rare'),\
+    Ranged_weapon('asss','AMP Short Stock Streamer','Anti-Material Projector','Energy','8m','30m','60m',5,8,12,'10','10','10','15',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Destroys Armour.',9000000,'Rare'),\
+    Ranged_weapon('asma','AMP Shoulder Mounted Annihilator','Anti-Material Projector','Energy','30m','700m','5000m',6,8,13,'60','60','60','N/A',1,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent Inflicts 60 vehicle and spaceship scale damage. Ignores shields.',35000000,'Rare'),\
+    Ranged_weapon('asel','Asellus Deflector Pistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10)],False,False,'Absorb 3 Kinetic and Energy damage.',1005000,'Rare'),\
+    Ranged_weapon('auto','Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',4,'Common'),\
+    Ranged_weapon('corv','Corvus Inc Devastation Pistol','Autopistols','Kinetic','8m','56m','110m',5,8,14,'1D10','1D10','1D10','4D10',4,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',15)],False,False,'N/A',2900000,'Rare'),\
+    Ranged_weapon('delm','Delman Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'3D10','3D10','3D10','2D10',2,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',20)],False,False,'N/A',5000000,'Rare'),\
+    Ranged_weapon('gold','Gold & Perry â€˜Watcherâ€™ Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',65000,'Rare'),\
+    Ranged_weapon('gtn','GTN 195 Autopistol','Autopistols','Kinetic','8m','56m','110m',5,8,14,'2D10','2D10','2D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',225000,'Rare'),\
+    Ranged_weapon('impe','Imperial Stimmer Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',3,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'Injects Combat Stims (80%) on 0 Endurance.',400500,'Rare'),\
+    Ranged_weapon('lx10','LX10 Energised Autopistol','Autopistols','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','2D10',4,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'Damage counts as Energy Weapon',1400000,'Rare'),\
+    Ranged_weapon('micr','Micronite Doubleclip Sentinel','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','2D10',6,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',5)],False,False,'N/A',50000,'Rare'),\
+    Ranged_weapon('ng75','NG75 Autopistol','Autopistols','Kinetic','6m','50m','100m',5,8,14,'1D10','1D10','1D10','3D10',2,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',42000,'Rare'),\
+    Ranged_weapon('assa','Assaut Beamer','Beamer','Energy','12m','70m','200m',4,7,10,'5','5','5','20','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',50,'Common'),\
+    Ranged_weapon('ingr','Ingram Wide-Beam Carbine','Beamer','Energy','10m','60m','150m',4,7,10,'5','5','5','20','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',5)],True,True,'N/A',62000,'Rare'),\
+    Ranged_weapon('laif','Laifan ABS Serrator','Beamer','Energy','12m','70m','200m',4,7,10,'5','5','5','30','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'On a natural 1 To Hit the weapon inflicts 10 Energy damage on user. ',2134000,'Rare'),\
+    Ranged_weapon('magn','Magnotan Searching Beamer','Beamer','Energy','12m','70m','200m',4,7,10,'10','10','10','20','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',20)],True,True,'N/A',13599000,'Rare'),\
+    Ranged_weapon('chai','Chain Gun','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','6D10',10,'N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',1000,'Common'),\
+    Ranged_weapon('g910','G910 Heavy Repeater','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','8D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',True,True,'N/A',7600000,'Rare'),\
+    Ranged_weapon('lanc','Lance & Ferman Gimballed Minigun','Chain Gun','Heavy, Kinetic','30m','60m','180m',5,8,14,'2D10','2D10','2D10','6D10',10,'N/A','N/A','N/A','N/A',False,False,[Effect('hvy_weap',15)],True,True,'N/A',9000000,'Rare'),\
+    Ranged_weapon('mait','Maitz PP9 Support Cannon','Chain Gun','Heavy, Kinetic','40m','80m','200m',5,8,14,'3D10','3D10','3D10','10D10',10,'N/A','N/A','N/A','N/A',False,False,[Effect('hvy_weap',5)],True,True,'N/A',42000000,'Rare'),\
+    Ranged_weapon('conc','Concussion Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','2','40','6','5',False,False,'N/A',False,False,'N/A',100,'Rare'),\
+    Ranged_weapon('emp','EMP Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','6','60','16','20',False,False,'N/A',False,False,'Damages robotic targets only.',1000,'Rare'),\
+    Ranged_weapon('flas','Flashbang Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','4','0','12','0',False,False,'N/A',False,False,'N/A',4,'Common'),\
+    Ranged_weapon('frag','Frag Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','6','25','16','10',False,False,'N/A',False,False,'N/A',5,'Common'),\
+    Ranged_weapon('naus','Nausea Globe','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A',1,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'See Description. Pg. 35. Exploration Supplement',8000000,'Rare'),\
+    Ranged_weapon('plas','Plasma Grenade','Grenade','Explosive','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','N/A','8','80','20','30',False,False,'N/A',False,False,'N/A',10000,'Rare'),\
+    Ranged_weapon('call','Callaghan Arctic Hawk Heavy Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'3D10','3D10','3D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',114000,'Rare'),\
+    Ranged_weapon('heav','Heavy Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',3,'Common'),\
+    Ranged_weapon('leon','Leonis Hacker Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',6,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10),Effect('sec',10),Effect('comp',10)],False,False,'N/A',695000,'Rare'),\
+    Ranged_weapon('ross','Ross Y49 Suregrip Pistol','Heavy Pistol','Kinetic','8m','60m','110m',5,8,14,'2D10','2D10','2D10','N/A',10,'N/A','N/A','N/A','N/A',True,False,[Effect('kin_weap',10),Effect('social_imp',1)],False,False,'N/A',83000,'Rare'),\
+    Ranged_weapon('thor','Thordarson Firepoint Scoped Pistol','Heavy Pistol','Kinetic','10m','70m','120m',5,8,14,'2D10','2D10','2D10','N/A',8,'N/A','N/A','N/A','N/A',True,False,Effect('kin_weap',20),False,False,'N/A',305000,'Rare'),\
+    Ranged_weapon('kray','Krayton KX Heavy Carbine','Laser Carbine','Heavy (Energy/ Kinetic)','16m','100m','300m',5,8,9,'15','15','15','8D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',2200000,'Rare'),\
+    Ranged_weapon('lasc','Laser Carbine','Laser Carbine','Energy, Kinetic','16m','100m','300m',5,8,9,'10','10','10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',10,'Common'),\
+    Ranged_weapon('mann','Mannex Nighteye Carbin','Laser Carbine','Energy/Kinetic','16m','100m','300m',5,8,9,'10','10','10','4D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'N/A',270000,'Rare'),\
+    Ranged_weapon('volt','Voltigen Armour Piercing Carbine','Laser Carbine','Energy/Kinetic','16m','100m','300m',5,8,9,'15','15','15','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Ignores Kinetic armour absorption',362000,'Rare'),\
+    Ranged_weapon('caul','Cauldus Nerve-blocker Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Knocks over target on a natural 9 or 10 To Hit, target disarmed if knocked over.',196000,'Rare'),\
+    Ranged_weapon('cs1','CS1 Burst Pistol','Laserpistols','Energy','8m','60m','90m',4,7,11,'5','5','5','15','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',244000,'Rare'),\
+    Ranged_weapon('evex','Evex Long-barrel Laser Pistol','Laserpistols','Energy','16m','100m','150m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',98000,'Rare'),\
+    Ranged_weapon('gl77','GL779 Intellipistol','Laserpistols','Energy','12m','90m','130m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'Fires with Energy Weapons Skill Bonus of 9, ignores firearms skill.',8200000,'Rare'),\
+    Ranged_weapon('hype','Hyperion Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',5)],False,False,'N/A',47000,'Rare'),\
+    Ranged_weapon('lasp','Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'8','8','8','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',3,'Common'),\
+    Ranged_weapon('magn','Magnetising Hotshot LaserPistol','Laserpistols','Energy','12m','90m','130m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',10)],False,False,'+1 bonus To Hit if you have previously hit the target with this weapon.',3550000,'Rare'),\
+    Ranged_weapon('nadi','Nadion Twin Barrel Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'12','12','12','N/A','N/A','N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',863000,'Rare'),\
+    Ranged_weapon('pari','Paris ElegantÃ© Laser Pistol','Laserpistols','Energy','10m','80m','120m',4,7,11,'10','10','10','N/A','N/A','N/A','N/A','N/A','N/A',True,False,[Effect('eng_weap',15)],False,False,'N/A',1809000,'Rare'),\
+    Ranged_weapon('acan','Acane Model 5 Bazooka','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'10','60','24','20',False,False,[Effect('hvy_weap',5)],False,False,'Half damage vs shields.',97000,'Rare'),\
+    Ranged_weapon('misa','Missile Launcher (Anti-Aircraft)','Missile Launcher','Heavy, Explosive','N/Am','2000m','6000m','N/A',10,13,'N/A','N/A','N/A','N/A',1,'2','120','40','20',False,False,'N/A',False,False,'Ignore Range hit number when attacking spacecraft.',2000,'Common'),\
+    Ranged_weapon('misp','Missile Launcher (Anti-Personnel)','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'10','50','24','20',False,False,'N/A',False,False,'Half damage vs shields.',200,'Common'),\
+    Ranged_weapon('mist','Missile Launcher (Anti-Tank)','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'2','100','20','20',False,False,'N/A',False,False,'Half damage vs shields.',700,'Common'),\
+    Ranged_weapon('odo','ODO 15 Light Anti-Tank Weapon','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',1,'2','130','20','30',False,False,'N/A',False,False,'Half damage vs shields.',816000,'Rare'),\
+    Ranged_weapon('xls','XLS Omega Recoilless Rifle','Missile Launcher','Heavy, Explosive','N/Am','200m','2000m','N/A',9,12,'N/A','N/A','N/A','N/A',4,'10','60','24','30',False,False,[Effect('hvy_weap',15)],False,False,'Half damage vs shields. ',23300000,'Rare'),\
+    Ranged_weapon('alta','Altair JP60 Accelerator','Plasma Cannon','Heavy, Energy','N/Am','500m','3000m','N/A',9,12,'N/A','N/A','N/A','N/A',2,'12','140','34','50',False,False,'N/A',False,False,'Firer knocked over unless weapon is tripod mounted.',13500000,'Rare'),\
+    Ranged_weapon('plas','Plasma Cannon','Plasma Cannon','Heavy, Energy','N/Am','500m','3000m','N/A',9,12,'N/A','N/A','N/A','N/A',4,'12','100','34','40',False,False,'N/A',False,False,'Firer knocked over unless weapon is tripod mounted.',4000,'Common'),\
+    Ranged_weapon('cent','Centauri Quickfire Rail Rifle','Rail Rifle','Kinetic','20m','140m','1000m',5,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Molten munitions',225000,'Rare'),\
+    Ranged_weapon('rail','Rail Rifle','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Molten munitions',500,'Common'),\
+    Ranged_weapon('sorb','Sorbago Molybdenum Rifle','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'4D10','4D10','4D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,False,'N/A',705000,'Rare'),\
+    Ranged_weapon('tx9','TX9 SmartScope Rail Rifle ','Rail Rifle','Kinetic','20m','140m','1000m',7,8,9,'3D10','3D10','3D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',15)],False,False,'Molten munitions',352000,'Rare'),\
+    Ranged_weapon('arka','Arkana Nighthawk','Rifle','Kinetic','16m','100m','400m',6,7,10,'2D10','2D10','2D10','3D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Includes underslung grenade launcher.',495000,'Rare'),\
+    Ranged_weapon('assa','Assault Rifle','Rifle','Kinetic','16m','100m','400m',6,7,10,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',15,'Common'),\
+    Ranged_weapon('bn79','BN799 Carbine','Rifle','Kinetic','20m','160m','650m',6,7,10,'3D10','3D10','3D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'Includes underslung grenade launcher.',3600000,'Rare'),\
+    Ranged_weapon('candg','C&G 45 AutoRifle','Rifle','Kinetic','16m','100m','400m',6,7,10,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',5)],False,True,'N/A',30000,'Rare'),\
+    Ranged_weapon('ergo','Ergon Burst Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'10','10','10','20','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',2100000,'Rare'),\
+    Ranged_weapon('fair','Fairlight Excelsior','Rifle','Energy','20m','150m','500m',5,6,9,'30','30','30','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',15)],False,True,'N/A',28799000,'Rare'),\
+    Ranged_weapon('gals','GalSpec 109 Sniper Rifle','Rifle','Kinetic','16m','100m','800m',6,7,8,'15 or 1D10','15 or 1D10','15 or 1D10','3D10',5,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'In Sniper Mode +15 to Kinetic Weapons score',101000,'Rare'),\
+    Ranged_weapon('kope','Kopernicus Incinerator','Rifle','Energy','20m','150m','500m',5,6,9,'20','20','20','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',264000,'Rare'),\
+    Ranged_weapon('kosh','Kosha Inc LasRifle','Rifle','Energy','22m','170m','600m',5,6,9,'24','24','24','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',4225000,'Rare'),\
+    Ranged_weapon('lanc','lance & Ferman Deadeye Rifle','Rifle','Energy','24m','200m','700m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',20)],False,True,'N/A',5000000,'Rare'),\
+    Ranged_weapon('lasr','Laser Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',5)],False,True,'N/A',40,'Common'),\
+    Ranged_weapon('lr17','LR17 Long Barrel','Rifle','Energy','24m','200m','700m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',327500,'Rare'),\
+    Ranged_weapon('mlr4','MLR40 Infantry Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'15','15','15','N/A','N/A','N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',49000,'Rare'),\
+    Ranged_weapon('peru','Perun Light Machinegun','Rifle','Kinetic','18m','140m','600m',6,7,10,'1D10','1D10','1D10','5D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',178000,'Rare'),\
+    Ranged_weapon('vort','Vortigen Multi-Scope Energy Rifle','Rifle','Energy','20m','150m','500m',5,6,9,'20','20','20','N/A','N/A','N/A','N/A','N/A','N/A',False,False,[Effect('eng_weap',10)],False,True,'N/A',1450000,'Rare'),\
+    Ranged_weapon('bd90','BD90 Warhammer','Shotgun','Kinetic','6m','12m','50m',3,7,12,'5D10','3D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'At short range knock over a target on a natural 8, 9 or 10 To Hit. Malfunctions on a natural 1.',209000,'Rare'),\
+    Ranged_weapon('exal','Exalt WideScatter Shotgun','Shotgun','Kinetic','8m','12m','30m',3,7,12,'3D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Full damage with divide fire',78000,'Rare'),\
+    Ranged_weapon('jupi','Jupiter Lockon Short Barrelled Rifle','Shotgun','Kinetic','8m','16m','70m',3,7,12,'4D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,False,'N/A',867000,'Rare'),\
+    Ranged_weapon('micr','Micro-Shotgun','Shotgun','Kinetic','6m','10m','30m',3,7,12,'3D10','2D10','1D10','N/A',3,'N/A','N/A','N/A','N/A',True,False,'N/A',False,False,'N/A',190000,'Rare'),\
+    Ranged_weapon('shot','Shotgun','Shotgun','Kinetic','6m','12m','50m',3,7,12,'3D10','2D10','1D10','N/A',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'N/A',5,'Common'),\
+    Ranged_weapon('zx90','ZX9000 Auto-Shotgun','Shotgun','Kinetic','16m','12m','50m',3,7,12,'3D10','2D10','1D10','4D10',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'N/A',19400000,'Rare'),\
+    Ranged_weapon('ergo','Ergon Tommygun','Submachine Gun','Kinetic','12m','64m','128m',5,8,14,'1D10','1D10','1D10','3D10',8,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',74000,'Rare'),\
+    Ranged_weapon('ints','Intsys JR4 SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','4D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',10)],False,True,'N/A',1345000,'Rare'),\
+    Ranged_weapon('k33','K33 Multifire SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','4D10',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',175500,'Rare'),\
+    Ranged_weapon('krak','Krakoff Demolisher Rifle','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','4D10',6,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Includes underslung grenade launcher.',3050000,'Rare'),\
+    Ranged_weapon('long','Longarm Deadfire SMG','Submachine Gun','Kinetic','12m','64m','128m',5,8,14,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,[Effect('kin_weap',5)],False,True,'Includes underslung grenade launcher.',310000,'Rare'),\
+    Ranged_weapon('skol','Skollanga Slammer SMG','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'2D10','2D10','2D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'Target knocked over on a natural 9 or 10 To Hit.',985000,'Rare'),\
+    Ranged_weapon('sub','Sub Machinegun','Submachine Gun','Kinetic','10m','60m','120m',5,8,14,'1D10','1D10','1D10','3D10',4,'N/A','N/A','N/A','N/A',False,False,'N/A',False,True,'N/A',9,'Common'),\
+    Ranged_weapon('unds','Underslung Grenade Launcher','Underslung','Explosive','N/Am','60m','150m','N/A',9,14,'N/A','N/A','N/A','N/A',2,'6','25','16','10',False,True,'N/A',False,False,'Direct fire, can be added to rifles, SMGs and carbines',40,'Common'),\
+    )
 
