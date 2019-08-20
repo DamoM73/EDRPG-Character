@@ -118,11 +118,12 @@ class Background:
 
 
 class Enhancement:
-    def __init__(self,code):
-        self.name = ENHANCEMENTS[code][0]
-        self.max = ENHANCEMENTS[code][1]
-        self.descript = ENHANCEMENTS[code][2]
-        self.effects = ENHANCEMENTS[code][3]
+    def __init__(self,code, name, maxi, descript, effects):
+        self.code = code
+        self.name = name
+        self.maxi = maxi
+        self.descript = descript
+        self.effects = effects
 
 
 class Karma_capab:
@@ -942,20 +943,20 @@ KARMA_CAPABS = {'itf':('In There First ',3,True,True,True,False,'Gain a +5 bonus
     'terr':('Terrain Breaking',1,False,True,False,False,' Unless the terrain you are driving on is perfectly flat (a road, an ice sheet, etc.) you can accelerate or decelerate 1 point extra.','N/A','N/A','You like to use the terrain to alter the speed of your vehicle, riding up hills to slow down, or down slopes to accelerate.'),\
     }
 
-ENHANCEMENTS = {'ambi':('Ambidextrous',2,'You have no ‘main hand’ and can use either equally well.',['When attacking with a weapon in either hand you suffer a -1 penalty To Hit instead of-2.','When attacking with a weapon in either hand you suffer a no penalty To Hit instead of-2.']),\
-    'awar':('Awareness',1,'You rely on pure instinct, and react quickly to danger.',['When rolling your initiative you may use your Perception bonus instead of your Tactics bonus.']),\
-    'conf':('Confident',1,'You are utterly at ease  with yourself. You could wear a bin liner and look good in it.',['You no longer suffer Social Factor penalties due to your equipment, armour or cybernetics.']),\
-    'cybe':('Cybernetic Affinity',9,'Your body is extremely tolerant and accepts cybernetic enhancement without problems.',[Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2)]),\
-    'dyna':('Dynamic Karma',2,'When it’s time to go crazy you push yourself to the maximum!',['When you use two Karma Capabilities during your turn you only pay for the most expensive one. You can only use this Enhancement during your turn.','You can use three Karma Capabilities in your turn and only pay for the most expensive one. You can only use this Enhancement during your turn.']),\
-    'hard':('Hard To Kill',2,'No how hard they try, they just can’t keep you down…',['You only die if your Endurance is reduced to a negative number equal to your Endurance maximum.','You only die if your Endurance is reduced to a negative number equal to your Endurance maximum and your Escape Death Karma Capability only costs a maximum of 4 Karma points.']),\
-    'natu':('Natural Genius',1,'You have an unusual aptitude in a single Skill.',['The Skill you select has its Skill Cap raised by 10 points, up to a maximum of 100.']),\
-    'over':('Overclocking',1,'You are never satisfied with a new ship. You just have to fiddle with it to get that extra level of performance.',['Whenever you buy a new ship, you can apply engineering enhancements to its components. Repair Skill 40 = 1 improvement, 50 = 2, and 70 =3.']),\
-    'quic':('Quick Runner',3,'You move quickly from one place to another',['You can move an additional two metres per turn.','You can move an additional four metres per turn.','You can move an additional six metres per turn.']),\
-    'stro':('Strong',4,'You do more damage in close combat and can lift more.',['You gain a +2 damage bonus in Fighting and Melee combat and can lift an additional 20kg of weight.','You gain a +4 damage bonus in Fighting and Melee combat and can lift an additional 40kg of weight.','You gain a +6 damage bonus in Fighting and Melee combat and can lift an additional 60kg of weight.','You gain a +8 damage bonus in Fighting and Melee combat, and can lift an additional 80kg of weight.']),\
-    'surv':('Survivalist',1,'When making Skill checks in a natural environment, such as an alien forest or marsh, you can add your Survival bonus to the check in addition to the relevant Skill bonus.',['Add your Survival bonus when making Skill checks in a natural environment.']),\
-    'toug':('Tough',4,'You can take more damage before falling unconscious.',[Effect('endurance',5),Effect('endurance',5),Effect('endurance',5),Effect('endurance',5)]),\
-    'veng':('Vengeful',1,'Your adrenaline kicks in when you are close to death.',['If an enemy attack has reduced your Endurance to a single digit, you can immediately make an attack against that enemy.'])
-    }
+ENHANCEMENTS = (Enhancement('ambi','Ambidextrous',2,'You have no ‘main hand’ and can use either equally well.',['When attacking with a weapon in either hand you suffer a -1 penalty To Hit instead of-2.','When attacking with a weapon in either hand you suffer a no penalty To Hit instead of-2.']),\
+    Enhancement('awar','Awareness',1,'You rely on pure instinct, and react quickly to danger.',['When rolling your initiative you may use your Perception bonus instead of your Tactics bonus.']),\
+    Enhancement('conf','Confident',1,'You are utterly at ease  with yourself. You could wear a bin liner and look good in it.',['You no longer suffer Social Factor penalties due to your equipment, armour or cybernetics.']),\
+    Enhancement('cybe','Cybernetic Affinity',9,'Your body is extremely tolerant and accepts cybernetic enhancement without problems.',[Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2),Effect('cyber_karma',2)]),\
+    Enhancement('dyna','Dynamic Karma',2,'When it’s time to go crazy you push yourself to the maximum!',['When you use two Karma Capabilities during your turn you only pay for the most expensive one. You can only use this Enhancement during your turn.','You can use three Karma Capabilities in your turn and only pay for the most expensive one. You can only use this Enhancement during your turn.']),\
+    Enhancement('hard','Hard To Kill',2,'No how hard they try, they just can’t keep you down…',['You only die if your Endurance is reduced to a negative number equal to your Endurance maximum.','You only die if your Endurance is reduced to a negative number equal to your Endurance maximum and your Escape Death Karma Capability only costs a maximum of 4 Karma points.']),\
+    Enhancement('natu','Natural Genius',1,'You have an unusual aptitude in a single Skill.',['The Skill you select has its Skill Cap raised by 10 points, up to a maximum of 100.']),\
+    Enhancement('over','Overclocking',1,'You are never satisfied with a new ship. You just have to fiddle with it to get that extra level of performance.',['Whenever you buy a new ship, you can apply engineering enhancements to its components. Repair Skill 40 = 1 improvement, 50 = 2, and 70 =3.']),\
+    Enhancement('quic','Quick Runner',3,'You move quickly from one place to another',['You can move an additional two metres per turn.','You can move an additional four metres per turn.','You can move an additional six metres per turn.']),\
+    Enhancement('stro','Strong',4,'You do more damage in close combat and can lift more.',['You gain a +2 damage bonus in Fighting and Melee combat and can lift an additional 20kg of weight.','You gain a +4 damage bonus in Fighting and Melee combat and can lift an additional 40kg of weight.','You gain a +6 damage bonus in Fighting and Melee combat and can lift an additional 60kg of weight.','You gain a +8 damage bonus in Fighting and Melee combat, and can lift an additional 80kg of weight.']),\
+    Enhancement('surv','Survivalist',1,'When making Skill checks in a natural environment, such as an alien forest or marsh, you can add your Survival bonus to the check in addition to the relevant Skill bonus.',['Add your Survival bonus when making Skill checks in a natural environment.']),\
+    Enhancement('toug','Tough',4,'You can take more damage before falling unconscious.',[Effect('endurance',5),Effect('endurance',5),Effect('endurance',5),Effect('endurance',5)]),\
+    Enhancement('veng','Vengeful',1,'Your adrenaline kicks in when you are close to death.',['If an enemy attack has reduced your Endurance to a single digit, you can immediately make an attack against that enemy.'])
+    )
 
 RANGED_WEAPONS = {'argpb':('AMP Rifle Grip Punch Bolter','Anti-Material Projector','Energy','12m','20m','30m',4,7,10,'20','20','20','N/A',3,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour. Opponent knocked over on hit.',7000000,'Rare'),\
     'argsb':('AMP Rifle Grip Scalpel Beam','Anti-Material Projector','Energy','10m','120m','1000m',6,7,10,'25','25','25','N/A',2,'N/A','N/A','N/A','N/A',False,False,'N/A',False,False,'Destroys Armour.',17000000,'Rare'),\
