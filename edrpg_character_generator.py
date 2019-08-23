@@ -2,6 +2,13 @@ import edrpg
 import tkinter as tk
 from tkinter import ttk
 
+FONT_LEVEL_1 = ('Arial',20)
+FONT_LEVEL_2 = ('Arial',16)
+FONT_LEVEL_3 = ('Arial',14)
+FONT_LEVEL_4 = ('Arial',9)
+BG_COLOUR_1 = 'white smoke'
+
+
 class Root(tk.Tk):
     
     def __init__(self):
@@ -13,11 +20,7 @@ class Root(tk.Tk):
         # Creating styles
         s = ttk.Style()
         s.configure('My.TFrame', background = 'white')
-        self.font_level_1 = ('Arial',20)
-        self.font_level_2 = ('Arial',16)
-        self.font_level_3 = ('Arial',14)
-        self.bg_colour_1 = 'white smoke'
-
+        
         # Setting up tabs
         self.tab_control = ttk.Notebook(self)
         
@@ -48,40 +51,106 @@ class Root(tk.Tk):
         # Pack tabs
         self.tab_control.pack(expan = 1, fill = "both")
 
-        # CREATE TAB Content
+        # CREATE TABS CONTENT
         # Title
-        tk.Label(self.create_tab,text = 'Character Creation', font=(self.font_level_1), pady = 10, bg='white').pack()
-        self.create_cont = tk.Frame(self.create_tab,bg=self.bg_colour_1)
-        self.create_cont.pack(fill=tk.BOTH, padx=5,pady=5)
+        tk.Label(self.create_tab,text='Character Creation',font=(FONT_LEVEL_1),pady=10,bg='white',width=15,anchor=tk.W).pack()
+        self.create_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_1)
+        self.create_cont.pack(fill=tk.BOTH,pady=5,side=tk.LEFT)
+        
         # Name
-        tk.Label(self.create_cont, text = 'Step 1: Choose a name', bg=self.bg_colour_1, font=self.font_level_2).grid(row=0, column=0, columnspan=3)
-        tk.Label(self.create_cont, text='Character name', font=self.font_level_3, bg=self.bg_colour_1,padx=5, pady=5).grid(row=1, column=0)
-        self.char_name_ent = tk.Entry(self.create_cont, width=30, font=self.font_level_3)
+        label_2(self.create_cont,'Step 1: Choose a name',0,0,3)
+        label_3(self.create_cont,'Character name',1,0,13)
+        self.char_name_ent = tk.Entry(self.create_cont, width=30, font=FONT_LEVEL_3)
         self.char_name_ent.grid(row=1, column=1)
         self.char_name_btn = tk.Button(self.create_cont,text='Proceed',width=10)
         self.char_name_btn.grid(row=1,column=2)
+        
         # Backgrounds
-        tk.Label(self.create_cont,text='Step 2: Select Backgrounds', font=self.font_level_2, bg=self.bg_colour_1).\
-            grid(row=2, column=0, columnspan=3)
+        label_2(self.create_cont,'Step 2: Select Backgrounds',2,0,3)
         self.bg_options = []
         for bg in edrpg.BACKGROUNDS:
             self.bg_options.append(bg.name)
-        tk.Label(self.create_cont,text="Background 1", font=self.font_level_3, bg=self.bg_colour_1).\
-            grid(row=3,column=0)
-        self.bg_1_combo = ttk.Combobox(self.create_cont, width=37,font=self.font_level_3)
+        
+        label_3(self.create_cont,"Background 1",3,0,13)
+        self.bg_1_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
         self.bg_1_combo['values'] = self.bg_options
-        self.bg_1_combo.grid(row=3,column=1,columnspan=2)
+        self.bg_1_combo.grid(row=3,column=1,columnspan=2,pady=5)
+        self.bg_1_combo.current(42)
+
+        label_3(self.create_cont,"Background 2",4,0,13)
+        self.bg_2_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
+        self.bg_2_combo['values'] = self.bg_options
+        self.bg_2_combo.set("---Select Background---")
+        self.bg_2_combo.grid(row=4,column=1,columnspan=2,pady=5)
+
+        label_3(self.create_cont,"Background 3",5,0,13)
+        self.bg_3_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
+        self.bg_3_combo['values'] = self.bg_options
+        self.bg_3_combo.set("---Select Background---")
+        self.bg_3_combo.grid(row=5,column=1,columnspan=2,pady=5)
+
+        label_3(self.create_cont,"Background 4",6,0,13)
+        self.bg_4_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
+        self.bg_4_combo['values'] = self.bg_options
+        self.bg_4_combo.set("---Select Background---")
+        self.bg_4_combo.grid(row=6,column=1,columnspan=2,pady=5)
+
+        label_3(self.create_cont,"Background 5",7,0,13)
+        self.bg_4_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
+        self.bg_4_combo['values'] = self.bg_options
+        self.bg_4_combo.set("---Select Background---")
+        self.bg_4_combo.grid(row=7,column=1,columnspan=2,pady=5)
+    
+        # Character Stats
+        self.stats_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_1)
+        self.stats_cont.pack(fill=tk.BOTH,pady=5,side=tk.LEFT)
+        self.display_stats(self.stats_cont)
+
+        # Test
+        characters[current_char].name = "Tasha"
+        #print(vars(characters[current_char]))
+
+    def display_stats(self,container):
+        stat_list = []
+        for item in vars(characters[current_char]).items():
+            print(item)
+            if isinstance(item[1],edrpg.Skill):
+                stat_list.append((item[1].name, item[1].cat, item[1].score))    
+                        
+        label_2(container,"Character Statistics",0,0,2)
+        print(stat_list)
+
+        self.write_stats(container,stat_list,1)
+
+    def write_stats(self,container,stats,row):
+        print(stats)
+        for stat in stats:
+            print(stat[0],stat[2])
+            label_4(container,stat[0],row,0,20)
+            label_4(container,stat[2],row,1,5)
+            row += 1
         
 
-        
-        
-        
+class label_2:
+    def __init__(self,container,text,row,col,col_span):
+        tk.Label(container,text=text,bg=BG_COLOUR_1,font=FONT_LEVEL_2,height=2,anchor=tk.S)\
+            .grid(row=row, column=col,columnspan=col_span)
 
+class label_3:
+    def __init__(self,container,text,row,col,width):
+        tk.Label(container,text=text,font=FONT_LEVEL_3,bg=BG_COLOUR_1,width=width,anchor=tk.W).\
+            grid(row=row,column=col)
 
+class label_4:
+    def __init__(self,container,text,row,col,width):
+        tk.Label(container,text=text,font=FONT_LEVEL_4,bg=BG_COLOUR_1,width=width,anchor=tk.W).\
+            grid(row=row,column=col)
 
 
 
 if __name__ == '__main__':
     characters = []
+    current_char = 0
+    characters.append(edrpg.Character())
     root = Root()
     root.mainloop() 

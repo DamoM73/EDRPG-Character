@@ -1,10 +1,10 @@
 class Character:
-    def __init__(self, name, age, height, weight):
+    def __init__(self):
         # cosmetics
-        self.name = name
-        self.age = age
-        self.height = height
-        self.weight = weight
+        self.name = ""
+        self.age = ""
+        self.height = ""
+        self.weight = ""
         
         # general
         self.rank_index = 0

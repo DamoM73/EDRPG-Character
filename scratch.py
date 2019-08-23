@@ -1,18 +1,13 @@
 from tkinter import *
 import edrpg
 
-root = Tk()
-root.geometry("300x200")
+tasha = edrpg.Character()
 
-option_list = []
-for bg in edrpg.BACKGROUNDS:
-    option_list.append(bg.name)
+stats=[]
 
-print(option_list)
-
-option_control = StringVar()
-option_control.set = (option_list[0])
-choice = OptionMenu(root, option_control, *option_list)
-choice.pack()
-
-root.mainloop()
+for item in vars(tasha).items():
+    #print(item[1],isinstance(item[1],edrpg.Skill))
+    if isinstance(item[1],edrpg.Skill):
+        stats.append((item[1].name, item[1].cat, item[1].score))
+        
+print(stats)
