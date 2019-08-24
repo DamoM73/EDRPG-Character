@@ -55,81 +55,122 @@ class Root(tk.Tk):
         # Title
         tk.Label(self.create_tab,text='Character Creation',font=(FONT_LEVEL_1),pady=10,bg='white',width=15,anchor=tk.W).pack()
         self.create_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_1)
-        self.create_cont.pack(fill=tk.BOTH,pady=5,side=tk.LEFT)
+        self.create_cont.pack(fill=tk.BOTH,pady=5,side=tk.TOP)
         
         # Name
         label_2(self.create_cont,'Step 1: Choose a name',0,0,3)
-        label_3(self.create_cont,'Character name',1,0,13)
+        label_3(self.create_cont,'Character name',1,0,13,1)
         self.char_name_ent = tk.Entry(self.create_cont, width=30, font=FONT_LEVEL_3)
         self.char_name_ent.grid(row=1, column=1)
-        self.char_name_btn = tk.Button(self.create_cont,text='Proceed',width=10)
+        self.char_name_btn = tk.Button(self.create_cont,text='Commit',width=10,command=self.commit_name)
         self.char_name_btn.grid(row=1,column=2)
         
         # Backgrounds
         label_2(self.create_cont,'Step 2: Select Backgrounds',2,0,3)
-        self.bg_options = []
+        self.bg_options = ['None']
         for bg in edrpg.BACKGROUNDS:
             self.bg_options.append(bg.name)
         
-        label_3(self.create_cont,"Background 1",3,0,13)
+        label_3(self.create_cont,"Background 1",3,0,13,1)
         self.bg_1_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
         self.bg_1_combo['values'] = self.bg_options
         self.bg_1_combo.grid(row=3,column=1,columnspan=2,pady=5)
-        self.bg_1_combo.current(42)
+        self.bg_1_combo.current(43)
 
-        label_3(self.create_cont,"Background 2",4,0,13)
+        label_3(self.create_cont,"Background 2",4,0,13,1)
         self.bg_2_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
         self.bg_2_combo['values'] = self.bg_options
         self.bg_2_combo.set("---Select Background---")
         self.bg_2_combo.grid(row=4,column=1,columnspan=2,pady=5)
 
-        label_3(self.create_cont,"Background 3",5,0,13)
+        label_3(self.create_cont,"Background 3",5,0,13,1)
         self.bg_3_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
         self.bg_3_combo['values'] = self.bg_options
         self.bg_3_combo.set("---Select Background---")
         self.bg_3_combo.grid(row=5,column=1,columnspan=2,pady=5)
 
-        label_3(self.create_cont,"Background 4",6,0,13)
+        label_3(self.create_cont,"Background 4",6,0,13,1)
         self.bg_4_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
         self.bg_4_combo['values'] = self.bg_options
         self.bg_4_combo.set("---Select Background---")
         self.bg_4_combo.grid(row=6,column=1,columnspan=2,pady=5)
 
-        label_3(self.create_cont,"Background 5",7,0,13)
-        self.bg_4_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
-        self.bg_4_combo['values'] = self.bg_options
-        self.bg_4_combo.set("---Select Background---")
-        self.bg_4_combo.grid(row=7,column=1,columnspan=2,pady=5)
-    
+        label_3(self.create_cont,"Background 5",7,0,13,1)
+        self.bg_5_combo = ttk.Combobox(self.create_cont, width=37,font=FONT_LEVEL_3,state="readonly")
+        self.bg_5_combo['values'] = self.bg_options
+        self.bg_5_combo.set("---Select Background---")
+        self.bg_5_combo.grid(row=7,column=1,columnspan=2,pady=5)
+
+        self.background_warning = tk.Label(self.create_cont,text="Warning! Too many backgrounds",font=FONT_LEVEL_3,bg="RED")
+        
+        self.background_btn = tk.Button(self.create_cont,text='Commit',width=10,command=self.commit_background)
+        self.background_btn.grid(row=8,column=2)
+
+        # Enhancements
+        label_2(self.create_cont,'Step 3:Enhancements',9,0,3)
+        self.enhance_options = []
+        for enh in edrpg.ENHANCEMENTS:
+            self.enhance_options.append(enh.name)
+        
         # Character Stats
         self.stats_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_1)
-        self.stats_cont.pack(fill=tk.BOTH,pady=5,side=tk.LEFT)
-        self.display_stats(self.stats_cont)
+        self.stats_cont.pack(fill=tk.BOTH,pady=5,side=tk.TOP)
+        self.display_stats(self.stats_cont) 
 
-        # Test
-        characters[current_char].name = "Tasha"
-        #print(vars(characters[current_char]))
+        
+
+    def commit_name(self):
+        characters[current_char].name = self.char_name_ent.get()
+        print(characters[current_char].name)
+
+    def commit_background(self):
+        backgrounds_selected  = []  
+        backgrounds_selected.append(self.bg_1_combo.get())
+        backgrounds_selected.append(self.bg_2_combo.get())
+        backgrounds_selected.append(self.bg_3_combo.get())
+        backgrounds_selected.append(self.bg_4_combo.get())
+        backgrounds_selected.append(self.bg_5_combo.get())
+        
+        index = 0
+        for bg_name in backgrounds_selected:
+            for bg_obj in edrpg.BACKGROUNDS:
+                if bg_obj.name == bg_name:
+                    characters[current_char].backgrounds[index] = bg_obj
+                    index += 1
+        bg_cost = 0
+        for bg_obj in characters[current_char].backgrounds:
+            bg_cost += bg_obj.cost
+            print(bg_obj.name)
+        if bg_cost > 5:
+            self.background_warning.grid(row=8,column=1)
+        else:
+            self.background_warning.grid_forget()
+
+
 
     def display_stats(self,container):
         stat_list = []
         for item in vars(characters[current_char]).items():
-            print(item)
             if isinstance(item[1],edrpg.Skill):
                 stat_list.append((item[1].name, item[1].cat, item[1].score))    
-                        
+        
         label_2(container,"Character Statistics",0,0,2)
-        print(stat_list)
-
         self.write_stats(container,stat_list,1)
 
     def write_stats(self,container,stats,row):
-        print(stats)
-        for stat in stats:
-            print(stat[0],stat[2])
-            label_4(container,stat[0],row,0,20)
-            label_4(container,stat[2],row,1,5)
-            row += 1
-        
+        cat_list=("Personal Combat","Intelligence","Social Skills","Vehicle Skills","Espionage")
+        col=0
+        for cat in cat_list:
+            label_3(container,cat,row,col,13,2)
+            start_row = row+1
+            for stat in stats:
+                if stat[1] == cat[0]:
+                    label_4(container,stat[0],start_row,col,20)
+                    label_4(container,stat[2],start_row,col+1,5)
+                    start_row += 1
+            col += 2
+
+
 
 class label_2:
     def __init__(self,container,text,row,col,col_span):
@@ -137,9 +178,9 @@ class label_2:
             .grid(row=row, column=col,columnspan=col_span)
 
 class label_3:
-    def __init__(self,container,text,row,col,width):
+    def __init__(self,container,text,row,col,width,colspan):
         tk.Label(container,text=text,font=FONT_LEVEL_3,bg=BG_COLOUR_1,width=width,anchor=tk.W).\
-            grid(row=row,column=col)
+            grid(row=row,column=col,columnspan=colspan,sticky=tk.W)
 
 class label_4:
     def __init__(self,container,text,row,col,width):

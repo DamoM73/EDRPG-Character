@@ -16,7 +16,7 @@ class Character:
         self.cyber_karma = 0
         self.social_imp = 0
         self.backgrounds_max = 5
-        self.backgrounds = []
+        self.backgrounds = ["","","","",""]
         self.enhancements_max = 0
         self.enhancements = []
         self.karam_capab_max = 4
