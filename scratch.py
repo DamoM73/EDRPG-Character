@@ -1,13 +1,23 @@
-from tkinter import *
-import edrpg
+import tkinter as tk
+from tkinter import ttk
+ 
+app = tk.Tk() 
+app.geometry('200x100')
 
-tasha = edrpg.Character()
+labelTop = tk.Label(app,
+                    text = "Choose your favourite month")
+labelTop.grid(column=0, row=0)
 
-stats=[]
+comboExample = ttk.Combobox(app, 
+                            values=[
+                                    "January", 
+                                    "February",
+                                    "March",
+                                    "April"])
+print(dict(comboExample)) 
+comboExample.grid(column=0, row=1)
+comboExample.current(1)
 
-for item in vars(tasha).items():
-    #print(item[1],isinstance(item[1],edrpg.Skill))
-    if isinstance(item[1],edrpg.Skill):
-        stats.append((item[1].name, item[1].cat, item[1].score))
-        
-print(stats)
+print(comboExample.current(), comboExample.get())
+
+app.mainloop()

@@ -10,7 +10,7 @@ class Character:
         self.rank_index = 0
         self.rank_pts = 0
         self.rank_name = RANKS[self.rank_index].name
-        self.skillcap = RANKS[self.rank_index].skill_cap
+        self.skill_cap = RANKS[self.rank_index].skill_cap
         self.endurance = RANKS[self.rank_index].end
         self.karma = RANKS[self.rank_index].karma_pts
         self.cyber_karma = 0
@@ -32,55 +32,56 @@ class Character:
         self.ships = []
         
         # Personal Combat Skills
-        self.dodge = Skill("Dodge","P")
-        self.eng_weap = Skill("Energy Weapons", "P")
-        self.fight = Skill("Fighting", "P")
-        self.grenade = Skill("Grenade", "P")
-        self.hvy_weap = Skill("Heavy Weapons", "P")
-        self.kin_weap = Skill("Kinetic Weapons", "P")
-        self.mel_weap = Skill("Melee Weapon", "P")
-        self.parry = Skill("Parry", "P")
+        self.dodge = Skill("dodge","Dodge","P")
+        self.eng_weap = Skill("eng_weap","Energy Weapons", "P")
+        self.fight = Skill("fight","Fighting", "P")
+        self.grenade = Skill("grenade","Grenade", "P")
+        self.hvy_weap = Skill("hvy_weap","Heavy Weapons", "P")
+        self.kin_weap = Skill("kin_weap","Kinetic Weapons", "P")
+        self.mel_weap = Skill("mel_weap","Melee Weapon", "P")
+        self.parry = Skill("parry","Parry", "P")
         
         # Intelligence Skills
-        self.comp = Skill("Computer", "I")
-        self.cult_law = Skill("Cullture & Law", "I")
-        self.cyber = Skill("Cyber", "I")
-        self.med = Skill("Medicine", "I")
-        self.plant_know = Skill("Planetary Knowledge", "I")
-        self.sci = Skill("Science", "I")
-        self.tact = Skill("Tactics", "I")
-        self.trade = Skill("Trading", "I")
+        self.comp = Skill("comp","Computer", "I")
+        self.cult_law = Skill("cult_law","Cullture & Law", "I")
+        self.cyber = Skill("cyber","Cyber", "I")
+        self.med = Skill("med","Medicine", "I")
+        self.plant_know = Skill("plant_know","Planetary Knowledge", "I")
+        self.sci = Skill("sci","Science", "I")
+        self.tact = Skill("tact","Tactics", "I")
+        self.trade = Skill("trade","Trading", "I")
 
         # Social Skills
-        self.bargin = Skill("Bargin", "S")
-        self.bluff = Skill("Bluff", "S")
-        self.charm = Skill("Charm", "S")
-        self.dip = Skill("Diplomacy", "S")
-        self.gambling = Skill("Gambling", "S")
-        self.insight = Skill("Insight", "S")
-        self.intim = Skill("Intimidate", "S")
-        self.strwise = Skill("Streewise","S")
+        self.bargin = Skill("bargin","Bargin", "S")
+        self.bluff = Skill("bluff","Bluff", "S")
+        self.charm = Skill("charm","Charm", "S")
+        self.dip = Skill("dip","Diplomacy", "S")
+        self.gambling = Skill("gambling","Gambling", "S")
+        self.insight = Skill("insight","Insight", "S")
+        self.intim = Skill("intim","Intimidate", "S")
+        self.strwise = Skill("strwise","Streewise","S")
 
         # Vehicle Skills
-        self.nav = Skill("Navigation", "V")
-        self.repair = Skill("Repair", "V")
-        self.ship_plt = Skill("Spaceship Piloting", "V")
-        self.ship_weap = Skill("Spaceship Weapons", "V")
-        self.sys = Skill("Systems", "V")
-        self.veh_plt = Skill("Vehicle Piloting", "V")
-        self.veh_weap = Skill("Vehicle Weapons", "V")
+        self.nav = Skill("nav","Navigation", "V")
+        self.repair = Skill("repair","Repair", "V")
+        self.ship_plt = Skill("ship_plt","Spaceship Piloting", "V")
+        self.ship_weap = Skill("ship_weap","Spaceship Weapons", "V")
+        self.sys = Skill("sys","Systems", "V")
+        self.veh_plt = Skill("veh_plt","Vehicle Piloting", "V")
+        self.veh_weap = Skill("veh_weap","Vehicle Weapons", "V")
 
         # Espionage
-        self.athlet = Skill("Athletics", "E")
-        self.perc = Skill("Perception", "E")
-        self.sec = Skill("Security", "E")
-        self.sleight = Skill("Sleight of Hand", "E")
-        self.stealth = Skill("Stealth", "E")
-        self.surv = Skill("Survival", "E")
+        self.athlet = Skill("athlet","Athletics", "E")
+        self.perc = Skill("perc","Perception", "E")
+        self.sec = Skill("sec","Security", "E")
+        self.sleight = Skill("sleight","Sleight of Hand", "E")
+        self.stealth = Skill("stealth","Stealth", "E")
+        self.surv = Skill("surv","Survival", "E")
 
 
 class Skill:
-    def __init__(self, name, cat):
+    def __init__(self, code, name, cat):
+        self.code = code
         self.name = name
         self.cat = cat
         self.cap = 40
@@ -116,6 +117,10 @@ class Background:
         self.spec = spec
         self.descript = descript
 
+    def calculate_scores(self,charact):
+        for effect in self.effects:
+            effect.calculate_scores(charact)
+        
 
 class Enhancement:
     def __init__(self,code, name, maxi, descript, effects):
@@ -407,6 +412,12 @@ class Effect:
     def __init__(self,stat, amt):
         self.stat = stat
         self.amt = amt
+
+    def calculate_scores(self,charact):
+        for item in vars(charact).items():
+            if isinstance(item[1],Skill):
+                if item[1].code == self.stat:
+                    item[1].score += self.amt
 
 
 # Constants 
