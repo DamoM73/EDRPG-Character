@@ -109,8 +109,7 @@ class Root(tk.Tk):
         self.bg_5_combo.grid(row=7,column=1,columnspan=2,pady=5)
 
         self.background_warning = tk.Label(self.create_cont,text="Warning! Too many backgrounds",font=FONT_LEVEL_3,bg="RED")
-        
-        
+                
         # Enhancements
         label_2(self.create_cont,'Step 3:Enhancements',9,0,3)
         self.enhance_options = []
@@ -121,8 +120,6 @@ class Root(tk.Tk):
         self.stats_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_2)
         self.stats_cont.pack(fill=tk.BOTH,pady=5,side=tk.BOTTOM)
         self.display_stats(self.stats_cont) 
-
-        
 
     def commit_name(self):
         characters[current_char].name = self.char_name_ent.get()
@@ -163,17 +160,10 @@ class Root(tk.Tk):
         if bg_cost > 5:
             self.background_warning.grid(row=8,column=1)
         else:
-            self.background_warning.grid_forget()
-        #print(characters[current_char].backgrounds)
+            self.background_warning.grid_remove()
 
         self.display_stats(self.stats_cont) 
-        
-        
-
-        
-        
-
-
+ 
     def display_stats(self,container):
         stat_list = []
         for item in vars(characters[current_char]).items():
@@ -188,7 +178,7 @@ class Root(tk.Tk):
     def write_stats(self,container,stats,row):
         cat_list=("Personal Combat","Intelligence","Social Skills","Vehicle Skills","Espionage")
         col=0
-        self.stats_warning.grid_forget()
+        stats_over = False
         for cat in cat_list:
             label_3_alt(container,cat,row,col,13,2)
             start_row = row+1
@@ -198,13 +188,15 @@ class Root(tk.Tk):
                     score = label_4_alt(container,stat[2],start_row,col+1,5)
                     start_row += 1
                 if stat[2] > characters[current_char].skill_cap:
-                    self.stats_warning.grid(row=0,column=2)
-
-                        
-
+                    stats_over = True
+                               
             col += 2
-
-
+        if stats_over:
+            self.stats_warning.grid(row=0,column=2)
+        else:
+            self.stats_warning.config(bg=BG_COLOUR_2,fg=BG_COLOUR_2)
+            self.stats_warning.grid(row=0,column=2)
+            
 
 class label_2:
     def __init__(self,container,text,row,col,col_span):
