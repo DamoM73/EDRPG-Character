@@ -112,10 +112,8 @@ class Root(tk.Tk):
                 
         # Enhancements
         label_2(self.create_cont,'Step 3:Enhancements',9,0,3)
-        self.enhance_options = []
-        for enh in edrpg.ENHANCEMENTS:
-            self.enhance_options.append(enh.name)
-        
+        self.enhancements_fr
+                
         # Character Stats
         self.stats_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_2)
         self.stats_cont.pack(fill=tk.BOTH,pady=5,side=tk.BOTTOM)
@@ -151,19 +149,22 @@ class Root(tk.Tk):
             index += 1
         bg_cost = 0
         
-        # make calucations
+        # make background skills calucations & write enhancements to character
+        characters[current_char].enhancements=[]
+        characters[current_char].enhancements_max = 0
         for bg_obj in characters[current_char].backgrounds:
             if isinstance(bg_obj,edrpg.Background):
                 bg_cost += bg_obj.cost
                 bg_obj.calculate_scores(characters[current_char])
-
+                bg_obj.add_ehancements(characters[current_char])
         if bg_cost > 5:
             self.background_warning.grid(row=8,column=1)
         else:
             self.background_warning.grid_remove()
-
         self.display_stats(self.stats_cont) 
- 
+        self.display_enhancements(self.create_cont,10)
+        
+    
     def display_stats(self,container):
         stat_list = []
         for item in vars(characters[current_char]).items():
@@ -197,6 +198,12 @@ class Root(tk.Tk):
             self.stats_warning.config(bg=BG_COLOUR_2,fg=BG_COLOUR_2)
             self.stats_warning.grid(row=0,column=2)
             
+    def display_enhancements(self,container,start_row):
+        row = start_row
+        for enh in characters[current_char].enhancements:
+            print(enh.name,characters[current_char].enhancements_max)
+            label_3(container,enh.name,row,0,13,1)
+            row +=1
 
 class label_2:
     def __init__(self,container,text,row,col,col_span):
@@ -227,7 +234,6 @@ class label_4_alt:
     def __init__(self,container,text,row,col,width):
         tk.Label(container,text=text,font=FONT_LEVEL_4,bg=BG_COLOUR_2,width=width,anchor=tk.W).\
             grid(row=row,column=col)
-
 
 
 if __name__ == '__main__':

@@ -1,9 +1,12 @@
-import tkinter as tk
 from tkinter import ttk
-root = tk.Tk() 
+import tkinter
 
-test = tk.Label(root,text="Hi There")
-test.config(bg="red")
-test.pack()
+root = tkinter.Tk()
+
+ttk.Style().configure("TButton", padding=6, relief="flat",
+   background="red")
+
+btn = ttk.Button(text="Sample")
+btn.pack()
 
 root.mainloop()

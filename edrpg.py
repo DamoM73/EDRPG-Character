@@ -108,18 +108,26 @@ class Rank:
 
 
 class Background:
-    def __init__(self,code,name,cost,effects,enhance,spec,descript):
+    def __init__(self,code,name,cost,effects,enhancements,spec,descript):
         self.code = code
         self.name = name
         self.cost = cost
         self.effects = effects
-        self.enhance = enhance
+        self.enhancements = enhancements
         self.spec = spec
         self.descript = descript
 
     def calculate_scores(self,charact):
         for effect in self.effects:
             effect.calculate_scores(charact)
+
+    def add_ehancements(self,charact):
+        for enh in self.enhancements:
+            for enh_obj in ENHANCEMENTS:
+                if enh == enh_obj.name.lower():
+                    charact.enhancements_max += 1
+                    charact.enhancements.append(enh_obj)
+
         
 
 class Enhancement:
