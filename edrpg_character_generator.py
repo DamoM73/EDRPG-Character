@@ -112,7 +112,7 @@ class Root(tk.Tk):
                 
         # Enhancements
         label_2(self.create_cont,'Step 3:Enhancements',9,0,3)
-        self.enhancements_fr
+        #self.enhancements_fr
                 
         # Character Stats
         self.stats_cont = tk.Frame(self.create_tab,bg=BG_COLOUR_2)
