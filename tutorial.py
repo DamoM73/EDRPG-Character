@@ -1,55 +1,23 @@
-import kivy
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
+from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
+from kivy.lang import Builder
 
-class MyGridLayout(GridLayout):
-    # Initialize infitnite keywords
-    def __init__(self, **kwargs):
-        # Call grid layout constructor
-        super(MyGridLayout,self).__init__(**kwargs)
+Builder.load_file('design.kv')
 
-        # Set colums
-        self.cols = 1
+class MyGridLayout(Widget):
 
-        # Create a second gridlayout
-        self.top_grid = GridLayout()
-        self.top_grid.cols = 2
+    name = ObjectProperty(None)
+    pizza = ObjectProperty(None)
+    colour = ObjectProperty(None)
 
-        # Add widgets
-        self.top_grid.add_widget(Label(text="Name: "))
-        # Add Input Box
-        self.name = TextInput(multiline=False)
-        self.top_grid.add_widget(self.name)
-
-        self.top_grid.add_widget(Label(text="Favorite Pizza: "))
-        # Add Input Box
-        self.pizza = TextInput(multiline=False)
-        self.top_grid.add_widget(self.pizza)
-
-        self.top_grid.add_widget(Label(text="Favorite colour: "))
-        # Add Input Box
-        self.colour = TextInput(multiline=False)
-        self.top_grid.add_widget(self.colour)
-
-        # Add top grid
-        self.add_widget(self.top_grid)
-
-        # Create a Subit Button
-        self.submit = Button(text="Submit", font_size=32)
-        # Bind button
-        self.submit.bind(on_press=self.press)
-        self.add_widget(self.submit)
-
-    def press(self, instance):
+    def press(self):
         name = self.name.text
         pizza = self.pizza.text
         colour = self.colour.text
 
-        #print(f'Hello {name} you like {pizza} pizza and your favourite colour is {colour}')
-        self.add_widget(Label(text=f'Hello {name} you like {pizza} pizza and your favourite colour is {colour}'))
+        print(f'Hello {name} you like {pizza} pizza and your favourite colour is {colour}')
+        #self.add_widget(Label(text=f'Hello {name} you like {pizza} pizza and your favourite colour is {colour}'))
 
         # Clear input
         self.name.text = ""
